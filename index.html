@@ -14,7 +14,10 @@ color:#f5e6c8;
 text-align:center;
 }
 
-h1{color:gold;margin-top:20px;}
+h1{
+color:gold;
+margin-top:20px;
+}
 
 .container{
 max-width:900px;
@@ -22,7 +25,6 @@ margin:auto;
 padding:20px;
 }
 
-/* 🔮 cartas */
 #mazo{
 display:flex;
 flex-wrap:wrap;
@@ -46,7 +48,9 @@ font-weight:bold;
 color:white;
 }
 
-.carta:hover{transform:scale(1.1);}
+.carta:hover{
+transform:scale(1.1);
+}
 
 .carta.seleccionada{
 background:gold;
@@ -54,7 +58,6 @@ color:black;
 transform:scale(1.2);
 }
 
-/* 🌌 efecto */
 .reveal{
 animation:flip 0.8s ease;
 }
@@ -64,7 +67,6 @@ animation:flip 0.8s ease;
 100%{transform:rotateY(360deg);}
 }
 
-/* resultado */
 #resultado{
 margin-top:20px;
 padding:15px;
@@ -72,7 +74,6 @@ border:1px solid gold;
 display:none;
 }
 
-/* cards */
 .card{
 background:rgba(0,0,0,.6);
 border:1px solid gold;
@@ -91,7 +92,6 @@ border-radius:8px;
 font-weight:bold;
 }
 
-/* botón reset */
 .reset{
 background:#444;
 color:white;
@@ -130,7 +130,6 @@ margin-left:10px;
 
 <script>
 
-/* 🃏 CARTAS TAROT */
 const cartas = [
 {nombre:"El Mago", msg:"Inicio de un nuevo ciclo con energía fuerte."},
 {nombre:"La Luna", msg:"Confusión emocional, confía en tu intuición."},
@@ -144,7 +143,6 @@ let seleccionadas = [];
 
 const mazo = document.getElementById("mazo");
 
-/* crear cartas */
 function crearMazo(){
 mazo.innerHTML = "";
 seleccionadas = [];
@@ -174,7 +172,6 @@ mazo.appendChild(div);
 
 crearMazo();
 
-/* 🔮 lectura */
 function leer(){
 
 if(seleccionadas.length < 3){
@@ -184,7 +181,6 @@ return;
 
 const res = document.getElementById("resultado");
 res.style.display = "block";
-
 res.innerHTML = "🔮 interpretando energía...";
 
 setTimeout(()=>{
@@ -200,13 +196,11 @@ res.innerHTML = seleccionadas.map(c=>`
 
 }
 
-/* 🔄 reset */
 function resetear(){
 crearMazo();
 document.getElementById("resultado").style.display = "none";
 }
 
-/* 🌙 HORÓSCOPO */
 const signos = [
 "Aries","Tauro","Géminis","Cáncer",
 "Leo","Virgo","Libra","Escorpio",
@@ -249,10 +243,6 @@ document.getElementById("horoscopos").innerHTML = html;
 
 horoscopo();
 
-</html>
-
-<!-- espacio aquí -->
-  
 </script>
 
 </body>
