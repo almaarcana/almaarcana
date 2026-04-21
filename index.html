@@ -102,7 +102,7 @@ max-width:600px;
 width:100%;
 }
 
-/* HOROSCOPO (SIN CAMBIOS VISUALES) */
+/* HOROSCOPO (MISMO ESTILO) */
 #horo div{
 margin:8px 0;
 padding:8px;
@@ -206,7 +206,7 @@ background:rgba(0,0,0,.3);
 
 <script>
 
-/* 🃏 TAROT (SIN CAMBIOS) */
+/* TAROT (NO TOCADO) */
 const tarot=document.getElementById("tarot");
 let sel=[];
 
@@ -235,7 +235,7 @@ d.innerHTML="✔";
 tarot.appendChild(d);
 });
 
-/* ✔ SOLO FIX TAROT */
+/* REVELAR (ARREGLADO) */
 function revelar(){
 if(sel.length<3){
 document.getElementById("resultado").innerHTML="Elige 3 cartas";
@@ -250,7 +250,7 @@ document.getElementById("resultado").innerHTML=
 sel=[];
 }
 
-/* 🌙 HORÓSCOPO (RESTAURADO Y ESTABLE) */
+/* 🌙 HORÓSCOPO ARREGLADO (ÚNICO CAMBIO REAL) */
 const signos=[
 "Aries","Tauro","Géminis","Cáncer",
 "Leo","Virgo","Libra","Escorpio",
@@ -259,24 +259,31 @@ const signos=[
 
 const mensajes=[
 "energía de cambio",
-"equilibrio",
-"decisión",
-"crecimiento",
-"bloqueo"
+"equilibrio emocional",
+"decisiones importantes",
+"crecimiento personal",
+"bloqueo temporal",
+"avance inesperado",
+"momento de reflexión",
+"oportunidad cercana"
 ];
 
 const hoy=new Date();
-const seed=hoy.getFullYear()*1000 + hoy.getMonth()*100 + hoy.getDate();
+const seedBase = hoy.getFullYear()*10000 + (hoy.getMonth()+1)*100 + hoy.getDate();
 
-function rand(n){
-let x=Math.sin(n)*10000;
-return x-Math.floor(x);
+function rand(seed){
+let x = Math.sin(seed) * 10000;
+return x - Math.floor(x);
 }
 
-document.getElementById("horo").innerHTML=
+document.getElementById("horo").innerHTML =
 signos.map((s,i)=>{
-let m=mensajes[Math.floor(rand(seed+i)*mensajes.length)];
-return `<div><b style="color:gold;">${s}</b>: ${m}</div>`;
+
+let seed = seedBase + (i * 97);
+let idx = Math.floor(rand(seed) * mensajes.length);
+
+return `<div><b style="color:gold;">${s}</b>: ${mensajes[idx]}</div>`;
+
 }).join("");
 
 </script>
