@@ -29,9 +29,7 @@ z-index:999;
 box-shadow:0 0 10px rgba(255,215,0,.5);
 }
 
-.top-btn:hover{
-transform:scale(1.05);
-}
+.top-btn:hover{transform:scale(1.05);}
 
 h1{
 color:gold;
@@ -74,7 +72,7 @@ transition:0.3s;
 display:flex;
 align-items:center;
 justify-content:center;
-font-size:30px;
+font-size:28px;
 color:gold;
 }
 
@@ -112,12 +110,6 @@ max-width:600px;
 
 .service button{
 width:100%;
-background:gold;
-border:none;
-padding:10px;
-cursor:pointer;
-border-radius:8px;
-font-weight:bold;
 }
 
 /* HOROSCOPO */
@@ -142,7 +134,7 @@ font-size:24px;
 
 <body>
 
-<!-- BOTÓN SERVICIOS -->
+<!-- BOTÓN -->
 <a href="#servicios" class="top-btn">💳 Servicios</a>
 
 <h1>🔮 Alma Arcana</h1>
@@ -210,17 +202,17 @@ font-size:24px;
 
 <script>
 
-/* TAROT */
+/* 🃏 TAROT */
 const tarot=document.getElementById("tarot");
 let seleccionadas=[];
 
 const cartas=[
-{nombre:"El Mago",img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/RWS_Tarot_01_Magician.jpg",msg:"Inicio de poder."},
-{nombre:"La Luna",img:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",msg:"Intuición."},
-{nombre:"El Sol",img:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",msg:"Éxito."},
-{nombre:"La Estrella",img:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",msg:"Esperanza."},
-{nombre:"La Torre",img:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",msg:"Cambio."},
-{nombre:"El Mundo",img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",msg:"Cierre."}
+{nombre:"El Mago",img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/RWS_Tarot_01_Magician.jpg",msg:"Inicio de poder y creación."},
+{nombre:"La Luna",img:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",msg:"Intuición y confusión emocional."},
+{nombre:"El Sol",img:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",msg:"Éxito y claridad."},
+{nombre:"La Estrella",img:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",msg:"Esperanza y guía."},
+{nombre:"La Torre",img:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",msg:"Cambio inevitable."},
+{nombre:"El Mundo",img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",msg:"Cierre positivo."}
 ];
 
 cartas.forEach((c,i)=>{
@@ -240,7 +232,7 @@ div.innerHTML="✔";
 tarot.appendChild(div);
 });
 
-/* LECTURA */
+/* 🔮 LECTURA */
 function revelar(){
 
 if(seleccionadas.length<3){
@@ -264,8 +256,8 @@ ${c.msg}
 
 let energia="Energía en movimiento.";
 
-if(elegidas.some(c=>c.nombre==="La Torre")) energia="Cambio fuerte.";
-if(elegidas.some(c=>c.nombre==="El Sol")) energia="Energía positiva.";
+if(elegidas.some(c=>c.nombre==="La Torre")) energia="Cambio fuerte e inevitable.";
+if(elegidas.some(c=>c.nombre==="El Sol")) energia="Energía positiva y expansión.";
 
 html+=`
 <hr style="border:1px solid gold;">
@@ -277,10 +269,45 @@ document.getElementById("resultado").innerHTML=html;
 seleccionadas=[];
 }
 
-/* HOROSCOPO */
-const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+/* 🌙 HORÓSCOPO ORIGINAL RESTAURADO */
+const signos=[
+"Aries","Tauro","Géminis","Cáncer",
+"Leo","Virgo","Libra","Escorpio",
+"Sagitario","Capricornio","Acuario","Piscis"
+];
 
-const mensajes=["cambio","equilibrio","decisión","crecimiento","bloqueo"];
+const mensajes=[
+{
+amor:"tensión emocional leve",
+dinero:"pequeña oportunidad inesperada",
+energia:"alta pero dispersa",
+consejo:"evita impulsos"
+},
+{
+amor:"conexión estable",
+dinero:"día neutro",
+energia:"equilibrada",
+consejo:"confía en el proceso"
+},
+{
+amor:"acercamiento emocional",
+dinero:"mejora progresiva",
+energia:"crecimiento interno",
+consejo:"escucha tu intuición"
+},
+{
+amor:"confusión emocional",
+dinero:"bloqueo temporal",
+energia:"inestable",
+consejo:"no fuerces nada"
+},
+{
+amor:"energía positiva",
+dinero:"avance laboral",
+energia:"muy alta",
+consejo:"actúa con confianza"
+}
+];
 
 const hoy=new Date();
 const seed=hoy.getFullYear()*1000 + hoy.getMonth()*100 + hoy.getDate();
@@ -293,7 +320,11 @@ return x-Math.floor(x);
 document.getElementById("horo").innerHTML=
 signos.map((s,i)=>{
 let m=mensajes[Math.floor(rand(seed+i)*mensajes.length)];
-return `<div><b style="color:gold;">${s}</b>: ${m}</div>`;
+return `<div><b style="color:gold;">${s}</b><br>
+💖 ${m.amor}<br>
+💰 ${m.dinero}<br>
+⚡ ${m.energia}<br>
+✨ ${m.consejo}</div>`;
 }).join("");
 
 </script>
