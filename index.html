@@ -14,7 +14,6 @@ color:#f5e6c8;
 text-align:center;
 }
 
-/* BOTÓN ARRIBA */
 .top-btn{
 position:fixed;
 top:15px;
@@ -50,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS */
+/* SERVICIOS (INTACTOS) */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -70,7 +69,7 @@ cursor:pointer;
 border-radius:8px;
 }
 
-/* 🔮 HORÓSCOPO GRID */
+/* HORÓSCOPO GRID */
 #horo-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -109,7 +108,7 @@ font-size:12px;
 <div id="horo-grid"></div>
 </section>
 
-<!-- 💳 SERVICIOS -->
+<!-- 💳 SERVICIOS (INTOCADOS) -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -177,7 +176,7 @@ font-size:12px;
 
 <script>
 
-/* 🔮 HORÓSCOPO CORREGIDO (GRID REAL + DIARIO) */
+/* 🔮 HORÓSCOPO FINAL CORREGIDO (SIN REPETIDOS) */
 const signos=[
 "Aries","Tauro","Géminis","Cáncer",
 "Leo","Virgo","Libra","Escorpio",
@@ -185,31 +184,42 @@ const signos=[
 ];
 
 const frases=[
-"cambio importante",
-"energía positiva",
-"decisión clave",
-"momento de avanzar",
-"bloqueo temporal",
-"oportunidad cercana",
-"reflexión necesaria",
-"movimiento inesperado",
-"equilibrio emocional",
-"nuevo comienzo"
+"Hoy necesitas actuar con calma y estrategia.",
+"Se abre una oportunidad importante en lo laboral.",
+"Tu energía emocional estará más sensible.",
+"Evita decisiones impulsivas hoy.",
+"Una conversación puede cambiar tu día.",
+"Momento ideal para cerrar asuntos pendientes.",
+"Tu intuición será clave hoy.",
+"Pequeños cambios traerán grandes resultados.",
+"Alguien influye más de lo que crees.",
+"Día estable, sin forzar situaciones.",
+"Buena energía para proyectos personales.",
+"Escucha más y observa antes de actuar."
 ];
 
 const hoy=new Date();
 const seedBase = hoy.getFullYear()*10000 + (hoy.getMonth()+1)*100 + hoy.getDate();
 
-function rand(n){
+function hash(n){
 let x=Math.sin(n)*10000;
 return x-Math.floor(x);
 }
 
+let usados=[];
+
 document.getElementById("horo-grid").innerHTML =
 signos.map((s,i)=>{
 
-let seed = seedBase + i*101;
-let idx = Math.floor(rand(seed)*frases.length);
+let idx;
+let intentos=0;
+
+do{
+idx=Math.floor(hash(seedBase+i*999+intentos)*frases.length);
+intentos++;
+}while(usados.includes(idx) && intentos<10);
+
+usados.push(idx);
 
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 
