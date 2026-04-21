@@ -50,34 +50,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* TAROT */
-#tarot{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:12px;
-}
-
-.tarot-card{
-width:95px;
-height:150px;
-border-radius:10px;
-background:#1a1a1a;
-border:1px solid gold;
-cursor:pointer;
-display:flex;
-align-items:center;
-justify-content:center;
-font-size:28px;
-color:gold;
-}
-
-.tarot-card.selected{
-background:gold;
-color:black;
-}
-
-/* SERVICIOS (INTACTOS) */
+/* SERVICIOS */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -97,7 +70,7 @@ cursor:pointer;
 border-radius:8px;
 }
 
-/* 🔮 HORÓSCOPO GRID NUEVO */
+/* 🔮 HORÓSCOPO GRID */
 #horo-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -130,20 +103,13 @@ font-size:12px;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- TAROT (SIN CAMBIOS) -->
-<section class="card">
-<h2>🔮 Tarot del destino</h2>
-
-<div id="tarot"></div>
-</section>
-
-<!-- 🔮 HORÓSCOPO NUEVO -->
+<!-- 🔮 HORÓSCOPO -->
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- SERVICIOS (INTACTOS) -->
+<!-- 💳 SERVICIOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -211,29 +177,7 @@ font-size:12px;
 
 <script>
 
-/* TAROT (SIN CAMBIOS) */
-const tarot=document.getElementById("tarot");
-let sel=[];
-
-const cartas=["🃏","🃏","🃏","🃏","🃏","🃏"];
-
-cartas.forEach((c,i)=>{
-let d=document.createElement("div");
-d.className="tarot-card";
-d.innerHTML=c;
-
-d.onclick=()=>{
-if(sel.includes(i)) return;
-if(sel.length>=3) return;
-sel.push(i);
-d.classList.add("selected");
-d.innerHTML="✔";
-};
-
-tarot.appendChild(d);
-});
-
-/* 🔮 HORÓSCOPO NUEVO (GRID REALISTA) */
+/* 🔮 HORÓSCOPO CORREGIDO (GRID REAL + DIARIO) */
 const signos=[
 "Aries","Tauro","Géminis","Cáncer",
 "Leo","Virgo","Libra","Escorpio",
