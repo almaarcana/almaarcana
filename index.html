@@ -45,13 +45,14 @@ margin-top:10px;
 font-weight:bold;
 }
 
-/* 🃏 TAROT MAZO */
+/* 🃏 TAROT */
 #tarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:12px;
 margin-top:20px;
+min-height:180px;
 }
 
 .tarot-card{
@@ -60,8 +61,10 @@ height:160px;
 border-radius:10px;
 background-image:url("https://upload.wikimedia.org/wikipedia/commons/3/3b/RWS_Tarot_back.jpg");
 background-size:cover;
+background-position:center;
 cursor:pointer;
 transition:0.4s;
+display:block;
 }
 
 .tarot-card:hover{
@@ -187,7 +190,7 @@ margin-right:auto;
 
 <script>
 
-/* 🃏 TAROT PRO */
+/* 🃏 TAROT FUNCIONAL */
 const tarot=document.getElementById("tarot");
 
 let seleccionadas=[];
