@@ -50,7 +50,34 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS */
+/* TAROT */
+#tarot{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:12px;
+}
+
+.tarot-card{
+width:95px;
+height:150px;
+border-radius:10px;
+background:#1a1a1a;
+border:1px solid gold;
+cursor:pointer;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:28px;
+color:gold;
+}
+
+.tarot-card.selected{
+background:gold;
+color:black;
+}
+
+/* SERVICIOS (INTACTOS) */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -58,10 +85,6 @@ margin:12px auto;
 border-radius:10px;
 background:rgba(0,0,0,.5);
 max-width:600px;
-}
-
-.service h3{
-margin:5px 0;
 }
 
 .service button{
@@ -74,20 +97,27 @@ cursor:pointer;
 border-radius:8px;
 }
 
-/* MINI HORÓSCOPO */
-#mini-horoscopo{
-margin:20px auto;
-max-width:600px;
-font-size:14px;
-line-height:1.4;
-padding:12px;
-border:1px solid gold;
-border-radius:10px;
-background:rgba(0,0,0,.4);
+/* 🔮 HORÓSCOPO GRID NUEVO */
+#horo-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:6px;
+max-width:700px;
+margin:15px auto;
+font-size:11px;
 }
 
-#mini-horoscopo b{
+#horo-grid div{
+padding:6px;
+border:1px solid gold;
+border-radius:6px;
+background:rgba(0,0,0,.35);
+line-height:1.2;
+}
+
+#horo-grid b{
 color:gold;
+font-size:12px;
 }
 
 </style>
@@ -100,10 +130,20 @@ color:gold;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- MINI HORÓSCOPO -->
-<div id="mini-horoscopo"></div>
+<!-- TAROT (SIN CAMBIOS) -->
+<section class="card">
+<h2>🔮 Tarot del destino</h2>
 
-<!-- SERVICIOS -->
+<div id="tarot"></div>
+</section>
+
+<!-- 🔮 HORÓSCOPO NUEVO -->
+<section class="card">
+<h2>🌙 Horóscopo diario</h2>
+<div id="horo-grid"></div>
+</section>
+
+<!-- SERVICIOS (INTACTOS) -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -171,35 +211,65 @@ color:gold;
 
 <script>
 
-/* 🔮 MINI HORÓSCOPO AUTOMÁTICO */
-const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+/* TAROT (SIN CAMBIOS) */
+const tarot=document.getElementById("tarot");
+let sel=[];
+
+const cartas=["🃏","🃏","🃏","🃏","🃏","🃏"];
+
+cartas.forEach((c,i)=>{
+let d=document.createElement("div");
+d.className="tarot-card";
+d.innerHTML=c;
+
+d.onclick=()=>{
+if(sel.includes(i)) return;
+if(sel.length>=3) return;
+sel.push(i);
+d.classList.add("selected");
+d.innerHTML="✔";
+};
+
+tarot.appendChild(d);
+});
+
+/* 🔮 HORÓSCOPO NUEVO (GRID REALISTA) */
+const signos=[
+"Aries","Tauro","Géminis","Cáncer",
+"Leo","Virgo","Libra","Escorpio",
+"Sagitario","Capricornio","Acuario","Piscis"
+];
 
 const frases=[
-"Hoy es un buen día para tomar decisiones importantes.",
-"Se abren caminos inesperados en tu vida.",
-"Tu energía atraerá oportunidades positivas.",
-"Momento de reflexión antes de actuar.",
-"Alguien cercano puede darte una señal clave.",
-"Evita decisiones impulsivas hoy.",
-"La intuición será tu mejor guía.",
-"Un cambio pequeño traerá algo grande.",
-"Confía en el proceso aunque no veas resultados inmediatos.",
-"Hoy puedes cerrar un ciclo importante."
+"cambio importante",
+"energía positiva",
+"decisión clave",
+"momento de avanzar",
+"bloqueo temporal",
+"oportunidad cercana",
+"reflexión necesaria",
+"movimiento inesperado",
+"equilibrio emocional",
+"nuevo comienzo"
 ];
 
 const hoy=new Date();
-const seed = hoy.getFullYear()*10000 + (hoy.getMonth()+1)*100 + hoy.getDate();
+const seedBase = hoy.getFullYear()*10000 + (hoy.getMonth()+1)*100 + hoy.getDate();
 
 function rand(n){
 let x=Math.sin(n)*10000;
 return x-Math.floor(x);
 }
 
-let signoIndex = Math.floor(rand(seed)*signos.length);
-let mensajeIndex = Math.floor(rand(seed+77)*frases.length);
+document.getElementById("horo-grid").innerHTML =
+signos.map((s,i)=>{
 
-document.getElementById("mini-horoscopo").innerHTML =
-`<b>${signos[signoIndex]}</b> — ${frases[mensajeIndex]}`;
+let seed = seedBase + i*101;
+let idx = Math.floor(rand(seed)*frases.length);
+
+return `<div><b>${s}</b><br>${frases[idx]}</div>`;
+
+}).join("");
 
 </script>
 
