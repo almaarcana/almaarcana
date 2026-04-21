@@ -31,9 +31,10 @@ border-radius:12px;
 padding:20px;
 margin:20px auto;
 max-width:900px;
-box-shadow:0 0 20px rgba(255,215,0,.1);
+box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
+/* BOTONES */
 .btn{
 display:inline-block;
 padding:12px 18px;
@@ -45,7 +46,7 @@ margin-top:10px;
 font-weight:bold;
 }
 
-/* TAROT */
+/* 🃏 TAROT */
 #tarot{
 display:flex;
 flex-wrap:wrap;
@@ -55,18 +56,18 @@ margin-top:20px;
 }
 
 .tarot-card{
-width:100px;
-height:160px;
+width:110px;
+height:170px;
 border-radius:10px;
-background-image:url("https://i.imgur.com/6Xq5vZC.jpg");
 background-size:cover;
+background-position:center;
 cursor:pointer;
 transition:0.6s;
-box-shadow:0 0 10px rgba(255,215,0,.2);
+box-shadow:0 0 10px rgba(255,215,0,.3);
 }
 
 .tarot-card:hover{
-transform:scale(1.1);
+transform:scale(1.1) rotateY(10deg);
 }
 
 .flip{
@@ -185,26 +186,57 @@ line-height:1.6;
 
 <script>
 
-/* TAROT */
+/* 🃏 TAROT REAL VISUAL */
 const tarot=document.getElementById("tarot");
 
 const cartas=[
-"El Mago","La Luna","El Sol","La Estrella","La Torre","El Mundo"
+{
+nombre:"El Mago",
+img:"https://i.imgur.com/1Q9Z1ZK.png",
+msg:"Inicio de poder y creación."
+},
+{
+nombre:"La Luna",
+img:"https://i.imgur.com/2ZQ9xXh.png",
+msg:"Confusión e intuición."
+},
+{
+nombre:"El Sol",
+img:"https://i.imgur.com/3ZQ9abc.png",
+msg:"Éxito y claridad."
+},
+{
+nombre:"La Estrella",
+img:"https://i.imgur.com/4ZQ9abc.png",
+msg:"Esperanza y guía."
+},
+{
+nombre:"La Torre",
+img:"https://i.imgur.com/5ZQ9abc.png",
+msg:"Cambio necesario."
+},
+{
+nombre:"El Mundo",
+img:"https://i.imgur.com/6ZQ9abc.png",
+msg:"Cierre positivo."
+}
 ];
 
 cartas.forEach(c=>{
 let div=document.createElement("div");
 div.className="tarot-card";
+div.style.backgroundImage=`url(${c.img})`;
 
 div.onclick=()=>{
 div.classList.add("flip");
-document.getElementById("resultado").innerText="Carta: "+c;
+document.getElementById("resultado").innerHTML=
+"🔮 <b>"+c.nombre+"</b><br>"+c.msg;
 };
 
 tarot.appendChild(div);
 });
 
-/* HORÓSCOPO */
+/* 🌙 HORÓSCOPO */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 document.getElementById("horoscopo").innerHTML=
