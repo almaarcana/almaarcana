@@ -34,7 +34,6 @@ max-width:900px;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* BOTONES */
 .btn{
 display:inline-block;
 padding:12px 18px;
@@ -101,7 +100,6 @@ font-weight:bold;
 /* HORÓSCOPO */
 #horoscopo{
 margin-top:15px;
-line-height:1.6;
 }
 </style>
 </head>
@@ -186,7 +184,7 @@ line-height:1.6;
 
 <script>
 
-/* 🃏 TAROT REAL VISUAL */
+/* 🃏 TAROT */
 const tarot=document.getElementById("tarot");
 
 const cartas=[
@@ -236,11 +234,66 @@ document.getElementById("resultado").innerHTML=
 tarot.appendChild(div);
 });
 
-/* 🌙 HORÓSCOPO */
-const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+/* 🌙 HORÓSCOPO PRO */
+const signos=[
+"Aries","Tauro","Géminis","Cáncer",
+"Leo","Virgo","Libra","Escorpio",
+"Sagitario","Capricornio","Acuario","Piscis"
+];
+
+const textos=[
+{
+energia:"Tu energía está en fase de impulso.",
+amor:"El amor requiere paciencia hoy.",
+trabajo:"Se abre una oportunidad laboral.",
+consejo:"No tomes decisiones impulsivas."
+},
+{
+energia:"Día de introspección y calma.",
+amor:"Conexiones emocionales fuertes.",
+trabajo:"Organiza antes de actuar.",
+consejo:"Escucha más a los demás."
+},
+{
+energia:"Alta creatividad y movimiento.",
+amor:"Posible encuentro inesperado.",
+trabajo:"Buen momento para avanzar.",
+consejo:"Confía en tu intuición."
+},
+{
+energia:"Cambios importantes se acercan.",
+amor:"Cuidado con malentendidos.",
+trabajo:"Evita riesgos innecesarios.",
+consejo:"Mantén la calma."
+}
+];
+
+const hoy=new Date().getDate();
 
 document.getElementById("horoscopo").innerHTML=
-signos.map(s=>"✨ "+s+": energía del día").join("<br>");
+signos.map((s,i)=>{
+let t=textos[(hoy+i)%textos.length];
+
+return `
+<div style="
+margin:10px;
+padding:12px;
+border:1px solid gold;
+border-radius:10px;
+background:rgba(0,0,0,.4);
+text-align:left;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+">
+<b style="color:gold;">${s}</b><br><br>
+🌙 <b>Energía:</b> ${t.energia}<br>
+💖 <b>Amor:</b> ${t.amor}<br>
+💼 <b>Trabajo:</b> ${t.trabajo}<br>
+✨ <b>Consejo:</b> ${t.consejo}
+</div>
+`;
+}).join("");
 
 </script>
 
