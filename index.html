@@ -59,12 +59,23 @@ min-height:180px;
 width:100px;
 height:160px;
 border-radius:10px;
-background-image:url("https://upload.wikimedia.org/wikipedia/commons/3/3b/RWS_Tarot_back.jpg");
-background-size:cover;
-background-position:center;
+background:#1a1a1a;
+border:1px solid gold;
 cursor:pointer;
-transition:0.4s;
-display:block;
+transition:0.3s;
+display:flex;
+align-items:center;
+justify-content:center;
+color:gold;
+font-weight:bold;
+position:relative;
+}
+
+.tarot-card::before{
+content:"🃏";
+font-size:28px;
+opacity:0.3;
+position:absolute;
 }
 
 .tarot-card:hover{
@@ -190,7 +201,7 @@ margin-right:auto;
 
 <script>
 
-/* 🃏 TAROT FUNCIONAL */
+/* 🃏 TAROT */
 const tarot=document.getElementById("tarot");
 
 let seleccionadas=[];
@@ -239,11 +250,13 @@ if(seleccionadas.length>=3) return;
 
 seleccionadas.push(i);
 div.classList.add("selected");
+div.innerHTML="✔";
 };
 
 tarot.appendChild(div);
 });
 
+/* 🔮 LECTURA REAL */
 function revelar(){
 
 if(seleccionadas.length<3){
@@ -251,11 +264,11 @@ document.getElementById("resultado").innerHTML="Elige 3 cartas primero";
 return;
 }
 
+let elegidas=seleccionadas.map(i=>cartas[i]);
+
 let html="🔮 <b>Lectura del destino</b><br><br>";
 
-seleccionadas.forEach(i=>{
-let c=cartas[i];
-
+elegidas.forEach(c=>{
 html+=`
 <div style="margin-bottom:15px;">
 <img src="${c.img}" style="width:120px;border-radius:8px;"><br>
@@ -265,43 +278,46 @@ ${c.msg}
 `;
 });
 
+/* interpretación global */
+let energia="Energía equilibrada en proceso de cambio.";
+
+if(elegidas.some(c=>c.nombre==="La Torre")){
+energia="Cambio brusco que rompe estructuras del pasado.";
+}else if(elegidas.some(c=>c.nombre==="El Sol")){
+energia="Energía positiva, claridad y éxito.";
+}else if(elegidas.some(c=>c.nombre==="La Luna")){
+energia="Confusión emocional e intuición fuerte.";
+}else if(elegidas.some(c=>c.nombre==="El Mago")){
+energia="Poder de creación y manifestación activa.";
+}
+
+html+=`
+<hr style="border:1px solid gold; margin:15px 0;">
+🌌 <b>Interpretación global</b><br><br>
+
+<b>Pasado:</b> ${elegidas[0].nombre}<br>
+<b>Presente:</b> ${elegidas[1].nombre}<br>
+<b>Futuro:</b> ${elegidas[2].nombre}<br><br>
+
+✨ <b>Energía dominante:</b><br>
+${energia}<br><br>
+
+🔮 Tu camino está en transformación. Las cartas no determinan tu destino, sino la dirección de tu energía actual.
+`;
+
 document.getElementById("resultado").innerHTML=html;
 
 seleccionadas=[];
 }
 
-/* 🌙 HORÓSCOPO PRO */
-const signos=[
-"Aries","Tauro","Géminis","Cáncer",
-"Leo","Virgo","Libra","Escorpio",
-"Sagitario","Capricornio","Acuario","Piscis"
-];
+/* 🌙 HORÓSCOPO */
+const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const textos=[
-{
-energia:"Tu energía está en fase de impulso.",
-amor:"El amor requiere paciencia hoy.",
-trabajo:"Se abre una oportunidad laboral.",
-consejo:"No tomes decisiones impulsivas."
-},
-{
-energia:"Día de introspección y calma.",
-amor:"Conexiones emocionales fuertes.",
-trabajo:"Organiza antes de actuar.",
-consejo:"Escucha más a los demás."
-},
-{
-energia:"Alta creatividad y movimiento.",
-amor:"Posible encuentro inesperado.",
-trabajo:"Buen momento para avanzar.",
-consejo:"Confía en tu intuición."
-},
-{
-energia:"Cambios importantes se acercan.",
-amor:"Cuidado con malentendidos.",
-trabajo:"Evita riesgos innecesarios.",
-consejo:"Mantén la calma."
-}
+"Hoy es un día de cambios importantes.",
+"Confía en tu intuición.",
+"Se abre una nueva oportunidad.",
+"Evita decisiones impulsivas."
 ];
 
 const hoy=new Date().getDate();
@@ -309,16 +325,7 @@ const hoy=new Date().getDate();
 document.getElementById("horoscopo").innerHTML=
 signos.map((s,i)=>{
 let t=textos[(hoy+i)%textos.length];
-
-return `
-<div style="margin-bottom:15px;">
-<b style="color:gold;">${s}</b><br>
-🌙 ${t.energia}<br>
-💖 ${t.amor}<br>
-💼 ${t.trabajo}<br>
-✨ ${t.consejo}
-</div>
-`;
+return `<div style="margin-bottom:10px;"><b style="color:gold;">${s}</b>: ${t}</div>`;
 }).join("");
 
 </script>
