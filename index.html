@@ -102,7 +102,7 @@ max-width:600px;
 width:100%;
 }
 
-/* HOROSCOPO */
+/* HOROSCOPO (SIN CAMBIOS VISUALES) */
 #horo div{
 margin:8px 0;
 padding:8px;
@@ -138,7 +138,7 @@ background:rgba(0,0,0,.3);
 <div id="horo"></div>
 </section>
 
-<!-- SERVICIOS (NO TOCADO, 100% ORIGINAL TUYO) -->
+<!-- SERVICIOS (INTACTOS) -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -206,7 +206,7 @@ background:rgba(0,0,0,.3);
 
 <script>
 
-/* TAROT */
+/* 🃏 TAROT (SIN CAMBIOS) */
 const tarot=document.getElementById("tarot");
 let sel=[];
 
@@ -235,7 +235,7 @@ d.innerHTML="✔";
 tarot.appendChild(d);
 });
 
-/* REVELAR */
+/* ✔ SOLO FIX TAROT */
 function revelar(){
 if(sel.length<3){
 document.getElementById("resultado").innerHTML="Elige 3 cartas";
@@ -244,16 +244,26 @@ return;
 
 let r=sel.map(i=>cartas[i]);
 
-document.getElementById("resultado")=
+document.getElementById("resultado").innerHTML=
 "Pasado: "+r[0].n+" | Presente: "+r[1].n+" | Futuro: "+r[2].n;
 
 sel=[];
 }
 
-/* HOROSCOPO ORIGINAL ESTABLE */
-const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+/* 🌙 HORÓSCOPO (RESTAURADO Y ESTABLE) */
+const signos=[
+"Aries","Tauro","Géminis","Cáncer",
+"Leo","Virgo","Libra","Escorpio",
+"Sagitario","Capricornio","Acuario","Piscis"
+];
 
-const mensajes=["energía de cambio","equilibrio","decisión","crecimiento","bloqueo"];
+const mensajes=[
+"energía de cambio",
+"equilibrio",
+"decisión",
+"crecimiento",
+"bloqueo"
+];
 
 const hoy=new Date();
 const seed=hoy.getFullYear()*1000 + hoy.getMonth()*100 + hoy.getDate();
