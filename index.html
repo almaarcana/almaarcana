@@ -14,10 +14,29 @@ color:#f5e6c8;
 text-align:center;
 }
 
+/* BOTÓN SERVICIOS */
+.top-btn{
+position:fixed;
+top:15px;
+right:15px;
+background:gold;
+color:black;
+padding:10px 14px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+z-index:999;
+box-shadow:0 0 10px rgba(255,215,0,.5);
+}
+
+.top-btn:hover{
+transform:scale(1.05);
+}
+
 h1{
 color:gold;
 text-shadow:0 0 20px gold;
-margin-top:20px;
+margin-top:60px;
 }
 
 section{
@@ -48,22 +67,25 @@ margin-top:15px;
 width:95px;
 height:150px;
 border-radius:10px;
-background-image:url("https://upload.wikimedia.org/wikipedia/commons/3/3b/RWS_Tarot_back.jpg");
-background-size:cover;
-background-position:center;
+background:#1a1a1a;
+border:1px solid gold;
 cursor:pointer;
 transition:0.3s;
-box-shadow:0 4px 10px rgba(0,0,0,.5);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:30px;
+color:gold;
 }
 
 .tarot-card:hover{
-transform:translateY(-5px) scale(1.05);
-box-shadow:0 8px 18px rgba(255,215,0,.3);
+transform:scale(1.05);
+box-shadow:0 0 15px rgba(255,215,0,.3);
 }
 
 .tarot-card.selected{
-border:2px solid gold;
-box-shadow:0 0 15px gold;
+background:gold;
+color:black;
 transform:scale(1.08);
 }
 
@@ -89,13 +111,13 @@ max-width:600px;
 }
 
 .service button{
+width:100%;
 background:gold;
 border:none;
 padding:10px;
 cursor:pointer;
 border-radius:8px;
 font-weight:bold;
-width:100%;
 }
 
 /* HOROSCOPO */
@@ -107,17 +129,21 @@ border-radius:8px;
 background:rgba(0,0,0,.3);
 }
 
-/* responsive */
+/* RESPONSIVE */
 @media(max-width:768px){
 .tarot-card{
 width:75px;
 height:120px;
+font-size:24px;
 }
 }
 </style>
 </head>
 
 <body>
+
+<!-- BOTÓN SERVICIOS -->
+<a href="#servicios" class="top-btn">💳 Servicios</a>
 
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
@@ -141,87 +167,43 @@ height:120px;
 </section>
 
 <!-- SERVICIOS -->
-<section class="card">
+<section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
 <div class="service">
 <h3>🔮 Carta astral</h3>
 <p>5€</p>
-<button onclick="window.location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">
-Pagar
-</button>
+<button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>🧿 Péndulo (5 preguntas)</h3>
 <p>5€</p>
-<button onclick="window.location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">
-Pagar
-</button>
+<button onclick="location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>💖 Tirada del amor</h3>
 <p>10€</p>
-<button onclick="window.location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">
-Pagar
-</button>
+<button onclick="location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>💰 Tirada del dinero</h3>
 <p>10€</p>
-<button onclick="window.location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">
-Pagar
-</button>
+<button onclick="location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>🔮 Tirada simple</h3>
 <p>5€</p>
-<button onclick="window.location.href='https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209'">
-Pagar
-</button>
+<button onclick="location.href='https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>🔮 Tirada profunda</h3>
 <p>20€</p>
-<button onclick="window.location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">
-Pagar
-</button>
-</div>
-
-<div class="service">
-<h3>💼 Tirada de trabajo</h3>
-<p>10€</p>
-<button onclick="window.location.href='https://buy.stripe.com/9B628rfz1gqa95a8oy2B205'">
-Pagar
-</button>
-</div>
-
-<div class="service">
-<h3>🛤 Apertura de caminos</h3>
-<p>25€</p>
-<button onclick="window.location.href='https://buy.stripe.com/14A14n0E7a1M2GM0W62B200'">
-Pagar
-</button>
-</div>
-
-<div class="service">
-<h3>💞 Ritual del amor</h3>
-<p>20€</p>
-<button onclick="window.location.href='https://buy.stripe.com/dRm4gzcmPgqa95a34e2B201'">
-Pagar
-</button>
-</div>
-
-<div class="service">
-<h3>🧼 Limpieza energética</h3>
-<p>10€</p>
-<button onclick="window.location.href='https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202'">
-Pagar
-</button>
+<button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button>
 </div>
 
 </section>
@@ -233,23 +215,26 @@ const tarot=document.getElementById("tarot");
 let seleccionadas=[];
 
 const cartas=[
-{nombre:"El Mago",img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/RWS_Tarot_01_Magician.jpg",msg:"Inicio y poder personal."},
-{nombre:"La Luna",img:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",msg:"Intuición y confusión."},
-{nombre:"El Sol",img:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",msg:"Éxito y claridad."},
+{nombre:"El Mago",img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/RWS_Tarot_01_Magician.jpg",msg:"Inicio de poder."},
+{nombre:"La Luna",img:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",msg:"Intuición."},
+{nombre:"El Sol",img:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",msg:"Éxito."},
 {nombre:"La Estrella",img:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",msg:"Esperanza."},
-{nombre:"La Torre",img:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",msg:"Cambio radical."},
-{nombre:"El Mundo",img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",msg:"Cierre positivo."}
+{nombre:"La Torre",img:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",msg:"Cambio."},
+{nombre:"El Mundo",img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",msg:"Cierre."}
 ];
 
 cartas.forEach((c,i)=>{
 let div=document.createElement("div");
 div.className="tarot-card";
+div.innerHTML="🃏";
 
 div.onclick=()=>{
 if(seleccionadas.includes(i)) return;
 if(seleccionadas.length>=3) return;
+
 seleccionadas.push(i);
 div.classList.add("selected");
+div.innerHTML="✔";
 };
 
 tarot.appendChild(div);
@@ -259,7 +244,7 @@ tarot.appendChild(div);
 function revelar(){
 
 if(seleccionadas.length<3){
-document.getElementById("resultado").innerHTML="Elige 3 cartas primero";
+document.getElementById("resultado").innerHTML="Elige 3 cartas";
 return;
 }
 
@@ -279,8 +264,8 @@ ${c.msg}
 
 let energia="Energía en movimiento.";
 
-if(elegidas.some(c=>c.nombre==="La Torre")) energia="Cambio fuerte e inevitable.";
-if(elegidas.some(c=>c.nombre==="El Sol")) energia="Energía positiva y expansión.";
+if(elegidas.some(c=>c.nombre==="La Torre")) energia="Cambio fuerte.";
+if(elegidas.some(c=>c.nombre==="El Sol")) energia="Energía positiva.";
 
 html+=`
 <hr style="border:1px solid gold;">
@@ -292,16 +277,10 @@ document.getElementById("resultado").innerHTML=html;
 seleccionadas=[];
 }
 
-/* HOROSCOPO REAL */
+/* HOROSCOPO */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
-const mensajes=[
-"energía de cambio",
-"momento de estabilidad",
-"decisiones importantes",
-"crecimiento emocional",
-"bloqueo temporal"
-];
+const mensajes=["cambio","equilibrio","decisión","crecimiento","bloqueo"];
 
 const hoy=new Date();
 const seed=hoy.getFullYear()*1000 + hoy.getMonth()*100 + hoy.getDate();
