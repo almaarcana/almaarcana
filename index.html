@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS (NO TOCADO) */
+/* SERVICIOS (INTACTOS) */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -69,7 +69,7 @@ cursor:pointer;
 border-radius:8px;
 }
 
-/* HORÓSCOPO (NO TOCADO) */
+/* HORÓSCOPO (INTACTO) */
 #horo-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -92,8 +92,8 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT NUEVO (AÑADIDO) */
-#mazo{
+/* 🔮 TAROT NUEVO */
+#mazoTarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
@@ -101,26 +101,26 @@ gap:8px;
 margin-top:15px;
 }
 
-.carta{
+.cartaTarot{
 width:70px;
 height:110px;
-background:#1a1a1a;
-border:1px solid gold;
 border-radius:8px;
+border:1px solid gold;
+background:#1a1a1a;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-font-size:12px;
 color:gold;
+font-size:12px;
 transition:0.3s;
 }
 
-.carta:hover{
+.cartaTarot:hover{
 transform:scale(1.05);
 }
 
-.carta.selected{
+.cartaTarot.selected{
 background:gold;
 color:black;
 }
@@ -141,17 +141,17 @@ color:black;
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT NUEVO (AÑADIDO SIN TOCAR NADA) -->
+<!-- 🔮 TAROT NUEVO (REEMPLAZADO COMPLETO) -->
 <section class="card">
-<h2>🔮 Tarot interactivo</h2>
+<h2>🔮 Tirada de Tarot (Baraja Real)</h2>
 
-<button onclick="barajar()">🌀 Barajar mazo</button>
+<button onclick="barajarTarot()">🌀 Barajar cartas</button>
 
-<p style="margin-top:10px;">Elige 3 cartas para tu lectura</p>
+<p style="margin-top:10px;">Elige 3 cartas del destino</p>
 
-<div id="mazo"></div>
+<div id="mazoTarot"></div>
 
-<p id="lectura"></p>
+<p id="resultadoTarot"></p>
 </section>
 
 <!-- SERVICIOS (INTACTOS) -->
@@ -271,57 +271,56 @@ return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 
 }).join("");
 
-
-/* 🔮 TAROT INTERACTIVO (AÑADIDO) */
-const cartasTarot=[
-{n:"El Mago",m:"inicios y poder personal"},
-{n:"La Luna",m:"intuición y misterio"},
-{n:"El Sol",m:"éxito y claridad"},
-{n:"La Torre",m:"cambios inesperados"},
-{n:"El Mundo",m:"cierres importantes"},
-{n:"La Estrella",m:"esperanza"},
-{n:"El Emperador",m:"estabilidad"},
-{n:"La Emperatriz",m:"crecimiento"},
-{n:"El Ermitaño",m:"reflexión"},
-{n:"El Diablo",m:"ataduras"},
-{n:"La Justicia",m:"decisiones"},
-{n:"El Carro",m:"avance"}
+/* 🔮 TAROT NUEVO REAL */
+const arcanos=[
+{n:"El Loco",m:"nuevos comienzos, decisiones impulsivas"},
+{n:"El Mago",m:"poder personal y acción"},
+{n:"La Sacerdotisa",m:"intuición y secretos"},
+{n:"La Emperatriz",m:"crecimiento y amor"},
+{n:"El Emperador",m:"estabilidad y control"},
+{n:"Los Enamorados",m:"decisiones emocionales"},
+{n:"El Carro",m:"avance y victoria"},
+{n:"La Justicia",m:"equilibrio y verdad"},
+{n:"El Ermitaño",m:"reflexión interna"},
+{n:"La Rueda",m:"cambios del destino"},
+{n:"La Fuerza",m:"coraje y dominio"},
+{n:"La Muerte",m:"transformación"}
 ];
 
 let mazo=[];
-let seleccionadas=[];
+let seleccion=[];
 
-function barajar(){
-mazo=[...cartasTarot].sort(()=>Math.random()-0.5);
-seleccionadas=[];
-renderMazo();
-document.getElementById("lectura").innerHTML="";
+function barajarTarot(){
+mazo=[...arcanos].sort(()=>Math.random()-0.5);
+seleccion=[];
+renderTarot();
+document.getElementById("resultadoTarot").innerHTML="";
 }
 
-function renderMazo(){
-document.getElementById("mazo").innerHTML =
+function renderTarot(){
+document.getElementById("mazoTarot").innerHTML=
 mazo.map((c,i)=>`
-<div class="carta ${seleccionadas.includes(i)?'selected':''}"
-onclick="seleccionar(${i})">🃏</div>
+<div class="cartaTarot ${seleccion.includes(i)?'selected':''}"
+onclick="elegir(${i})">🃏</div>
 `).join("");
 }
 
-function seleccionar(i){
-if(seleccionadas.includes(i)) return;
-if(seleccionadas.length>=3) return;
+function elegir(i){
+if(seleccion.includes(i)) return;
+if(seleccion.length>=3) return;
 
-seleccionadas.push(i);
-renderMazo();
+seleccion.push(i);
+renderTarot();
 
-if(seleccionadas.length===3){
-mostrarLectura();
+if(seleccion.length===3){
+mostrar();
 }
 }
 
-function mostrarLectura(){
-let [a,b,c]=seleccionadas.map(i=>mazo[i]);
+function mostrar(){
+let [a,b,c]=seleccion.map(i=>mazo[i]);
 
-document.getElementById("lectura").innerHTML=
+document.getElementById("resultadoTarot").innerHTML=
 `
 <p>🔮 <b>Pasado:</b> ${a.n} — ${a.m}</p>
 <p>🌙 <b>Presente:</b> ${b.n} — ${b.m}</p>
@@ -329,8 +328,7 @@ document.getElementById("lectura").innerHTML=
 `;
 }
 
-/* inicial */
-barajar();
+barajarTarot();
 
 </script>
 
