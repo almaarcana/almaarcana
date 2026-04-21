@@ -77,17 +77,6 @@ background:gold;
 color:black;
 }
 
-/* BOTONES */
-button{
-background:gold;
-border:none;
-padding:10px 15px;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-margin-top:10px;
-}
-
 /* SERVICIOS */
 .service{
 border:1px solid gold;
@@ -100,8 +89,12 @@ max-width:600px;
 
 .service button{
 width:100%;
+background:gold;
+border:none;
+padding:10px;
+font-weight:bold;
+cursor:pointer;
 }
-
 </style>
 </head>
 
@@ -112,18 +105,15 @@ width:100%;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- TAROT -->
+<!-- TAROT (SIN LECTURA AUTOMÁTICA) -->
 <section class="card">
 <h2>🔮 Tarot del destino</h2>
+<p>Selecciona tus cartas…</p>
 
 <div id="tarot"></div>
-
-<button onclick="revelar()">✨ Revelar lectura</button>
-
-<p id="resultado"></p>
 </section>
 
-<!-- SERVICIOS (INTACTOS) -->
+<!-- SERVICIOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -191,23 +181,16 @@ width:100%;
 
 <script>
 
-/* TAROT */
+/* TAROT SOLO VISUAL (SIN LECTURA) */
 const tarot=document.getElementById("tarot");
 let sel=[];
 
-const cartas=[
-{n:"El Mago"},
-{n:"La Luna"},
-{n:"El Sol"},
-{n:"La Torre"},
-{n:"El Mundo"},
-{n:"La Estrella"}
-];
+const cartas=["🃏","🃏","🃏","🃏","🃏","🃏"];
 
 cartas.forEach((c,i)=>{
 let d=document.createElement("div");
 d.className="tarot-card";
-d.innerHTML="🃏";
+d.innerHTML=c;
 
 d.onclick=()=>{
 if(sel.includes(i)) return;
@@ -219,20 +202,6 @@ d.innerHTML="✔";
 
 tarot.appendChild(d);
 });
-
-function revelar(){
-if(sel.length<3){
-document.getElementById("resultado").innerHTML="Elige 3 cartas";
-return;
-}
-
-let r=sel.map(i=>cartas[i]);
-
-document.getElementById("resultado").innerHTML=
-"Pasado: "+r[0].n+" | Presente: "+r[1].n+" | Futuro: "+r[2].n;
-
-sel=[];
-}
 
 </script>
 
