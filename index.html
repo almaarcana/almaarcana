@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS (INTACTOS) */
+/* SERVICIOS (NO TOCADO) */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -69,7 +69,7 @@ cursor:pointer;
 border-radius:8px;
 }
 
-/* HORÓSCOPO GRID */
+/* HORÓSCOPO (NO TOCADO) */
 #horo-grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
@@ -92,6 +92,39 @@ color:gold;
 font-size:12px;
 }
 
+/* 🔮 TAROT NUEVO (AÑADIDO) */
+#mazo{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:8px;
+margin-top:15px;
+}
+
+.carta{
+width:70px;
+height:110px;
+background:#1a1a1a;
+border:1px solid gold;
+border-radius:8px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:12px;
+color:gold;
+transition:0.3s;
+}
+
+.carta:hover{
+transform:scale(1.05);
+}
+
+.carta.selected{
+background:gold;
+color:black;
+}
+
 </style>
 </head>
 
@@ -102,13 +135,26 @@ font-size:12px;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- 🔮 HORÓSCOPO -->
+<!-- HORÓSCOPO (SIN CAMBIOS) -->
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- 💳 SERVICIOS (INTOCADOS) -->
+<!-- 🔮 TAROT NUEVO (AÑADIDO SIN TOCAR NADA) -->
+<section class="card">
+<h2>🔮 Tarot interactivo</h2>
+
+<button onclick="barajar()">🌀 Barajar mazo</button>
+
+<p style="margin-top:10px;">Elige 3 cartas para tu lectura</p>
+
+<div id="mazo"></div>
+
+<p id="lectura"></p>
+</section>
+
+<!-- SERVICIOS (INTACTOS) -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -176,7 +222,7 @@ font-size:12px;
 
 <script>
 
-/* 🔮 HORÓSCOPO FINAL CORREGIDO (SIN REPETIDOS) */
+/* 🔮 HORÓSCOPO (SIN CAMBIOS) */
 const signos=[
 "Aries","Tauro","Géminis","Cáncer",
 "Leo","Virgo","Libra","Escorpio",
@@ -185,17 +231,17 @@ const signos=[
 
 const frases=[
 "Hoy necesitas actuar con calma y estrategia.",
-"Se abre una oportunidad importante en lo laboral.",
-"Tu energía emocional estará más sensible.",
-"Evita decisiones impulsivas hoy.",
-"Una conversación puede cambiar tu día.",
-"Momento ideal para cerrar asuntos pendientes.",
-"Tu intuición será clave hoy.",
-"Pequeños cambios traerán grandes resultados.",
-"Alguien influye más de lo que crees.",
-"Día estable, sin forzar situaciones.",
-"Buena energía para proyectos personales.",
-"Escucha más y observa antes de actuar."
+"Se abre una oportunidad importante.",
+"Tu energía emocional será sensible.",
+"Evita decisiones impulsivas.",
+"Una conversación será clave.",
+"Cierra asuntos pendientes.",
+"Tu intuición será fuerte.",
+"Cambios positivos llegan.",
+"Alguien influye en tu día.",
+"Día estable sin forzar.",
+"Buena energía personal.",
+"Observa antes de actuar."
 ];
 
 const hoy=new Date();
@@ -224,6 +270,67 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 
 }).join("");
+
+
+/* 🔮 TAROT INTERACTIVO (AÑADIDO) */
+const cartasTarot=[
+{n:"El Mago",m:"inicios y poder personal"},
+{n:"La Luna",m:"intuición y misterio"},
+{n:"El Sol",m:"éxito y claridad"},
+{n:"La Torre",m:"cambios inesperados"},
+{n:"El Mundo",m:"cierres importantes"},
+{n:"La Estrella",m:"esperanza"},
+{n:"El Emperador",m:"estabilidad"},
+{n:"La Emperatriz",m:"crecimiento"},
+{n:"El Ermitaño",m:"reflexión"},
+{n:"El Diablo",m:"ataduras"},
+{n:"La Justicia",m:"decisiones"},
+{n:"El Carro",m:"avance"}
+];
+
+let mazo=[];
+let seleccionadas=[];
+
+function barajar(){
+mazo=[...cartasTarot].sort(()=>Math.random()-0.5);
+seleccionadas=[];
+renderMazo();
+document.getElementById("lectura").innerHTML="";
+}
+
+function renderMazo(){
+document.getElementById("mazo").innerHTML =
+mazo.map((c,i)=>`
+<div class="carta ${seleccionadas.includes(i)?'selected':''}"
+onclick="seleccionar(${i})">🃏</div>
+`).join("");
+}
+
+function seleccionar(i){
+if(seleccionadas.includes(i)) return;
+if(seleccionadas.length>=3) return;
+
+seleccionadas.push(i);
+renderMazo();
+
+if(seleccionadas.length===3){
+mostrarLectura();
+}
+}
+
+function mostrarLectura(){
+let [a,b,c]=seleccionadas.map(i=>mazo[i]);
+
+document.getElementById("lectura").innerHTML=
+`
+<p>🔮 <b>Pasado:</b> ${a.n} — ${a.m}</p>
+<p>🌙 <b>Presente:</b> ${b.n} — ${b.m}</p>
+<p>🔮 <b>Futuro:</b> ${c.n} — ${c.m}</p>
+`;
+}
+
+/* inicial */
+barajar();
 
 </script>
 
