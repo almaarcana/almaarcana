@@ -102,15 +102,6 @@ max-width:600px;
 width:100%;
 }
 
-/* HOROSCOPO (MISMO ESTILO) */
-#horo div{
-margin:8px 0;
-padding:8px;
-border:1px solid gold;
-border-radius:8px;
-background:rgba(0,0,0,.3);
-}
-
 </style>
 </head>
 
@@ -130,12 +121,6 @@ background:rgba(0,0,0,.3);
 <button onclick="revelar()">✨ Revelar lectura</button>
 
 <p id="resultado"></p>
-</section>
-
-<!-- HOROSCOPO -->
-<section class="card">
-<h2>🌙 Horóscopo diario</h2>
-<div id="horo"></div>
 </section>
 
 <!-- SERVICIOS (INTACTOS) -->
@@ -206,17 +191,17 @@ background:rgba(0,0,0,.3);
 
 <script>
 
-/* TAROT (NO TOCADO) */
+/* TAROT */
 const tarot=document.getElementById("tarot");
 let sel=[];
 
 const cartas=[
-{n:"El Mago",m:"inicio"},
-{n:"La Luna",m:"intuición"},
-{n:"El Sol",m:"éxito"},
-{n:"La Torre",m:"cambio"},
-{n:"El Mundo",m:"cierre"},
-{n:"La Estrella",m:"esperanza"}
+{n:"El Mago"},
+{n:"La Luna"},
+{n:"El Sol"},
+{n:"La Torre"},
+{n:"El Mundo"},
+{n:"La Estrella"}
 ];
 
 cartas.forEach((c,i)=>{
@@ -235,7 +220,6 @@ d.innerHTML="✔";
 tarot.appendChild(d);
 });
 
-/* REVELAR (ARREGLADO) */
 function revelar(){
 if(sel.length<3){
 document.getElementById("resultado").innerHTML="Elige 3 cartas";
@@ -249,42 +233,6 @@ document.getElementById("resultado").innerHTML=
 
 sel=[];
 }
-
-/* 🌙 HORÓSCOPO ARREGLADO (ÚNICO CAMBIO REAL) */
-const signos=[
-"Aries","Tauro","Géminis","Cáncer",
-"Leo","Virgo","Libra","Escorpio",
-"Sagitario","Capricornio","Acuario","Piscis"
-];
-
-const mensajes=[
-"energía de cambio",
-"equilibrio emocional",
-"decisiones importantes",
-"crecimiento personal",
-"bloqueo temporal",
-"avance inesperado",
-"momento de reflexión",
-"oportunidad cercana"
-];
-
-const hoy=new Date();
-const seedBase = hoy.getFullYear()*10000 + (hoy.getMonth()+1)*100 + hoy.getDate();
-
-function rand(seed){
-let x = Math.sin(seed) * 10000;
-return x - Math.floor(x);
-}
-
-document.getElementById("horo").innerHTML =
-signos.map((s,i)=>{
-
-let seed = seedBase + (i * 97);
-let idx = Math.floor(rand(seed) * mensajes.length);
-
-return `<div><b style="color:gold;">${s}</b>: ${mensajes[idx]}</div>`;
-
-}).join("");
 
 </script>
 
