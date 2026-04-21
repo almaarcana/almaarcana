@@ -74,6 +74,22 @@ cursor:pointer;
 border-radius:8px;
 }
 
+/* MINI HORÓSCOPO */
+#mini-horoscopo{
+margin:20px auto;
+max-width:600px;
+font-size:14px;
+line-height:1.4;
+padding:12px;
+border:1px solid gold;
+border-radius:10px;
+background:rgba(0,0,0,.4);
+}
+
+#mini-horoscopo b{
+color:gold;
+}
+
 </style>
 </head>
 
@@ -84,7 +100,10 @@ border-radius:8px;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- SOLO SERVICIOS -->
+<!-- MINI HORÓSCOPO -->
+<div id="mini-horoscopo"></div>
+
+<!-- SERVICIOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -149,6 +168,40 @@ border-radius:8px;
 </div>
 
 </section>
+
+<script>
+
+/* 🔮 MINI HORÓSCOPO AUTOMÁTICO */
+const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+
+const frases=[
+"Hoy es un buen día para tomar decisiones importantes.",
+"Se abren caminos inesperados en tu vida.",
+"Tu energía atraerá oportunidades positivas.",
+"Momento de reflexión antes de actuar.",
+"Alguien cercano puede darte una señal clave.",
+"Evita decisiones impulsivas hoy.",
+"La intuición será tu mejor guía.",
+"Un cambio pequeño traerá algo grande.",
+"Confía en el proceso aunque no veas resultados inmediatos.",
+"Hoy puedes cerrar un ciclo importante."
+];
+
+const hoy=new Date();
+const seed = hoy.getFullYear()*10000 + (hoy.getMonth()+1)*100 + hoy.getDate();
+
+function rand(n){
+let x=Math.sin(n)*10000;
+return x-Math.floor(x);
+}
+
+let signoIndex = Math.floor(rand(seed)*signos.length);
+let mensajeIndex = Math.floor(rand(seed+77)*frases.length);
+
+document.getElementById("mini-horoscopo").innerHTML =
+`<b>${signos[signoIndex]}</b> — ${frases[mensajeIndex]}`;
+
+</script>
 
 </body>
 </html>
