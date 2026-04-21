@@ -3,26 +3,37 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alma Arcana 🔮 Tarot & Horóscopo</title>
+<title>Alma Arcana 🔮</title>
 
 <style>
 body{
 margin:0;
 font-family:Georgia,serif;
-background:black;
+background:radial-gradient(circle at top,#1a001f,#000);
 color:#f5e6c8;
 text-align:center;
+overflow-x:hidden;
 }
 
 h1{
 color:gold;
 margin-top:20px;
+text-shadow:0 0 10px gold;
 }
 
 .container{
 max-width:900px;
 margin:auto;
 padding:20px;
+}
+
+.card{
+background:rgba(0,0,0,.6);
+border:1px solid gold;
+border-radius:12px;
+padding:15px;
+margin:15px 0;
+box-shadow:0 0 15px rgba(255,215,0,.15);
 }
 
 #mazo{
@@ -72,24 +83,28 @@ margin-top:20px;
 padding:15px;
 border:1px solid gold;
 display:none;
+animation:fade 1s ease;
 }
 
-.card{
-background:rgba(0,0,0,.6);
-border:1px solid gold;
-border-radius:10px;
-padding:15px;
-margin:15px 0;
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
 }
 
 button{
-margin-top:15px;
+margin-top:10px;
 padding:12px;
 background:gold;
 border:none;
 cursor:pointer;
 border-radius:8px;
 font-weight:bold;
+}
+
+.service-btn{
+background:#00d4ff;
+color:black;
+margin-top:10px;
 }
 
 .reset{
@@ -105,12 +120,12 @@ margin-left:10px;
 <div class="container">
 
 <h1>🔮 Alma Arcana</h1>
-<p>Tarot interactivo + horóscopo diario</p>
+<p>Tarot · Energía · Destino</p>
 
 <!-- 🔮 TAROT -->
 <div class="card">
-<h2>🃏 Elige 3 cartas</h2>
-<p>Toca 3 cartas para tu lectura</p>
+<h2>🃏 Tarot interactivo</h2>
+<p>Elige 3 cartas para tu lectura</p>
 
 <div id="mazo"></div>
 
@@ -118,6 +133,42 @@ margin-left:10px;
 <button class="reset" onclick="resetear()">🔄 Reiniciar</button>
 
 <div id="resultado"></div>
+</div>
+
+<!-- 💳 SERVICIOS -->
+<div class="card">
+<h2>💳 Servicios espirituales</h2>
+
+<div class="card"><h3>🔮 Carta astral</h3><p>Destino y energía.</p><p><b>5€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button></div>
+
+<div class="card"><h3>🧿 Péndulo (5 preguntas)</h3><p>Respuestas energéticas.</p><p><b>5€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">Pagar</button></div>
+
+<div class="card"><h3>💖 Tirada del amor</h3><p>Relaciones y sentimientos.</p><p><b>10€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">Pagar</button></div>
+
+<div class="card"><h3>💰 Tirada del dinero</h3><p>Economía y oportunidades.</p><p><b>10€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">Pagar</button></div>
+
+<div class="card"><h3>🔮 Tirada simple</h3><p>Respuesta rápida.</p><p><b>5€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209'">Pagar</button></div>
+
+<div class="card"><h3>🔮 Tirada profunda</h3><p>Lectura completa.</p><p><b>20€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button></div>
+
+<div class="card"><h3>💼 Trabajo</h3><p>Empleo y cambios laborales.</p><p><b>10€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/9B628rfz1gqa95a8oy2B205'">Pagar</button></div>
+
+<div class="card"><h3>🛤 Apertura de caminos</h3><p>Bloqueos energéticos.</p><p><b>25€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/14A14n0E7a1M2GM0W62B200'">Pagar</button></div>
+
+<div class="card"><h3>💞 Ritual del amor</h3><p>Amor y atracción.</p><p><b>20€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/dRm4gzcmPgqa95a34e2B201'">Pagar</button></div>
+
+<div class="card"><h3>🧼 Limpieza energética</h3><p>Eliminación de bloqueos.</p><p><b>10€</b></p>
+<button class="service-btn" onclick="window.location.href='https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202'">Pagar</button></div>
+
 </div>
 
 <!-- 🌙 HORÓSCOPO -->
@@ -130,115 +181,74 @@ margin-left:10px;
 
 <script>
 
-const cartas = [
-{nombre:"El Mago", msg:"Inicio de un nuevo ciclo con energía fuerte."},
-{nombre:"La Luna", msg:"Confusión emocional, confía en tu intuición."},
-{nombre:"El Sol", msg:"Claridad y éxito próximo."},
-{nombre:"La Estrella", msg:"Esperanza y sanación emocional."},
-{nombre:"La Torre", msg:"Cambio inesperado necesario."},
-{nombre:"El Mundo", msg:"Cierre de ciclo positivo."}
+/* TAROT */
+const cartas=[
+{nombre:"El Mago",msg:"Inicio de ciclo."},
+{nombre:"La Luna",msg:"Confía en tu intuición."},
+{nombre:"El Sol",msg:"Éxito cercano."},
+{nombre:"La Estrella",msg:"Esperanza."},
+{nombre:"La Torre",msg:"Cambio necesario."},
+{nombre:"El Mundo",msg:"Cierre positivo."}
 ];
 
-let seleccionadas = [];
-
-const mazo = document.getElementById("mazo");
+let seleccionadas=[];
+const mazo=document.getElementById("mazo");
 
 function crearMazo(){
-mazo.innerHTML = "";
-seleccionadas = [];
+mazo.innerHTML="";
+seleccionadas=[];
 
-cartas.forEach((c)=>{
+cartas.forEach(c=>{
+const div=document.createElement("div");
+div.className="carta";
+div.innerText="Carta";
 
-const div = document.createElement("div");
-div.className = "carta";
-div.innerText = "Carta";
-
-div.onclick = ()=>{
-
-if(div.classList.contains("seleccionada")) return;
-if(seleccionadas.length >= 3) return;
-
+div.onclick=()=>{
+if(div.classList.contains("seleccionada"))return;
+if(seleccionadas.length>=3)return;
 div.classList.add("seleccionada");
-div.innerText = c.nombre;
-
+div.innerText=c.nombre;
 seleccionadas.push(c);
-
 };
 
 mazo.appendChild(div);
-
 });
 }
 
 crearMazo();
 
 function leer(){
-
-if(seleccionadas.length < 3){
-alert("Elige 3 cartas primero");
+if(seleccionadas.length<3){
+alert("Elige 3 cartas");
 return;
 }
 
-const res = document.getElementById("resultado");
-res.style.display = "block";
-res.innerHTML = "🔮 interpretando energía...";
+const res=document.getElementById("resultado");
+res.style.display="block";
+res.innerHTML="🔮 conectando energía...";
 
 setTimeout(()=>{
-
-res.innerHTML = seleccionadas.map(c=>`
-<div class="reveal">
-<h3>${c.nombre}</h3>
-<p>${c.msg}</p>
-</div>
-`).join("");
-
+res.innerHTML=seleccionadas.map(c=>
+`<div class="reveal"><h3>${c.nombre}</h3><p>${c.msg}</p></div>`
+).join("");
 },1000);
-
 }
 
 function resetear(){
 crearMazo();
-document.getElementById("resultado").style.display = "none";
+document.getElementById("resultado").style.display="none";
 }
 
-const signos = [
-"Aries","Tauro","Géminis","Cáncer",
-"Leo","Virgo","Libra","Escorpio",
-"Sagitario","Capricornio","Acuario","Piscis"
-];
-
-const mensajes = [
-"Hoy es un día de decisiones importantes.",
-"Confía en tu intuición.",
-"Se abre una oportunidad inesperada.",
-"La energía favorece cambios positivos.",
-"Evita conflictos innecesarios.",
-"Un nuevo comienzo se aproxima.",
-"Tu creatividad será clave.",
-"Momento de reflexión.",
-"Buena suerte en lo emocional.",
-"Cambios positivos en camino."
-];
+/* HORÓSCOPO */
+const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+const mensajes=["Energía positiva","Cambios","Intuición fuerte","Evita conflictos","Buena suerte","Reflexión","Crecimiento","Decisiones importantes"];
 
 function horoscopo(){
-
-const hoy = new Date().getDate();
-
-let html = signos.map((s,i)=>{
-
-let msg = mensajes[(hoy + i) % mensajes.length];
-
-return `
-<div style="margin:8px;padding:10px;border:1px solid gold;">
-<strong>${s}</strong>
-<p>${msg}</p>
-</div>
-`;
-
-}).join("");
-
-document.getElementById("horoscopos").innerHTML = html;
-
+const hoy=new Date().getDate();
+document.getElementById("horoscopos").innerHTML=
+signos.map((s,i)=>
+`<div style="margin:8px;padding:10px;border:1px solid gold;"><b>${s}</b><p>${mensajes[(hoy+i)%mensajes.length]}</p></div>`
+).join("");
 }
 
 horoscopo();
