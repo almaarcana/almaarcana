@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alma Arcana 🔮 Tarot & Horóscopo</title>
+
+<style>
+body{
+margin:0;
+font-family:Georgia,serif;
+background:black;
+color:#f5e6c8;
+text-align:center;
+}
+
+h1{color:gold;margin-top:20px;}
+
+.container{
+max-width:900px;
+margin:auto;
+padding:20px;
+}
+
+/* 🔮 cartas */
+#mazo{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-top:20px;
+}
+
+.carta{
+width:90px;
+height:140px;
+background:linear-gradient(45deg,purple,gold);
+border-radius:10px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+user-select:none;
+transition:0.3s;
+font-weight:bold;
+color:white;
+}
+
+.carta:hover{transform:scale(1.1);}
+
+.carta.seleccionada{
+background:gold;
+color:black;
+transform:scale(1.2);
+}
+
+/* 🌌 efecto */
+.reveal{
+animation:flip 0.8s ease;
+}
+
+@keyframes flip{
+0%{transform:rotateY(0);}
+100%{transform:rotateY(360deg);}
+}
+
+/* resultado */
+#resultado{
+margin-top:20px;
+padding:15px;
+border:1px solid gold;
+display:none;
+}
+
+/* cards */
+.card{
+background:rgba(0,0,0,.6);
+border:1px solid gold;
+border-radius:10px;
+padding:15px;
+margin:15px 0;
+}
+
+button{
+margin-top:15px;
+padding:12px;
+background:gold;
+border:none;
+cursor:pointer;
+border-radius:8px;
+font-weight:bold;
+}
+
+/* botón reset */
+.reset{
+background:#444;
+color:white;
+margin-left:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔮 Alma Arcana</h1>
+<p>Tarot interactivo + horóscopo diario</p>
+
+<!-- 🔮 TAROT -->
+<div class="card">
+<h2>🃏 Elige 3 cartas</h2>
+<p>Toca 3 cartas para tu lectura</p>
+
+<div id="mazo"></div>
+
+<button onclick="leer()">🔮 Revelar lectura</button>
+<button class="reset" onclick="resetear()">🔄 Reiniciar</button>
+
+<div id="resultado"></div>
+</div>
+
+<!-- 🌙 HORÓSCOPO -->
+<div class="card">
+<h2>🌙 Horóscopo diario</h2>
+<div id="horoscopos"></div>
+</div>
+
+</div>
+
+<script>
+
+/* 🃏 CARTAS TAROT */
+const cartas = [
+{nombre:"El Mago", msg:"Inicio de un nuevo ciclo con energía fuerte."},
+{nombre:"La Luna", msg:"Confusión emocional, confía en tu intuición."},
+{nombre:"El Sol", msg:"Claridad y éxito próximo."},
+{nombre:"La Estrella", msg:"Esperanza y sanación emocional."},
+{nombre:"La Torre", msg:"Cambio inesperado necesario."},
+{nombre:"El Mundo", msg:"Cierre de ciclo positivo."}
+];
+
+let seleccionadas = [];
+
+const mazo = document.getElementById("mazo");
+
+/* crear cartas */
+function crearMazo(){
+mazo.innerHTML = "";
+seleccionadas = [];
+
+cartas.forEach((c)=>{
+
+const div = document.createElement("div");
+div.className = "carta";
+div.innerText = "Carta";
+
+div.onclick = ()=>{
+
+if(div.classList.contains("seleccionada")) return;
+if(seleccionadas.length >= 3) return;
+
+div.classList.add("seleccionada");
+div.innerText = c.nombre;
+
+seleccionadas.push(c);
+
+};
+
+mazo.appendChild(div);
+
+});
+}
+
+crearMazo();
+
+/* 🔮 lectura */
+function leer(){
+
+if(seleccionadas.length < 3){
+alert("Elige 3 cartas primero");
+return;
+}
+
+const res = document.getElementById("resultado");
+res.style.display = "block";
+
+res.innerHTML = "🔮 interpretando energía...";
+
+setTimeout(()=>{
+
+res.innerHTML = seleccionadas.map(c=>`
+<div class="reveal">
+<h3>${c.nombre}</h3>
+<p>${c.msg}</p>
+</div>
+`).join("");
+
+},1000);
+
+}
+
+/* 🔄 reset */
+function resetear(){
+crearMazo();
+document.getElementById("resultado").style.display = "none";
+}
+
+/* 🌙 HORÓSCOPO */
+const signos = [
+"Aries","Tauro","Géminis","Cáncer",
+"Leo","Virgo","Libra","Escorpio",
+"Sagitario","Capricornio","Acuario","Piscis"
+];
+
+const mensajes = [
+"Hoy es un día de decisiones importantes.",
+"Confía en tu intuición.",
+"Se abre una oportunidad inesperada.",
+"La energía favorece cambios positivos.",
+"Evita conflictos innecesarios.",
+"Un nuevo comienzo se aproxima.",
+"Tu creatividad será clave.",
+"Momento de reflexión.",
+"Buena suerte en lo emocional.",
+"Cambios positivos en camino."
+];
+
+function horoscopo(){
+
+const hoy = new Date().getDate();
+
+let html = signos.map((s,i)=>{
+
+let msg = mensajes[(hoy + i) % mensajes.length];
+
+return `
+<div style="margin:8px;padding:10px;border:1px solid gold;">
+<strong>${s}</strong>
+<p>${msg}</p>
+</div>
+`;
+
+}).join("");
+
+document.getElementById("horoscopos").innerHTML = html;
+
+}
+
+horoscopo();
+
+</script>
+
+</body>
+</html>
