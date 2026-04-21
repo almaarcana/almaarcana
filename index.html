@@ -100,6 +100,7 @@ font-weight:bold;
 /* HORÓSCOPO */
 #horoscopo{
 margin-top:15px;
+text-align:left;
 }
 </style>
 </head>
@@ -184,39 +185,39 @@ margin-top:15px;
 
 <script>
 
-/* 🃏 TAROT */
+/* 🃏 TAROT REAL CON IMÁGENES */
 const tarot=document.getElementById("tarot");
 
 const cartas=[
 {
 nombre:"El Mago",
-img:"https://i.imgur.com/1Q9Z1ZK.png",
-msg:"Inicio de poder y creación."
+img:"https://upload.wikimedia.org/wikipedia/commons/0/0f/RWS_Tarot_01_Magician.jpg",
+msg:"Inicio de poder y manifestación."
 },
 {
 nombre:"La Luna",
-img:"https://i.imgur.com/2ZQ9xXh.png",
-msg:"Confusión e intuición."
+img:"https://upload.wikimedia.org/wikipedia/commons/7/7f/RWS_Tarot_18_Moon.jpg",
+msg:"Confusión e intuición profunda."
 },
 {
 nombre:"El Sol",
-img:"https://i.imgur.com/3ZQ9abc.png",
-msg:"Éxito y claridad."
+img:"https://upload.wikimedia.org/wikipedia/commons/1/17/RWS_Tarot_19_Sun.jpg",
+msg:"Éxito, claridad y alegría."
 },
 {
 nombre:"La Estrella",
-img:"https://i.imgur.com/4ZQ9abc.png",
-msg:"Esperanza y guía."
+img:"https://upload.wikimedia.org/wikipedia/commons/d/db/RWS_Tarot_17_Star.jpg",
+msg:"Esperanza y guía espiritual."
 },
 {
 nombre:"La Torre",
-img:"https://i.imgur.com/5ZQ9abc.png",
-msg:"Cambio necesario."
+img:"https://upload.wikimedia.org/wikipedia/commons/5/53/RWS_Tarot_16_Tower.jpg",
+msg:"Cambio brusco necesario."
 },
 {
 nombre:"El Mundo",
-img:"https://i.imgur.com/6ZQ9abc.png",
-msg:"Cierre positivo."
+img:"https://upload.wikimedia.org/wikipedia/commons/f/ff/RWS_Tarot_21_World.jpg",
+msg:"Cierre de ciclo positivo."
 }
 ];
 
@@ -275,22 +276,12 @@ signos.map((s,i)=>{
 let t=textos[(hoy+i)%textos.length];
 
 return `
-<div style="
-margin:10px;
-padding:12px;
-border:1px solid gold;
-border-radius:10px;
-background:rgba(0,0,0,.4);
-text-align:left;
-max-width:500px;
-margin-left:auto;
-margin-right:auto;
-">
-<b style="color:gold;">${s}</b><br><br>
-🌙 <b>Energía:</b> ${t.energia}<br>
-💖 <b>Amor:</b> ${t.amor}<br>
-💼 <b>Trabajo:</b> ${t.trabajo}<br>
-✨ <b>Consejo:</b> ${t.consejo}
+<div style="margin-bottom:15px;">
+<b style="color:gold;">${s}</b><br>
+🌙 ${t.energia}<br>
+💖 ${t.amor}<br>
+💼 ${t.trabajo}<br>
+✨ ${t.consejo}
 </div>
 `;
 }).join("");
