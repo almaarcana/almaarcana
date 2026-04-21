@@ -92,36 +92,43 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT NUEVO */
-#mazoTarot{
+/* 🔮 TAROT PROFESIONAL NUEVO */
+#mesaTarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:8px;
+gap:10px;
 margin-top:15px;
 }
 
-.cartaTarot{
-width:70px;
-height:110px;
+.cartaPro{
+width:65px;
+height:105px;
 border-radius:8px;
 border:1px solid gold;
-background:#1a1a1a;
+background:linear-gradient(145deg,#1a1a1a,#000);
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
+transition:0.25s;
+}
+
+.cartaPro:hover{
+transform:translateY(-3px);
+}
+
+.cartaPro::after{
+content:"🜁";
+font-size:18px;
 color:gold;
-font-size:12px;
-transition:0.3s;
 }
 
-.cartaTarot:hover{
-transform:scale(1.05);
-}
-
-.cartaTarot.selected{
+.cartaPro.selected{
 background:gold;
+}
+
+.cartaPro.selected::after{
 color:black;
 }
 
@@ -135,23 +142,23 @@ color:black;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- HORÓSCOPO (SIN CAMBIOS) -->
+<!-- HORÓSCOPO -->
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT NUEVO (REEMPLAZADO COMPLETO) -->
+<!-- 🔮 TAROT NUEVO -->
 <section class="card">
-<h2>🔮 Tirada de Tarot (Baraja Real)</h2>
+<h2>🔮 Tarot Profesional</h2>
 
-<button onclick="barajarTarot()">🌀 Barajar cartas</button>
+<button onclick="iniciarTirada()">🌀 Barajar el destino</button>
 
-<p style="margin-top:10px;">Elige 3 cartas del destino</p>
+<p style="margin-top:10px;">Elige 3 cartas para revelar tu lectura</p>
 
-<div id="mazoTarot"></div>
+<div id="mesaTarot"></div>
 
-<p id="resultadoTarot"></p>
+<p id="lecturaTarot"></p>
 </section>
 
 <!-- SERVICIOS (INTACTOS) -->
@@ -222,7 +229,7 @@ color:black;
 
 <script>
 
-/* 🔮 HORÓSCOPO (SIN CAMBIOS) */
+/* HORÓSCOPO (SIN CAMBIOS) */
 const signos=[
 "Aries","Tauro","Géminis","Cáncer",
 "Leo","Virgo","Libra","Escorpio",
@@ -271,37 +278,46 @@ return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 
 }).join("");
 
-/* 🔮 TAROT NUEVO REAL */
-const arcanos=[
-{n:"El Loco",m:"nuevos comienzos, decisiones impulsivas"},
-{n:"El Mago",m:"poder personal y acción"},
-{n:"La Sacerdotisa",m:"intuición y secretos"},
-{n:"La Emperatriz",m:"crecimiento y amor"},
-{n:"El Emperador",m:"estabilidad y control"},
-{n:"Los Enamorados",m:"decisiones emocionales"},
-{n:"El Carro",m:"avance y victoria"},
-{n:"La Justicia",m:"equilibrio y verdad"},
-{n:"El Ermitaño",m:"reflexión interna"},
-{n:"La Rueda",m:"cambios del destino"},
-{n:"La Fuerza",m:"coraje y dominio"},
-{n:"La Muerte",m:"transformación"}
+
+/* 🔮 TAROT PROFESIONAL NUEVO */
+const mazoOriginal = [
+{n:"El Loco",m:"inicio de ciclo, libertad, decisión impulsiva, confianza en lo desconocido."},
+{n:"El Mago",m:"manifestación, poder personal, acción directa."},
+{n:"La Sacerdotisa",m:"intuición profunda, secretos, sabiduría interior."},
+{n:"La Emperatriz",m:"crecimiento, abundancia, energía creadora."},
+{n:"El Emperador",m:"estructura, control, estabilidad."},
+{n:"Los Enamorados",m:"decisiones emocionales importantes."},
+{n:"El Carro",m:"avance, victoria, determinación."},
+{n:"La Justicia",m:"equilibrio, verdad, decisiones claras."},
+{n:"El Ermitaño",m:"introspección, búsqueda interior."},
+{n:"La Rueda de la Fortuna",m:"cambios inevitables del destino."},
+{n:"La Fuerza",m:"coraje, dominio emocional."},
+{n:"La Muerte",m:"transformación profunda, cierre de ciclo."},
+{n:"La Templanza",m:"armonía, equilibrio, sanación."},
+{n:"El Diablo",m:"ataduras, deseos intensos."},
+{n:"La Torre",m:"ruptura, cambio brusco."},
+{n:"La Estrella",m:"esperanza, guía."},
+{n:"La Luna",m:"confusión, intuición."},
+{n:"El Sol",m:"éxito, claridad."},
+{n:"El Juicio",m:"despertar, decisiones finales."},
+{n:"El Mundo",m:"logro, cierre completo."}
 ];
 
 let mazo=[];
 let seleccion=[];
 
-function barajarTarot(){
-mazo=[...arcanos].sort(()=>Math.random()-0.5);
+function iniciarTirada(){
+mazo=[...mazoOriginal].sort(()=>Math.random()-0.5);
 seleccion=[];
-renderTarot();
-document.getElementById("resultadoTarot").innerHTML="";
+render();
+document.getElementById("lecturaTarot").innerHTML="";
 }
 
-function renderTarot(){
-document.getElementById("mazoTarot").innerHTML=
+function render(){
+document.getElementById("mesaTarot").innerHTML=
 mazo.map((c,i)=>`
-<div class="cartaTarot ${seleccion.includes(i)?'selected':''}"
-onclick="elegir(${i})">🃏</div>
+<div class="cartaPro ${seleccion.includes(i)?'selected':''}"
+onclick="elegir(${i})"></div>
 `).join("");
 }
 
@@ -310,7 +326,7 @@ if(seleccion.includes(i)) return;
 if(seleccion.length>=3) return;
 
 seleccion.push(i);
-renderTarot();
+render();
 
 if(seleccion.length===3){
 mostrar();
@@ -320,15 +336,17 @@ mostrar();
 function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
 
-document.getElementById("resultadoTarot").innerHTML=
+document.getElementById("lecturaTarot").innerHTML=
 `
-<p>🔮 <b>Pasado:</b> ${a.n} — ${a.m}</p>
-<p>🌙 <b>Presente:</b> ${b.n} — ${b.m}</p>
-<p>🔮 <b>Futuro:</b> ${c.n} — ${c.m}</p>
+<p>🔮 <b>Pasado:</b> ${a.n}<br>${a.m}</p>
+<p>🌙 <b>Presente:</b> ${b.n}<br>${b.m}</p>
+<p>🔮 <b>Futuro:</b> ${c.n}<br>${c.m}</p>
+<hr>
+<p><i>Interpretación: tu energía indica un proceso de evolución donde las decisiones actuales afectan directamente al resultado futuro.</i></p>
 `;
 }
 
-barajarTarot();
+iniciarTirada();
 
 </script>
 
