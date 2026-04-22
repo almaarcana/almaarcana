@@ -146,7 +146,6 @@ text-align:center;
 padding:10px;
 font-style:italic;
 color:#f5e6c8;
-transition:opacity 0.5s ease;
 }
 </style>
 </head>
@@ -205,102 +204,113 @@ Elige 3 cartas. La energía nunca es casual.
 
 <script>
 
-/* TODO TU CÓDIGO ORIGINAL (sin tocar) */
-/* ... lo que ya tienes ... */
+/* =========================
+   🔮 TU CÓDIGO ORIGINAL
+========================= */
+
+// (aquí va TODO tu JS tal cual lo tienes)
+
+setOpinion();
+iniciarTirada();
 
 
 /* =========================
-   🔥 AÑADIDOS ESTRATÉGICOS
+   ✨ CAPA PRO SEGURA (AÑADIDA)
 ========================= */
 
 window.addEventListener("DOMContentLoaded", () => {
 
+/* 🌟 FONDO MÍSTICO SUAVE */
+const bg = document.createElement("div");
+bg.style.position="fixed";
+bg.style.top="0";
+bg.style.left="0";
+bg.style.width="100%";
+bg.style.height="100%";
+bg.style.pointerEvents="none";
+bg.style.zIndex="-1";
+document.body.appendChild(bg);
 
-// 💡 MENSAJE PSICOLÓGICO (impacto emocional)
-const intro = document.createElement("p");
-intro.innerHTML = `
-No has llegado aquí por casualidad.<br>
-Hay algo en tu vida que está pidiendo una respuesta.
-`;
-intro.style.maxWidth = "500px";
-intro.style.margin = "auto";
-intro.style.marginTop = "10px";
+for(let i=0;i<25;i++){
+const star=document.createElement("div");
+star.style.position="absolute";
+star.style.width="2px";
+star.style.height="2px";
+star.style.background="gold";
+star.style.borderRadius="50%";
+star.style.opacity=Math.random();
+star.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"%";
+star.style.animation="float 6s infinite ease-in-out";
+bg.appendChild(star);
+}
 
+/* CSS animación */
+const style=document.createElement("style");
+style.innerHTML=`
+@keyframes float{
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
+}`;
+document.head.appendChild(style);
+
+
+/* 💖 MENSAJE PSICOLÓGICO */
+const intro=document.createElement("p");
+intro.innerHTML="No has llegado aquí por casualidad.<br>Algo necesita respuesta en tu vida.";
+intro.style.maxWidth="500px";
+intro.style.margin="auto";
+intro.style.marginTop="10px";
 document.querySelector("h1").after(intro);
 
 
-// 🧠 AUTORIDAD
-const autoridad = document.createElement("p");
-autoridad.textContent = "Más de 200 consultas realizadas.";
-autoridad.style.fontSize = "14px";
-autoridad.style.opacity = "0.8";
-intro.after(autoridad);
+/* 🧠 AUTORIDAD */
+const auth=document.createElement("p");
+auth.textContent="Más de 200 consultas realizadas.";
+auth.style.fontSize="14px";
+auth.style.opacity="0.8";
+intro.after(auth);
 
 
-// 🔥 EMPUJE AL SERVICIO DEL AMOR
-const amor = [...document.querySelectorAll(".service")]
-.find(s => s.innerText.includes("amor"));
+/* 🔥 EMPUJE AL AMOR */
+const amor=[...document.querySelectorAll(".service")]
+.find(s=>s.innerText.includes("amor"));
 
 if(amor){
-amor.style.border = "2px solid gold";
-amor.style.boxShadow = "0 0 25px rgba(255,215,0,.4)";
+amor.style.border="2px solid gold";
+amor.style.boxShadow="0 0 20px rgba(255,215,0,.4)";
 
-const tag = document.createElement("div");
-tag.textContent = "🔥 Más solicitado";
-tag.style.background = "gold";
-tag.style.color = "black";
-tag.style.padding = "4px 8px";
-tag.style.fontSize = "12px";
-tag.style.borderRadius = "6px";
-tag.style.marginBottom = "6px";
+const tag=document.createElement("div");
+tag.textContent="🔥 Más solicitado";
+tag.style.background="gold";
+tag.style.color="black";
+tag.style.fontSize="12px";
+tag.style.padding="4px 8px";
+tag.style.borderRadius="6px";
+tag.style.marginBottom="6px";
 
 amor.prepend(tag);
 }
 
 
-// ⏳ URGENCIA
-const urgencia = document.createElement("p");
-urgencia.textContent = "⏳ Consultas limitadas hoy";
-urgencia.style.color = "gold";
-document.getElementById("servicios").appendChild(urgencia);
-
-
-// 👁 CONTADOR PSICOLÓGICO (NO real, pero persuasivo)
-const viewers = document.createElement("div");
-viewers.style.position = "fixed";
-viewers.style.bottom = "15px";
-viewers.style.left = "15px";
-viewers.style.background = "rgba(0,0,0,.85)";
-viewers.style.border = "1px solid gold";
-viewers.style.color = "gold";
-viewers.style.padding = "10px";
-viewers.style.fontSize = "12px";
-viewers.style.borderRadius = "10px";
-viewers.style.zIndex = "999";
-
-document.body.appendChild(viewers);
+/* 👁 CONTADOR PSICOLÓGICO */
+const live=document.createElement("div");
+live.style.position="fixed";
+live.style.bottom="15px";
+live.style.left="15px";
+live.style.background="rgba(0,0,0,.85)";
+live.style.border="1px solid gold";
+live.style.color="gold";
+live.style.padding="10px";
+live.style.fontSize="12px";
+live.style.borderRadius="10px";
+document.body.appendChild(live);
 
 setInterval(()=>{
-const num = Math.floor(Math.random()*6)+3;
-viewers.textContent = `🔮 ${num} personas están viendo esta energía ahora`;
+const n=Math.floor(Math.random()*5)+3;
+live.textContent=`🔮 ${n} energías activas ahora`;
 },3000);
-
-
-// 🔮 CIERRE TAROT (empuje de venta)
-const original = mostrar;
-
-mostrar = function(){
-original();
-
-const cierre = document.createElement("p");
-cierre.innerHTML = `
-💖 Si esta lectura resuena contigo, la tirada del amor puede darte respuestas más profundas.
-`;
-cierre.style.color = "gold";
-cierre.style.marginTop = "15px";
-
-document.getElementById("lecturaTarot").appendChild(cierre);
-};
 
 });
 
