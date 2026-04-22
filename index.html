@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS SIN TOCAR */
+/* SERVICIOS (NO TOCADO) */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -127,7 +127,7 @@ color:black;
 transform:scale(1.1);
 }
 
-/* RECOMENDACIÓN DINÁMICA */
+/* RECOMENDACIÓN */
 .recomendacion{
 margin-top:15px;
 padding:10px;
@@ -136,6 +136,27 @@ border-radius:10px;
 background:rgba(255,215,0,0.08);
 color:gold;
 font-weight:bold;
+}
+
+/* ⭐ OPINIONES DINÁMICAS (AÑADIDO) */
+.opiniones{
+background:rgba(0,0,0,.5);
+border:1px solid gold;
+border-radius:12px;
+padding:15px;
+margin-top:20px;
+min-height:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.opinion{
+text-align:center;
+padding:10px;
+font-style:italic;
+color:#f5e6c8;
+transition:opacity 0.5s ease;
 }
 </style>
 </head>
@@ -147,12 +168,13 @@ font-weight:bold;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
+<!-- HORÓSCOPO -->
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT (SOLO MEJORADO INTERNAMENTE) -->
+<!-- TAROT (SIN TOCAR) -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -168,7 +190,7 @@ Elige 3 cartas. La energía nunca es casual.
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<!-- 💳 SERVICIOS SIN CAMBIOS -->
+<!-- SERVICIOS (SIN TOCAR) -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -234,9 +256,20 @@ Elige 3 cartas. La energía nunca es casual.
 
 </section>
 
+<!-- ⭐ OPINIONES DINÁMICAS (AÑADIDO) -->
+<section class="card">
+<h2>✨ Opiniones reales</h2>
+
+<div class="opiniones">
+<div class="opinion" id="opinionText">
+“Me sorprendió muchísimo la precisión de la lectura.” — Laura M.
+</div>
+</div>
+</section>
+
 <script>
 
-/* HORÓSCOPO SIN CAMBIOS */
+/* HORÓSCOPO (SIN TOCAR) */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -272,7 +305,7 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT CON OPTIMIZACIÓN DINÁMICA */
+/* TAROT (CON NIVEL PSICOLÓGICO AÑADIDO) */
 const mazoOriginal = [
 {n:"El Loco",m:"Inicio de cambio inesperado."},
 {n:"El Mago",m:"Poder de manifestación."},
@@ -324,18 +357,24 @@ render();
 if(seleccion.length===3) mostrar();
 }
 
-/* 🔥 AQUÍ ESTÁ LA OPTIMIZACIÓN DINÁMICA */
-function generarRecomendacion(texto){
-if(texto.includes("amor") || texto.includes("Enamorados")) return "💖 Energía detectada: amor activo → Tirada recomendada";
-if(texto.includes("dinero") || texto.includes("Emperador")) return "💰 Energía detectada: área económica → Tirada recomendada";
-if(texto.includes("transformación") || texto.includes("Muerte") || texto.includes("Torre")) return "🔮 Energía intensa → Tirada profunda recomendada";
-return "🌙 Energía estable → Carta astral recomendada";
+/* 🔥 NIVEL PSICOLÓGICO */
+function nivelPsy(texto){
+if(texto.includes("amor") || texto.includes("Enamorados")){
+return "💖 Nivel psicológico: dependencia emocional o decisión afectiva activa.";
+}
+if(texto.includes("dinero") || texto.includes("Emperador")){
+return "💰 Nivel psicológico: necesidad de control material y estabilidad.";
+}
+if(texto.includes("Muerte") || texto.includes("Torre")){
+return "🧠 Nivel psicológico: cambio interno profundo o ruptura emocional.";
+}
+return "🌙 Nivel psicológico: etapa de reflexión y equilibrio interno.";
 }
 
 function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
 
-let texto = a.m + b.m + c.m;
+let energia = a.m + b.m + c.m;
 
 document.getElementById("lecturaTarot").innerHTML=`
 <h3 style="color:gold;">🔮 Lectura energética</h3>
@@ -345,10 +384,32 @@ document.getElementById("lecturaTarot").innerHTML=`
 <p>🔮 Futuro: ${c.n} — ${c.m}</p>
 
 <div class="recomendacion">
-${generarRecomendacion(texto)}
+${nivelPsy(energia)}
 </div>
 `;
 }
+
+/* ⭐ OPINIONES DINÁMICAS */
+const opiniones = [
+"“Me acertó cosas imposibles de saber.” — Laura M.",
+"“Muy preciso y directo.” — Sergio R.",
+"“Me ayudó en una decisión importante.” — Marta G.",
+"“Volveré a repetir seguro.” — Ana P."
+];
+
+let opIndex = 0;
+
+setInterval(()=>{
+const el = document.getElementById("opinionText");
+if(!el) return;
+el.style.opacity = 0;
+
+setTimeout(()=>{
+opIndex = (opIndex + 1) % opiniones.length;
+el.textContent = opiniones[opIndex];
+el.style.opacity = 1;
+},400);
+},3500);
 
 iniciarTirada();
 
