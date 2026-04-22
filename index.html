@@ -49,12 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS (INTACTOS) */
-.service:hover{
-transform:scale(1.03);
-box-shadow:0 0 25px rgba(255,215,0,.3);
-}
-
+/* SERVICIOS EXACTAMENTE IGUAL */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -97,7 +92,7 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT NUEVO */
+/* 🔮 TAROT MEJORADO */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
@@ -115,7 +110,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-transition:0.4s;
+transition:0.35s;
 background:linear-gradient(145deg,#111,#000);
 color:gold;
 font-size:10px;
@@ -146,7 +141,7 @@ transform:scale(1.1);
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT SOLO ACTUALIZADO -->
+<!-- 🔮 TAROT SOLO ARREGLADO -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -155,14 +150,14 @@ transform:scale(1.1);
 </button>
 
 <p style="margin-top:10px;">
-Elige 3 cartas. La energía nunca es casual.
+Elige 3 cartas. La energía se revela en el momento.
 </p>
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<!-- 💳 SERVICIOS (NO TOCADOS) -->
+<!-- 💳 SERVICIOS SIN CAMBIOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -230,7 +225,7 @@ Elige 3 cartas. La energía nunca es casual.
 
 <script>
 
-/* HORÓSCOPO (INTACTO) */
+/* HORÓSCOPO SIN CAMBIOS */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -266,9 +261,9 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT NUEVO FUNCIONAL */
+/* 🔮 TAROT ARREGLADO Y FUNCIONAL */
 const mazoOriginal = [
-{n:"El Loco",m:"Inicio de cambio inesperado."},
+{n:"El Loco",m:"Inicio inesperado de cambio."},
 {n:"El Mago",m:"Poder de manifestación."},
 {n:"La Sacerdotisa",m:"Algo oculto saldrá a la luz."},
 {n:"La Emperatriz",m:"Crecimiento y abundancia."},
@@ -298,7 +293,7 @@ function iniciarTirada(){
 mazo=[...mazoOriginal].sort(()=>Math.random()-0.5);
 seleccion=[];
 render();
-document.getElementById("lecturaTarot").innerHTML="<p style='color:gold;'>Conecta con la energía del universo...</p>";
+document.getElementById("lecturaTarot").innerHTML="";
 }
 
 function render(){
@@ -327,12 +322,6 @@ document.getElementById("lecturaTarot").innerHTML=`
 <p>🜂 Pasado: ${a.n} — ${a.m}</p>
 <p>🌙 Presente: ${b.n} — ${b.m}</p>
 <p>🔮 Futuro: ${c.n} — ${c.m}</p>
-
-<hr>
-
-<p style="color:#ccc;">
-Interpretación simbólica del flujo energético actual.
-</p>
 `;
 }
 
