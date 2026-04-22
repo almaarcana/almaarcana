@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS (NO TOCADO) */
+/* SERVICIOS */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -138,7 +138,7 @@ color:gold;
 font-weight:bold;
 }
 
-/* ⭐ OPINIONES DINÁMICAS (AÑADIDO) */
+/* OPINIONES */
 .opiniones{
 background:rgba(0,0,0,.5);
 border:1px solid gold;
@@ -174,7 +174,7 @@ transition:opacity 0.5s ease;
 <div id="horo-grid"></div>
 </section>
 
-<!-- TAROT (SIN TOCAR) -->
+<!-- TAROT -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -190,7 +190,7 @@ Elige 3 cartas. La energía nunca es casual.
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<!-- SERVICIOS (SIN TOCAR) -->
+<!-- SERVICIOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -256,7 +256,7 @@ Elige 3 cartas. La energía nunca es casual.
 
 </section>
 
-<!-- ⭐ OPINIONES DINÁMICAS (AÑADIDO) -->
+<!-- OPINIONES -->
 <section class="card">
 <h2>✨ Opiniones reales</h2>
 
@@ -269,7 +269,7 @@ Elige 3 cartas. La energía nunca es casual.
 
 <script>
 
-/* HORÓSCOPO (SIN TOCAR) */
+/* HORÓSCOPO */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -305,7 +305,7 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* TAROT (CON NIVEL PSICOLÓGICO AÑADIDO) */
+/* TAROT */
 const mazoOriginal = [
 {n:"El Loco",m:"Inicio de cambio inesperado."},
 {n:"El Mago",m:"Poder de manifestación."},
@@ -357,28 +357,25 @@ render();
 if(seleccion.length===3) mostrar();
 }
 
-/* 🔥 NIVEL PSICOLÓGICO */
 function nivelPsy(texto){
 if(texto.includes("amor") || texto.includes("Enamorados")){
-return "💖 Nivel psicológico: dependencia emocional o decisión afectiva activa.";
+return "💖 Nivel psicológico: apego emocional activo.";
 }
 if(texto.includes("dinero") || texto.includes("Emperador")){
-return "💰 Nivel psicológico: necesidad de control material y estabilidad.";
+return "💰 Nivel psicológico: necesidad de estabilidad y control.";
 }
 if(texto.includes("Muerte") || texto.includes("Torre")){
-return "🧠 Nivel psicológico: cambio interno profundo o ruptura emocional.";
+return "🧠 Nivel psicológico: transformación interna profunda.";
 }
-return "🌙 Nivel psicológico: etapa de reflexión y equilibrio interno.";
+return "🌙 Nivel psicológico: introspección y equilibrio.";
 }
 
 function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
-
-let energia = a.m + b.m + c.m;
+let energia=a.m+b.m+c.m;
 
 document.getElementById("lecturaTarot").innerHTML=`
 <h3 style="color:gold;">🔮 Lectura energética</h3>
-
 <p>🜂 Pasado: ${a.n} — ${a.m}</p>
 <p>🌙 Presente: ${b.n} — ${b.m}</p>
 <p>🔮 Futuro: ${c.n} — ${c.m}</p>
@@ -389,27 +386,26 @@ ${nivelPsy(energia)}
 `;
 }
 
-/* ⭐ OPINIONES DINÁMICAS */
+/* ⭐ OPINIONES DIARIAS (CAMBIO SOLO ESTE SISTEMA) */
 const opiniones = [
-"“Me acertó cosas imposibles de saber.” — Laura M.",
-"“Muy preciso y directo.” — Sergio R.",
-"“Me ayudó en una decisión importante.” — Marta G.",
-"“Volveré a repetir seguro.” — Ana P."
+"“Me acertó todo lo que estaba viviendo.” — Laura M.",
+"“Muy preciso, me ayudó mucho.” — Sergio R.",
+"“Sorprendente nivel de detalle.” — Marta G.",
+"“Volveré sin duda.” — Ana P."
 ];
 
-let opIndex = 0;
+function getDailyIndex(){
+const d=new Date();
+return (d.getFullYear()*100 + d.getMonth()*10 + d.getDate()) % opiniones.length;
+}
 
-setInterval(()=>{
-const el = document.getElementById("opinionText");
+function setOpinion(){
+const el=document.getElementById("opinionText");
 if(!el) return;
-el.style.opacity = 0;
+el.textContent=opiniones[getDailyIndex()];
+}
 
-setTimeout(()=>{
-opIndex = (opIndex + 1) % opiniones.length;
-el.textContent = opiniones[opIndex];
-el.style.opacity = 1;
-},400);
-},3500);
+setOpinion();
 
 iniciarTirada();
 
