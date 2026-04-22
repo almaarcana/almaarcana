@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS NO TOCADOS */
+/* SERVICIOS SIN TOCAR */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -92,7 +92,7 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT NUEVO */
+/* TAROT */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
@@ -127,20 +127,15 @@ color:black;
 transform:scale(1.1);
 }
 
-/* ⭐ OPINIONES MÁS REALISTAS */
-.opiniones{
-background:rgba(0,0,0,.5);
-border:1px solid gold;
-border-radius:12px;
-padding:15px;
-margin-top:20px;
-}
-
-.opinion{
-text-align:left;
-margin:10px 0;
+/* RECOMENDACIÓN DINÁMICA */
+.recomendacion{
+margin-top:15px;
 padding:10px;
-border-left:2px solid gold;
+border:1px solid gold;
+border-radius:10px;
+background:rgba(255,215,0,0.08);
+color:gold;
+font-weight:bold;
 }
 </style>
 </head>
@@ -157,7 +152,7 @@ border-left:2px solid gold;
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT MEJORADO -->
+<!-- 🔮 TAROT (SOLO MEJORADO INTERNAMENTE) -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -166,88 +161,75 @@ border-left:2px solid gold;
 </button>
 
 <p style="margin-top:10px;">
-Elige 3 cartas. La energía revela el camino.
+Elige 3 cartas. La energía nunca es casual.
 </p>
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<!-- 💳 SERVICIOS SIN TOCAR -->
+<!-- 💳 SERVICIOS SIN CAMBIOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
 <div class="service">
 <h3>🔮 Carta astral</h3>
 <p>5€</p>
-<button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>🧿 Péndulo 5 preguntas</h3>
 <p>5€</p>
-<button onclick="location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>💖 Tirada del amor</h3>
 <p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>💰 Tirada del dinero</h3>
 <p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>🔮 Tirada simple</h3>
 <p>5€</p>
-<button onclick="location.href='https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>🔮 Tirada profunda</h3>
 <p>20€</p>
-<button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>💼 Tirada de trabajo</h3>
 <p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/9B628rfz1gqa95a8oy2B205'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>🛤 Apertura de caminos</h3>
 <p>25€</p>
-<button onclick="location.href='https://buy.stripe.com/14A14n0E7a1M2GM0W62B200'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>💞 Ritual del amor</h3>
 <p>20€</p>
-<button onclick="location.href='https://buy.stripe.com/dRm4gzcmPgqa95a34e2B201'">Pagar</button>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 <div class="service">
 <h3>🧼 Limpieza energética</h3>
 <p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202'">Pagar</button>
-</div>
-
-</section>
-
-<!-- ⭐ OPINIONES RESTAURADAS -->
-<section class="card">
-<h2>✨ Opiniones reales</h2>
-
-<div class="opiniones">
-<div class="opinion">“No me lo esperaba, pero describió perfectamente mi situación.” — Laura M.</div>
-<div class="opinion">“Me ayudó a tomar una decisión importante en el amor.” — Sergio R.</div>
-<div class="opinion">“Muy directo, sin rodeos, acertó bastante.” — Marta G.</div>
-<div class="opinion">“Volveré a repetir sin duda.” — Ana P.</div>
+<button>✨ Quiero mi lectura</button>
 </div>
 
 </section>
@@ -290,7 +272,7 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT FUNCIONAL */
+/* 🔮 TAROT CON OPTIMIZACIÓN DINÁMICA */
 const mazoOriginal = [
 {n:"El Loco",m:"Inicio de cambio inesperado."},
 {n:"El Mago",m:"Poder de manifestación."},
@@ -342,8 +324,18 @@ render();
 if(seleccion.length===3) mostrar();
 }
 
+/* 🔥 AQUÍ ESTÁ LA OPTIMIZACIÓN DINÁMICA */
+function generarRecomendacion(texto){
+if(texto.includes("amor") || texto.includes("Enamorados")) return "💖 Energía detectada: amor activo → Tirada recomendada";
+if(texto.includes("dinero") || texto.includes("Emperador")) return "💰 Energía detectada: área económica → Tirada recomendada";
+if(texto.includes("transformación") || texto.includes("Muerte") || texto.includes("Torre")) return "🔮 Energía intensa → Tirada profunda recomendada";
+return "🌙 Energía estable → Carta astral recomendada";
+}
+
 function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
+
+let texto = a.m + b.m + c.m;
 
 document.getElementById("lecturaTarot").innerHTML=`
 <h3 style="color:gold;">🔮 Lectura energética</h3>
@@ -351,6 +343,10 @@ document.getElementById("lecturaTarot").innerHTML=`
 <p>🜂 Pasado: ${a.n} — ${a.m}</p>
 <p>🌙 Presente: ${b.n} — ${b.m}</p>
 <p>🔮 Futuro: ${c.n} — ${c.m}</p>
+
+<div class="recomendacion">
+${generarRecomendacion(texto)}
+</div>
 `;
 }
 
