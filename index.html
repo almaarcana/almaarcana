@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS (NO TOCADO) */
+/* SERVICIOS */
 .service:hover{
 transform:scale(1.03);
 box-shadow:0 0 25px rgba(255,215,0,.3);
@@ -141,16 +141,6 @@ Respuestas claras sobre amor, dinero y decisiones importantes.<br>
 Más de 100 consultas realizadas.
 </p>
 
-<!-- 🧠 BLOQUE NUEVO: PUENTE EMOCIONAL -->
-<div style="max-width:700px;margin:20px auto;padding:15px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p style="color:gold;font-weight:bold;">
-🔮 Lecturas simbólicas activas
-</p>
-<p>
-El tarot muestra información parcial. La interpretación completa depende del análisis energético personalizado.
-</p>
-</div>
-
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
@@ -167,29 +157,9 @@ El tarot muestra información parcial. La interpretación completa depende del a
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
-
-<!-- 🔥 BLOQUE AÑADIDO: CIERRE EMOCIONAL -->
-<div style="margin-top:15px;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.3);">
-<p style="color:gold;font-weight:bold;">🔮 Interpretación incompleta</p>
-<p>Algunas capas del destino no aparecen en tiradas básicas.</p>
-</div>
-
 </section>
 
-<!-- 💰 BLOQUE AÑADIDO: OFERTA PRINCIPAL -->
-<div style="border:1px solid gold;padding:15px;border-radius:10px;background:rgba(0,0,0,.5);max-width:700px;margin:20px auto;">
-<h3 style="color:gold;">🔥 Lectura recomendada</h3>
-<p><b>Consulta completa personalizada (20€)</b></p>
-<p>La opción más elegida. Análisis profundo de amor, dinero y destino.</p>
-</div>
-
 <section id="servicios" class="card">
-
-<!-- ⚡ URGENCIA AÑADIDA -->
-<p style="color:gold;font-weight:bold;">
-⚠️ Hoy quedan pocas consultas disponibles
-</p>
-
 <h2>💳 Servicios espirituales</h2>
 
 <div class="service">
@@ -233,7 +203,7 @@ El tarot muestra información parcial. La interpretación completa depende del a
 
 <script>
 
-/* HORÓSCOPO (igual que antes) */
+/* HORÓSCOPO */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -269,13 +239,29 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* TAROT (sin cambios funcionales) */
-const mazoOriginal=[
-"El Loco","El Mago","La Sacerdotisa","La Emperatriz",
-"El Emperador","Los Enamorados","El Carro","La Justicia",
-"El Ermitaño","La Rueda de la Fortuna","La Fuerza","La Muerte",
-"La Templanza","El Diablo","La Torre","La Estrella",
-"La Luna","El Sol","El Juicio","El Mundo"
+/* 🔮 TAROT CORREGIDO */
+const mazoOriginal = [
+{n:"El Loco", m:"Inicio de ciclo. Cambios inesperados y decisiones impulsivas."},
+{n:"El Mago", m:"Poder de manifestación y acción directa."},
+{n:"La Sacerdotisa", m:"Intuición fuerte y secretos ocultos."},
+{n:"La Emperatriz", m:"Crecimiento y abundancia."},
+{n:"El Emperador", m:"Control y estructura."},
+{n:"Los Enamorados", m:"Decisión emocional importante."},
+{n:"El Carro", m:"Avance y victoria."},
+{n:"La Justicia", m:"Equilibrio y decisiones kármicas."},
+{n:"El Ermitaño", m:"Reflexión interior."},
+{n:"La Rueda de la Fortuna", m:"Cambio de destino."},
+{n:"La Fuerza", m:"Control emocional."},
+{n:"La Muerte", m:"Transformación profunda."},
+{n:"La Templanza", m:"Equilibrio y sanación."},
+{n:"El Diablo", m:"Ataduras o dependencia."},
+{n:"La Torre", m:"Ruptura repentina."},
+{n:"La Estrella", m:"Esperanza y guía."},
+{n:"La Luna", m:"Confusión e intuición."},
+{n:"El Sol", m:"Claridad y éxito."},
+{n:"El Juicio", m:"Despertar interior."},
+{n:"El Mundo", m:"Cierre de ciclo."
+}
 ];
 
 let mazo=[];
@@ -292,7 +278,7 @@ function render(){
 document.getElementById("mesaTarot").innerHTML=
 mazo.map((c,i)=>`
 <div class="carta ${seleccion.includes(i)?'selected':''}" onclick="elegir(${i})">
-${seleccion.includes(i)?c:"🜁"}
+${seleccion.includes(i)?c.n:"🜁"}
 </div>
 `).join("");
 }
@@ -309,14 +295,14 @@ function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
 
 document.getElementById("lecturaTarot").innerHTML=`
-<p>🔮 <b>Pasado:</b> ${a}</p>
-<p>🌙 <b>Presente:</b> ${b}</p>
-<p>🔮 <b>Futuro:</b> ${c}</p>
+<p>🔮 <b>Pasado:</b> ${a.n}<br>${a.m}</p>
+<p>🌙 <b>Presente:</b> ${b.n}<br>${b.m}</p>
+<p>🔮 <b>Futuro:</b> ${c.n}<br>${c.m}</p>
 
 <hr>
 
 <p style="color:#ccc;">
-La energía indica un proceso de transformación progresiva. El resultado depende de decisiones actuales.
+Lectura energética simbólica. El proceso indica evolución y decisiones importantes en curso.
 </p>
 `;
 }
