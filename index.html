@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS EXACTAMENTE IGUAL */
+/* SERVICIOS NO TOCADOS */
 .service{
 border:1px solid gold;
 padding:15px;
@@ -92,7 +92,7 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT MEJORADO */
+/* 🔮 TAROT NUEVO */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
@@ -126,6 +126,22 @@ background:gold;
 color:black;
 transform:scale(1.1);
 }
+
+/* ⭐ OPINIONES MÁS REALISTAS */
+.opiniones{
+background:rgba(0,0,0,.5);
+border:1px solid gold;
+border-radius:12px;
+padding:15px;
+margin-top:20px;
+}
+
+.opinion{
+text-align:left;
+margin:10px 0;
+padding:10px;
+border-left:2px solid gold;
+}
 </style>
 </head>
 
@@ -141,7 +157,7 @@ transform:scale(1.1);
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT SOLO ARREGLADO -->
+<!-- 🔮 TAROT MEJORADO -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -150,14 +166,14 @@ transform:scale(1.1);
 </button>
 
 <p style="margin-top:10px;">
-Elige 3 cartas. La energía se revela en el momento.
+Elige 3 cartas. La energía revela el camino.
 </p>
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<!-- 💳 SERVICIOS SIN CAMBIOS -->
+<!-- 💳 SERVICIOS SIN TOCAR -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -223,6 +239,19 @@ Elige 3 cartas. La energía se revela en el momento.
 
 </section>
 
+<!-- ⭐ OPINIONES RESTAURADAS -->
+<section class="card">
+<h2>✨ Opiniones reales</h2>
+
+<div class="opiniones">
+<div class="opinion">“No me lo esperaba, pero describió perfectamente mi situación.” — Laura M.</div>
+<div class="opinion">“Me ayudó a tomar una decisión importante en el amor.” — Sergio R.</div>
+<div class="opinion">“Muy directo, sin rodeos, acertó bastante.” — Marta G.</div>
+<div class="opinion">“Volveré a repetir sin duda.” — Ana P.</div>
+</div>
+
+</section>
+
 <script>
 
 /* HORÓSCOPO SIN CAMBIOS */
@@ -261,9 +290,9 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT ARREGLADO Y FUNCIONAL */
+/* 🔮 TAROT FUNCIONAL */
 const mazoOriginal = [
-{n:"El Loco",m:"Inicio inesperado de cambio."},
+{n:"El Loco",m:"Inicio de cambio inesperado."},
 {n:"El Mago",m:"Poder de manifestación."},
 {n:"La Sacerdotisa",m:"Algo oculto saldrá a la luz."},
 {n:"La Emperatriz",m:"Crecimiento y abundancia."},
@@ -272,7 +301,7 @@ const mazoOriginal = [
 {n:"El Carro",m:"Avance y éxito."},
 {n:"La Justicia",m:"Equilibrio y verdad."},
 {n:"El Ermitaño",m:"Reflexión interna."},
-{n:"La Rueda de la Fortuna",m:"Cambio de destino."},
+{n:"La Rueda",m:"Cambio de destino."},
 {n:"La Fuerza",m:"Control emocional."},
 {n:"La Muerte",m:"Transformación profunda."},
 {n:"La Templanza",m:"Equilibrio."},
