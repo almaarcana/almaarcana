@@ -14,20 +14,6 @@ color:#f5e6c8;
 text-align:center;
 }
 
-.top-btn{
-position:fixed;
-top:15px;
-right:15px;
-background:gold;
-color:black;
-padding:10px 14px;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
-z-index:999;
-box-shadow:0 0 10px rgba(255,215,0,.5);
-}
-
 h1{
 color:gold;
 text-shadow:0 0 20px gold;
@@ -41,7 +27,7 @@ margin:auto;
 }
 
 .card{
-background:rgba(0,0,0,.7);
+background:rgba(0,0,0,.75);
 border:1px solid gold;
 border-radius:12px;
 padding:20px;
@@ -56,10 +42,9 @@ margin:12px auto;
 border-radius:10px;
 background:rgba(0,0,0,.5);
 max-width:600px;
-transition:0.3s;
 }
 
-.service button{
+button{
 width:100%;
 background:gold;
 border:none;
@@ -67,6 +52,11 @@ padding:10px;
 font-weight:bold;
 cursor:pointer;
 border-radius:8px;
+transition:0.2s;
+}
+
+button:hover{
+transform:scale(1.03);
 }
 
 #horo-grid{
@@ -83,7 +73,6 @@ padding:6px;
 border:1px solid gold;
 border-radius:6px;
 background:rgba(0,0,0,.35);
-line-height:1.2;
 }
 
 #mesaTarot{
@@ -103,7 +92,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-transition:0.35s;
+transition:0.3s;
 background:linear-gradient(145deg,#111,#000);
 color:gold;
 font-size:10px;
@@ -111,7 +100,6 @@ font-size:10px;
 
 .carta:hover{
 transform:translateY(-5px);
-box-shadow:0 0 12px gold;
 }
 
 .carta.selected{
@@ -120,113 +108,92 @@ color:black;
 transform:scale(1.1);
 }
 
-.opiniones{
-background:rgba(0,0,0,.5);
-border:1px solid gold;
-border-radius:12px;
-padding:15px;
-margin-top:20px;
-min-height:70px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
 .opinion{
-text-align:center;
-padding:10px;
 font-style:italic;
 color:#f5e6c8;
 }
 
-/* 👁 contador */
-#visitas{
-position:fixed;
-bottom:15px;
-left:15px;
-background:rgba(0,0,0,.85);
-border:1px solid gold;
-color:gold;
-padding:10px;
-border-radius:10px;
-font-size:12px;
-z-index:999;
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
 }
 </style>
 </head>
 
 <body>
 
-<a href="#servicios" class="top-btn">💳 Servicios</a>
-
 <h1>🔮 Alma Arcana</h1>
-<p>Tarot · Energía · Destino</p>
+<p>Tarot · Energía · Claridad espiritual</p>
 
+<!-- HORÓSCOPO -->
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
+<!-- COMO FUNCIONA -->
 <section class="card">
-<h2>🔮 Tarot interactivo energético</h2>
+<h2>🧿 Cómo funciona</h2>
+<p>1. Elige tu tirada</p>
+<p>2. Realiza el pago seguro</p>
+<p>3. Recibe tu lectura personalizada</p>
+<p style="color:gold;margin-top:10px;">
+Lecturas simbólicas y energéticas, no deterministas.
+</p>
+</section>
 
-<button onclick="iniciarTirada()" style="background:gold;border:none;padding:12px 18px;font-weight:bold;border-radius:8px;cursor:pointer;">
-🌀 Conectar con el destino
-</button>
+<!-- TAROT -->
+<section class="card">
+<h2>🔮 Tarot interactivo</h2>
 
-<p>Elige 3 cartas. La energía nunca es casual.</p>
+<button onclick="iniciarTirada()">🌀 Conectar con el destino</button>
+
+<p>Elige 3 cartas</p>
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<section id="servicios" class="card">
+<!-- SERVICIOS -->
+<section class="card">
 <h2>💳 Servicios espirituales</h2>
 
-<div class="service"><h3>🔮 Carta astral</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🧿 Péndulo 5 preguntas</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💖 Tirada del amor</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💰 Tirada del dinero</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🔮 Tirada simple</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🔮 Tirada profunda</h3><p>20€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💼 Tirada de trabajo</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🛤 Apertura de caminos</h3><p>25€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💞 Ritual del amor</h3><p>20€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🧼 Limpieza energética</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service">
+<h3>💖 Tirada del amor</h3>
+<p>Bloqueos emocionales y energía afectiva</p>
+<p><b>10€</b></p>
+<a href="TU_LINK_STRIPE_AMOR" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>💰 Tirada del dinero</h3>
+<p>Energía económica y oportunidades</p>
+<p><b>10€</b></p>
+<a href="TU_LINK_STRIPE_DINERO" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>🔮 Lectura profunda</h3>
+<p>Análisis completo de tu energía actual</p>
+<p><b>20€</b></p>
+<a href="TU_LINK_STRIPE_PROFUNDA" target="_blank"><button>✨ Comprar</button></a>
+</div>
 
 </section>
 
+<!-- OPINIONES -->
 <section class="card">
-<h2>✨ Opiniones reales</h2>
-<div class="opiniones">
-<div class="opinion">“Me sorprendió muchísimo la precisión de la lectura.” — Laura M.</div>
+<h2>✨ Opiniones</h2>
+<div class="opinion" id="opinion">
+“Me ayudó a entender una situación emocional muy fuerte.”
 </div>
 </section>
 
-<div id="visitas"></div>
-
 <script>
 
-/* =========================
-   🌙 HORÓSCOPO (ESTABLE)
-========================= */
-
+/* HORÓSCOPO */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
-
-const frases=[
-"Energía de cambio.",
-"Confía en tu intuición.",
-"Algo se desbloquea.",
-"Cierre necesario.",
-"Oportunidad aparece.",
-"Claridad mental.",
-"Transformación interna.",
-"Energía estable.",
-"Movimiento importante.",
-"Algo se revela.",
-"Buena dirección.",
-"Reflexión clave."
-];
+const frases=["Energía de cambio.","Confía en tu intuición.","Algo se desbloquea.","Movimiento importante."];
 
 function horoscopo(){
 const g=document.getElementById("horo-grid");
@@ -237,20 +204,13 @@ return `<div><b>${s}</b><br>${frases[(seed+i)%frases.length]}</div>`;
 }).join("");
 }
 
-
-/* =========================
-   🔮 TAROT MEJORADO (MÁS REAL)
-========================= */
-
+/* TAROT */
 const tarot=[
-["El Loco","Estás entrando en un cambio sin mapa claro, confía en el proceso."],
-["El Mago","Tienes más control del que crees sobre lo que viene."],
-["La Sacerdotisa","Hay información oculta que pronto entenderás."],
-["El Emperador","Necesitas estructura y decisión firme."],
-["La Luna","Tus emociones están influyendo más de lo que ves."],
-["El Sol","Se abre un ciclo de claridad y éxito."],
-["La Rueda","El destino está moviéndose a tu favor."],
-["La Estrella","Recuperas esperanza en algo importante."]
+["El Loco","Cambio inesperado."],
+["El Mago","Tienes control."],
+["La Luna","Confusión emocional."],
+["El Sol","Claridad y éxito."],
+["La Rueda","Destino en movimiento."]
 ];
 
 let sel=[];
@@ -264,53 +224,47 @@ mesa.innerHTML=tarot.map((c,i)=>`
 <div class="carta" onclick="elegir(${i})">🜁</div>
 `).join("");
 
-lectura.innerHTML="<p style='color:gold'>Conecta con la energía y elige 3 cartas...</p>";
+lectura.innerHTML="Elige 3 cartas...";
 }
 
 function elegir(i){
 if(sel.includes(i) || sel.length>=3) return;
-
 sel.push(i);
+
 document.querySelectorAll(".carta")[i].classList.add("selected");
 
 if(sel.length===3){
-const [a,b,c]=sel.map(i=>tarot[i]);
+const res=sel.map(i=>tarot[i]);
 
 document.getElementById("lecturaTarot").innerHTML=`
-<h3 style="color:gold">🔮 Lectura energética</h3>
-<p>🜂 ${a[0]} — ${a[1]}</p>
-<p>🌙 ${b[0]} — ${b[1]}</p>
-<p>🔮 ${c[0]} — ${c[1]}</p>
-<p style="color:gold;margin-top:10px">Confía en lo que has sentido.</p>
+<div style="animation:fadeIn 1s">
+<h3 style="color:gold">🔮 Lectura</h3>
+<p>${res[0][0]} — ${res[0][1]}</p>
+<p>${res[1][0]} — ${res[1][1]}</p>
+<p>${res[2][0]} — ${res[2][1]}</p>
+</div>
 `;
 }
 }
 
+/* OPINIONES */
+const opiniones=[
+"Me ayudó muchísimo en un momento difícil.",
+"Increíble precisión.",
+"Siento más claridad ahora."
+];
 
-/* =========================
-   👁 CONTADOR MÁS ESTABLE
-========================= */
-
-function visitas(){
-const v=document.getElementById("visitas");
-
+let i=0;
 setInterval(()=>{
-const base=4;
-const n=base + Math.floor(Math.random()*4);
-v.textContent=`🔮 ${n} personas conectadas ahora`;
-},3500);
-}
+document.getElementById("opinion").textContent=opiniones[i];
+i=(i+1)%opiniones.length;
+},4000);
 
-
-/* =========================
-   INIT
-========================= */
-
-window.addEventListener("DOMContentLoaded",()=>{
+/* INIT */
+window.onload=()=>{
 horoscopo();
 iniciarTirada();
-visitas();
-});
+};
 
 </script>
 
