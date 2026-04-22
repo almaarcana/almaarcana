@@ -97,7 +97,7 @@ color:gold;
 font-size:12px;
 }
 
-/* TAROT */
+/* 🔮 TAROT FUNCIONAL */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
@@ -121,9 +121,14 @@ color:gold;
 font-size:10px;
 }
 
+.carta:hover{
+transform:translateY(-5px);
+}
+
 .carta.selected{
 background:gold;
 color:black;
+transform:scale(1.05);
 }
 </style>
 </head>
@@ -137,8 +142,7 @@ color:black;
 
 <p style="max-width:600px;margin:20px auto;font-size:18px;">
 🔮 Lecturas reales, directas y sin rodeos.<br>
-Respuestas claras sobre amor, dinero y decisiones importantes.<br>
-Más de 100 consultas realizadas.
+Respuestas claras sobre amor, dinero y decisiones importantes.
 </p>
 
 <section class="card">
@@ -146,11 +150,12 @@ Más de 100 consultas realizadas.
 <div id="horo-grid"></div>
 </section>
 
+<!-- 🔮 TAROT NUEVO Y FUNCIONAL -->
 <section class="card">
-<h2>🔮 Tarot interactivo premium</h2>
+<h2>🔮 Tarot interactivo</h2>
 
 <button onclick="iniciarTirada()" style="background:gold;border:none;padding:12px 18px;font-weight:bold;border-radius:8px;cursor:pointer;">
-🌀 Barajar energías
+🌀 Barajar cartas
 </button>
 
 <p style="margin-top:10px;">Elige 3 cartas</p>
@@ -165,40 +170,54 @@ Más de 100 consultas realizadas.
 <div class="service">
 <h3>🔮 Carta astral</h3>
 <p>5€</p>
-<button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">🔮 Quiero mi lectura</button>
-</div>
-
-<div class="service">
-<h3>🧿 Péndulo 5 preguntas</h3>
-<p>5€</p>
-<button onclick="location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">🔮 Quiero mi lectura</button>
+<button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>💖 Tirada del amor</h3>
 <p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">💖 Descubrir mi destino</button>
+<button onclick="location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>💰 Tirada del dinero</h3>
 <p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">💰 Ver mi futuro económico</button>
+<button onclick="location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">Pagar</button>
 </div>
 
 <div class="service">
 <h3>🔮 Tirada profunda</h3>
 <p>20€</p>
-<button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">🔮 Consulta completa</button>
+<button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button>
 </div>
 
 </section>
 
+<!-- ⭐ OPINIONES REALISTAS -->
 <section class="card">
-<h2>✨ Opiniones</h2>
-<p>"Me acertó completamente" – Laura</p>
-<p>"Increíble precisión" – Marta</p>
-<p>"Volveré sin duda" – Carlos</p>
+<h2>✨ Opiniones de clientes</h2>
+
+<div style="max-width:600px;margin:auto;text-align:left;">
+
+<div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
+<p>⭐️⭐️⭐️⭐️⭐️</p>
+<p><b>Laura M.</b></p>
+<p style="font-size:14px;">“Muy acertado. Me ayudó a tomar una decisión importante en mi vida personal.”</p>
+</div>
+
+<div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
+<p>⭐️⭐️⭐️⭐️⭐️</p>
+<p><b>Carlos R.</b></p>
+<p style="font-size:14px;">“La lectura del dinero fue bastante precisa con lo que estaba viviendo.”</p>
+</div>
+
+<div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
+<p>⭐️⭐️⭐️⭐️⭐️</p>
+<p><b>Marta S.</b></p>
+<p style="font-size:14px;">“Me sorprendió bastante. Volveré a pedir otra lectura más completa.”</p>
+</div>
+
+</div>
 </section>
 
 <script>
@@ -212,13 +231,13 @@ const frases=[
 "Tu intuición será clave.",
 "Evita decisiones impulsivas.",
 "Cambios positivos llegan.",
-"Alguien influye en tu día.",
 "Buena energía personal.",
 "Observa antes de actuar.",
-"Momento de decisión importante.",
+"Cierre de ciclo necesario.",
 "Energía de transformación.",
+"Momento de decisión.",
 "Claridad mental aparece.",
-"Cierre de ciclo necesario."
+"Algo oculto se revela."
 ];
 
 const hoy=new Date();
@@ -239,27 +258,27 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT CORREGIDO */
+/* 🔮 TAROT FUNCIONAL REAL */
 const mazoOriginal = [
-{n:"El Loco", m:"Inicio de ciclo. Cambios inesperados y decisiones impulsivas."},
-{n:"El Mago", m:"Poder de manifestación y acción directa."},
-{n:"La Sacerdotisa", m:"Intuición fuerte y secretos ocultos."},
-{n:"La Emperatriz", m:"Crecimiento y abundancia."},
-{n:"El Emperador", m:"Control y estructura."},
-{n:"Los Enamorados", m:"Decisión emocional importante."},
+{n:"El Loco", m:"Inicio de ciclo, decisiones impulsivas."},
+{n:"El Mago", m:"Poder de manifestación."},
+{n:"La Sacerdotisa", m:"Intuición y secretos."},
+{n:"La Emperatriz", m:"Abundancia y crecimiento."},
+{n:"El Emperador", m:"Control y estabilidad."},
+{n:"Los Enamorados", m:"Decisión emocional."},
 {n:"El Carro", m:"Avance y victoria."},
-{n:"La Justicia", m:"Equilibrio y decisiones kármicas."},
-{n:"El Ermitaño", m:"Reflexión interior."},
+{n:"La Justicia", m:"Equilibrio y verdad."},
+{n:"El Ermitaño", m:"Reflexión interna."},
 {n:"La Rueda de la Fortuna", m:"Cambio de destino."},
 {n:"La Fuerza", m:"Control emocional."},
-{n:"La Muerte", m:"Transformación profunda."},
-{n:"La Templanza", m:"Equilibrio y sanación."},
-{n:"El Diablo", m:"Ataduras o dependencia."},
-{n:"La Torre", m:"Ruptura repentina."},
-{n:"La Estrella", m:"Esperanza y guía."},
-{n:"La Luna", m:"Confusión e intuición."},
-{n:"El Sol", m:"Claridad y éxito."},
-{n:"El Juicio", m:"Despertar interior."},
+{n:"La Muerte", m:"Transformación."},
+{n:"La Templanza", m:"Equilibrio."},
+{n:"El Diablo", m:"Ataduras."},
+{n:"La Torre", m:"Ruptura."},
+{n:"La Estrella", m:"Esperanza."},
+{n:"La Luna", m:"Confusión."},
+{n:"El Sol", m:"Éxito."},
+{n:"El Juicio", m:"Despertar."},
 {n:"El Mundo", m:"Cierre de ciclo."
 }
 ];
@@ -302,7 +321,7 @@ document.getElementById("lecturaTarot").innerHTML=`
 <hr>
 
 <p style="color:#ccc;">
-Lectura energética simbólica. El proceso indica evolución y decisiones importantes en curso.
+Lectura simbólica energética basada en patrones de interpretación.
 </p>
 `;
 }
