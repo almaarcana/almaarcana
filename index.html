@@ -98,24 +98,11 @@ color:gold;
 font-size:10px;
 }
 
-.carta:hover{
-transform:translateY(-5px);
-}
-
-.carta.selected{
-background:gold;
-color:black;
-transform:scale(1.1);
-}
+.carta:hover{transform:translateY(-5px);}
+.carta.selected{background:gold;color:black;transform:scale(1.1);}
 
 .opinion{
 font-style:italic;
-color:#f5e6c8;
-}
-
-@keyframes fadeIn{
-from{opacity:0;}
-to{opacity:1;}
 }
 </style>
 </head>
@@ -123,7 +110,7 @@ to{opacity:1;}
 <body>
 
 <h1>🔮 Alma Arcana</h1>
-<p>Tarot · Energía · Claridad espiritual</p>
+<p>Tarot · Energía · Destino</p>
 
 <!-- HORÓSCOPO -->
 <section class="card">
@@ -134,12 +121,10 @@ to{opacity:1;}
 <!-- COMO FUNCIONA -->
 <section class="card">
 <h2>🧿 Cómo funciona</h2>
-<p>1. Elige tu tirada</p>
-<p>2. Realiza el pago seguro</p>
-<p>3. Recibe tu lectura personalizada</p>
-<p style="color:gold;margin-top:10px;">
-Lecturas simbólicas y energéticas, no deterministas.
-</p>
+<p>1. Eliges tu servicio</p>
+<p>2. Realizas el pago seguro</p>
+<p>3. Recibes tu lectura personalizada</p>
+<p style="color:gold;">Entrega en 24–48h</p>
 </section>
 
 <!-- TAROT -->
@@ -147,11 +132,10 @@ Lecturas simbólicas y energéticas, no deterministas.
 <h2>🔮 Tarot interactivo</h2>
 
 <button onclick="iniciarTirada()">🌀 Conectar con el destino</button>
-
 <p>Elige 3 cartas</p>
 
 <div id="mesaTarot"></div>
-<div id="lecturaTarot" style="margin-top:20px;"></div>
+<div id="lecturaTarot"></div>
 </section>
 
 <!-- SERVICIOS -->
@@ -159,24 +143,66 @@ Lecturas simbólicas y energéticas, no deterministas.
 <h2>💳 Servicios espirituales</h2>
 
 <div class="service">
-<h3>💖 Tirada del amor</h3>
-<p>Bloqueos emocionales y energía afectiva</p>
+<h3>🌌 Carta astral</h3>
+<p>Estudio de tu mapa natal energético</p>
+<p><b>5€</b></p>
+<a href="https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>🔮 Tirada simple</h3>
+<p>Consulta rápida energética</p>
+<p><b>5€</b></p>
+<a href="https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>🧿 Péndulo</h3>
+<p>5 preguntas concretas</p>
+<p><b>5€</b></p>
+<a href="https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>🧼 Limpieza energética</h3>
+<p>Eliminación de bloqueos</p>
 <p><b>10€</b></p>
-<a href="TU_LINK_STRIPE_AMOR" target="_blank"><button>✨ Comprar</button></a>
+<a href="https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202" target="_blank"><button>✨ Comprar</button></a>
 </div>
 
 <div class="service">
 <h3>💰 Tirada del dinero</h3>
-<p>Energía económica y oportunidades</p>
+<p>Bloqueos y oportunidades económicas</p>
 <p><b>10€</b></p>
-<a href="TU_LINK_STRIPE_DINERO" target="_blank"><button>✨ Comprar</button></a>
+<a href="https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206" target="_blank"><button>✨ Comprar</button></a>
 </div>
 
 <div class="service">
-<h3>🔮 Lectura profunda</h3>
-<p>Análisis completo de tu energía actual</p>
+<h3>💼 Tirada de trabajo</h3>
+<p>Situación laboral y oportunidades</p>
+<p><b>10€</b></p>
+<a href="https://buy.stripe.com/9B628rfz1gqa95a8oy2B205" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>💖 Tirada del amor</h3>
+<p>Situación sentimental y bloqueos emocionales</p>
+<p><b>10€</b></p>
+<a href="https://buy.stripe.com/bJe7sLfz15LwepudIS2B207" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>🔮 Tirada profunda</h3>
+<p>Análisis completo energético</p>
 <p><b>20€</b></p>
-<a href="TU_LINK_STRIPE_PROFUNDA" target="_blank"><button>✨ Comprar</button></a>
+<a href="https://buy.stripe.com/bJefZheuX2zk6X220a2B203" target="_blank"><button>✨ Comprar</button></a>
+</div>
+
+<div class="service">
+<h3>🛤 Apertura de caminos</h3>
+<p>Desbloqueo vital y nuevas oportunidades</p>
+<p><b>25€</b></p>
+<a href="https://buy.stripe.com/14A14n0E7a1M2GM0W62B200" target="_blank"><button>✨ Comprar</button></a>
 </div>
 
 </section>
@@ -184,21 +210,18 @@ Lecturas simbólicas y energéticas, no deterministas.
 <!-- OPINIONES -->
 <section class="card">
 <h2>✨ Opiniones</h2>
-<div class="opinion" id="opinion">
-“Me ayudó a entender una situación emocional muy fuerte.”
-</div>
+<div class="opinion" id="opinion">“Muy preciso y revelador.”</div>
 </section>
 
 <script>
 
 /* HORÓSCOPO */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
-const frases=["Energía de cambio.","Confía en tu intuición.","Algo se desbloquea.","Movimiento importante."];
+const frases=["Energía de cambio","Confía en tu intuición","Movimiento importante","Claridad aparece"];
 
 function horoscopo(){
 const g=document.getElementById("horo-grid");
 const seed=new Date().getDate();
-
 g.innerHTML=signos.map((s,i)=>{
 return `<div><b>${s}</b><br>${frases[(seed+i)%frases.length]}</div>`;
 }).join("");
@@ -206,11 +229,10 @@ return `<div><b>${s}</b><br>${frases[(seed+i)%frases.length]}</div>`;
 
 /* TAROT */
 const tarot=[
-["El Loco","Cambio inesperado."],
-["El Mago","Tienes control."],
-["La Luna","Confusión emocional."],
-["El Sol","Claridad y éxito."],
-["La Rueda","Destino en movimiento."]
+["El Loco","Cambio inesperado"],
+["El Mago","Control personal"],
+["La Luna","Confusión emocional"],
+["El Sol","Claridad total"]
 ];
 
 let sel=[];
@@ -228,30 +250,22 @@ lectura.innerHTML="Elige 3 cartas...";
 }
 
 function elegir(i){
-if(sel.includes(i) || sel.length>=3) return;
+if(sel.includes(i)||sel.length>=3)return;
 sel.push(i);
-
 document.querySelectorAll(".carta")[i].classList.add("selected");
 
 if(sel.length===3){
 const res=sel.map(i=>tarot[i]);
-
-document.getElementById("lecturaTarot").innerHTML=`
-<div style="animation:fadeIn 1s">
-<h3 style="color:gold">🔮 Lectura</h3>
-<p>${res[0][0]} — ${res[0][1]}</p>
-<p>${res[1][0]} — ${res[1][1]}</p>
-<p>${res[2][0]} — ${res[2][1]}</p>
-</div>
-`;
+document.getElementById("lecturaTarot").innerHTML=
+res.map(r=>`<p>${r[0]} — ${r[1]}</p>`).join("");
 }
 }
 
 /* OPINIONES */
 const opiniones=[
-"Me ayudó muchísimo en un momento difícil.",
 "Increíble precisión.",
-"Siento más claridad ahora."
+"Me ayudó mucho.",
+"Totalmente recomendable."
 ];
 
 let i=0;
@@ -260,11 +274,7 @@ document.getElementById("opinion").textContent=opiniones[i];
 i=(i+1)%opiniones.length;
 },4000);
 
-/* INIT */
-window.onload=()=>{
-horoscopo();
-iniciarTirada();
-};
+window.onload=horoscopo;
 
 </script>
 
