@@ -205,22 +205,22 @@ Elige 3 cartas. La energía nunca es casual.
 <script>
 
 /* =========================
-   🔮 TU CÓDIGO ORIGINAL
+   🔮 TU CÓDIGO ORIGINAL (INTACTO)
 ========================= */
 
-// (aquí va TODO tu JS tal cual lo tienes)
+/* AQUÍ NO SE TOCA NADA DE TU TAROT NI HORÓSCOPO */
 
 setOpinion();
 iniciarTirada();
 
 
 /* =========================
-   ✨ CAPA PRO SEGURA (AÑADIDA)
+   ✨ CAPA PRO SEGURA (NO ROMPE NADA)
 ========================= */
 
 window.addEventListener("DOMContentLoaded", () => {
 
-/* 🌟 FONDO MÍSTICO SUAVE */
+/* fondo místico suave */
 const bg = document.createElement("div");
 bg.style.position="fixed";
 bg.style.top="0";
@@ -231,7 +231,7 @@ bg.style.pointerEvents="none";
 bg.style.zIndex="-1";
 document.body.appendChild(bg);
 
-for(let i=0;i<25;i++){
+for(let i=0;i<20;i++){
 const star=document.createElement("div");
 star.style.position="absolute";
 star.style.width="2px";
@@ -241,14 +241,13 @@ star.style.borderRadius="50%";
 star.style.opacity=Math.random();
 star.style.top=Math.random()*100+"%";
 star.style.left=Math.random()*100+"%";
-star.style.animation="float 6s infinite ease-in-out";
+star.style.animation="floatStars 6s infinite ease-in-out";
 bg.appendChild(star);
 }
 
-/* CSS animación */
 const style=document.createElement("style");
 style.innerHTML=`
-@keyframes float{
+@keyframes floatStars {
 0%{transform:translateY(0px);}
 50%{transform:translateY(-10px);}
 100%{transform:translateY(0px);}
@@ -256,45 +255,45 @@ style.innerHTML=`
 document.head.appendChild(style);
 
 
-/* 💖 MENSAJE PSICOLÓGICO */
-const intro=document.createElement("p");
-intro.innerHTML="No has llegado aquí por casualidad.<br>Algo necesita respuesta en tu vida.";
-intro.style.maxWidth="500px";
-intro.style.margin="auto";
-intro.style.marginTop="10px";
-document.querySelector("h1").after(intro);
+/* mensaje psicológico */
+const msg=document.createElement("p");
+msg.innerHTML="No has llegado aquí por casualidad.<br>Algo en tu vida busca respuesta.";
+msg.style.maxWidth="500px";
+msg.style.margin="auto";
+msg.style.marginTop="10px";
+
+document.querySelector("h1").after(msg);
 
 
-/* 🧠 AUTORIDAD */
+/* autoridad */
 const auth=document.createElement("p");
 auth.textContent="Más de 200 consultas realizadas.";
 auth.style.fontSize="14px";
 auth.style.opacity="0.8";
-intro.after(auth);
+msg.after(auth);
 
 
-/* 🔥 EMPUJE AL AMOR */
-const amor=[...document.querySelectorAll(".service")]
-.find(s=>s.innerText.includes("amor"));
-
-if(amor){
-amor.style.border="2px solid gold";
-amor.style.boxShadow="0 0 20px rgba(255,215,0,.4)";
+/* destacar amor */
+document.querySelectorAll(".service").forEach(s=>{
+if(s.innerText.toLowerCase().includes("amor")){
+s.style.border="2px solid gold";
+s.style.boxShadow="0 0 20px rgba(255,215,0,.3)";
 
 const tag=document.createElement("div");
 tag.textContent="🔥 Más solicitado";
 tag.style.background="gold";
 tag.style.color="black";
-tag.style.fontSize="12px";
 tag.style.padding="4px 8px";
+tag.style.fontSize="12px";
 tag.style.borderRadius="6px";
 tag.style.marginBottom="6px";
 
-amor.prepend(tag);
+s.prepend(tag);
 }
+});
 
 
-/* 👁 CONTADOR PSICOLÓGICO */
+/* contador simbólico */
 const live=document.createElement("div");
 live.style.position="fixed";
 live.style.bottom="15px";
@@ -303,12 +302,14 @@ live.style.background="rgba(0,0,0,.85)";
 live.style.border="1px solid gold";
 live.style.color="gold";
 live.style.padding="10px";
-live.style.fontSize="12px";
 live.style.borderRadius="10px";
+live.style.fontSize="12px";
+live.style.zIndex="999";
+
 document.body.appendChild(live);
 
 setInterval(()=>{
-const n=Math.floor(Math.random()*5)+3;
+const n=Math.floor(Math.random()*6)+3;
 live.textContent=`🔮 ${n} energías activas ahora`;
 },3000);
 
