@@ -56,6 +56,7 @@ margin:12px auto;
 border-radius:10px;
 background:rgba(0,0,0,.5);
 max-width:600px;
+transition:0.3s;
 }
 
 .service button{
@@ -117,16 +118,6 @@ box-shadow:0 0 12px gold;
 background:gold;
 color:black;
 transform:scale(1.1);
-}
-
-.recomendacion{
-margin-top:15px;
-padding:10px;
-border:1px solid gold;
-border-radius:10px;
-background:rgba(255,215,0,0.08);
-color:gold;
-font-weight:bold;
 }
 
 .opiniones{
@@ -212,7 +203,6 @@ z-index:999;
 </div>
 </section>
 
-<!-- 👁 contador -->
 <div id="visitas"></div>
 
 <script>
@@ -249,26 +239,24 @@ return `<div><b>${s}</b><br>${frases[(seed+i)%frases.length]}</div>`;
 
 
 /* =========================
-   🃏 TAROT MÁS REALISTA
+   🃏 TAROT
 ========================= */
 
 const tarot=[
-["El Loco","Inicio sin control, confía en el proceso"],
-["El Mago","Tienes poder de creación ahora mismo"],
-["La Sacerdotisa","Tu intuición está hablándote"],
-["El Emperador","Necesidad de estructura"],
-["La Luna","No todo es claro aún"],
-["El Sol","Claridad y éxito cercano"],
-["La Rueda","Cambio inevitable"],
-["La Estrella","Esperanza activa"]
+["El Loco","Inicio sin control"],
+["El Mago","Poder personal"],
+["La Sacerdotisa","Intuición"],
+["El Emperador","Estructura"],
+["La Luna","Confusión"],
+["El Sol","Claridad"],
+["La Rueda","Cambio"],
+["La Estrella","Esperanza"]
 ];
 
 let sel=[];
 
 function iniciarTirada(){
-
 sel=[];
-
 const mesa=document.getElementById("mesaTarot");
 const lectura=document.getElementById("lecturaTarot");
 
@@ -276,45 +264,40 @@ mesa.innerHTML=tarot.map((c,i)=>`
 <div class="carta" onclick="elegir(${i})">🜁</div>
 `).join("");
 
-lectura.innerHTML="<p style='color:gold'>Siente la energía… elige 3 cartas</p>";
-
+lectura.innerHTML="<p style='color:gold'>Elige 3 cartas...</p>";
 }
 
 function elegir(i){
-
 if(sel.includes(i) || sel.length>=3) return;
 
 sel.push(i);
-
 document.querySelectorAll(".carta")[i].classList.add("selected");
 
 if(sel.length===3){
-
 const [a,b,c]=sel.map(i=>tarot[i]);
 
 document.getElementById("lecturaTarot").innerHTML=`
-<h3 style="color:gold">🔮 Lectura energética</h3>
+<h3 style="color:gold">🔮 Lectura</h3>
 <p>🜂 ${a[0]} — ${a[1]}</p>
 <p>🌙 ${b[0]} — ${b[1]}</p>
 <p>🔮 ${c[0]} — ${c[1]}</p>
-<p style="color:gold;margin-top:10px">Confía en lo que has sentido.</p>
+<p style="color:gold;margin-top:10px">Confía en esta energía.</p>
 `;
-
 }
-
 }
 
 
 /* =========================
-   👁 CONTADOR FICTICIO
+   👁 CONTADOR
 ========================= */
 
 function visitas(){
 const v=document.getElementById("visitas");
+
 setInterval(()=>{
 const n=Math.floor(Math.random()*6)+3;
 v.textContent=`🔮 ${n} personas conectadas ahora`;
-},2500);
+},3000);
 }
 
 
