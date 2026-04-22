@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS */
+/* SERVICIOS RESTAURADOS COMPLETOS */
 .service:hover{
 transform:scale(1.03);
 box-shadow:0 0 25px rgba(255,215,0,.3);
@@ -97,7 +97,7 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT FUNCIONAL */
+/* TAROT */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
@@ -121,14 +121,9 @@ color:gold;
 font-size:10px;
 }
 
-.carta:hover{
-transform:translateY(-5px);
-}
-
 .carta.selected{
 background:gold;
 color:black;
-transform:scale(1.05);
 }
 </style>
 </head>
@@ -150,7 +145,6 @@ Respuestas claras sobre amor, dinero y decisiones importantes.
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT NUEVO Y FUNCIONAL -->
 <section class="card">
 <h2>🔮 Tarot interactivo</h2>
 
@@ -164,6 +158,7 @@ Respuestas claras sobre amor, dinero y decisiones importantes.
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
+<!-- 💳 SERVICIOS RESTAURADOS COMPLETOS -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -171,6 +166,12 @@ Respuestas claras sobre amor, dinero y decisiones importantes.
 <h3>🔮 Carta astral</h3>
 <p>5€</p>
 <button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🧿 Péndulo 5 preguntas</h3>
+<p>5€</p>
+<button onclick="location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">Pagar</button>
 </div>
 
 <div class="service">
@@ -186,38 +187,63 @@ Respuestas claras sobre amor, dinero y decisiones importantes.
 </div>
 
 <div class="service">
+<h3>🔮 Tirada simple</h3>
+<p>5€</p>
+<button onclick="location.href='https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209'">Pagar</button>
+</div>
+
+<div class="service">
 <h3>🔮 Tirada profunda</h3>
 <p>20€</p>
 <button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button>
 </div>
 
+<div class="service">
+<h3>💼 Tirada de trabajo</h3>
+<p>10€</p>
+<button onclick="location.href='https://buy.stripe.com/9B628rfz1gqa95a8oy2B205'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🛤 Apertura de caminos</h3>
+<p>25€</p>
+<button onclick="location.href='https://buy.stripe.com/14A14n0E7a1M2GM0W62B200'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>💞 Ritual del amor</h3>
+<p>20€</p>
+<button onclick="location.href='https://buy.stripe.com/dRm4gzcmPgqa95a34e2B201'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🧼 Limpieza energética</h3>
+<p>10€</p>
+<button onclick="location.href='https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202'">Pagar</button>
+</div>
+
 </section>
 
-<!-- ⭐ OPINIONES REALISTAS -->
 <section class="card">
 <h2>✨ Opiniones de clientes</h2>
 
 <div style="max-width:600px;margin:auto;text-align:left;">
-
 <div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p>⭐️⭐️⭐️⭐️⭐️</p>
-<p><b>Laura M.</b></p>
-<p style="font-size:14px;">“Muy acertado. Me ayudó a tomar una decisión importante en mi vida personal.”</p>
+<p>⭐️⭐️⭐️⭐️⭐️ <b>Laura M.</b></p>
+<p>Muy acertado y claro en la lectura.</p>
 </div>
 
 <div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p>⭐️⭐️⭐️⭐️⭐️</p>
-<p><b>Carlos R.</b></p>
-<p style="font-size:14px;">“La lectura del dinero fue bastante precisa con lo que estaba viviendo.”</p>
+<p>⭐️⭐️⭐️⭐️⭐️ <b>Carlos R.</b></p>
+<p>Me ayudó a tomar una decisión importante.</p>
 </div>
 
 <div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p>⭐️⭐️⭐️⭐️⭐️</p>
-<p><b>Marta S.</b></p>
-<p style="font-size:14px;">“Me sorprendió bastante. Volveré a pedir otra lectura más completa.”</p>
+<p>⭐️⭐️⭐️⭐️⭐️ <b>Marta S.</b></p>
+<p>Muy recomendable, volveré a consultar.</p>
+</div>
 </div>
 
-</div>
 </section>
 
 <script>
@@ -258,28 +284,28 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT FUNCIONAL REAL */
+/* TAROT FUNCIONAL */
 const mazoOriginal = [
-{n:"El Loco", m:"Inicio de ciclo, decisiones impulsivas."},
-{n:"El Mago", m:"Poder de manifestación."},
-{n:"La Sacerdotisa", m:"Intuición y secretos."},
-{n:"La Emperatriz", m:"Abundancia y crecimiento."},
-{n:"El Emperador", m:"Control y estabilidad."},
+{n:"El Loco", m:"Inicio de ciclo."},
+{n:"El Mago", m:"Poder personal."},
+{n:"La Sacerdotisa", m:"Intuición."},
+{n:"La Emperatriz", m:"Abundancia."},
+{n:"El Emperador", m:"Control."},
 {n:"Los Enamorados", m:"Decisión emocional."},
-{n:"El Carro", m:"Avance y victoria."},
-{n:"La Justicia", m:"Equilibrio y verdad."},
-{n:"El Ermitaño", m:"Reflexión interna."},
-{n:"La Rueda de la Fortuna", m:"Cambio de destino."},
-{n:"La Fuerza", m:"Control emocional."},
+{n:"El Carro", m:"Avance."},
+{n:"La Justicia", m:"Equilibrio."},
+{n:"El Ermitaño", m:"Reflexión."},
+{n:"La Rueda de la Fortuna", m:"Cambio."},
+{n:"La Fuerza", m:"Dominio emocional."},
 {n:"La Muerte", m:"Transformación."},
-{n:"La Templanza", m:"Equilibrio."},
+{n:"La Templanza", m:"Armonía."},
 {n:"El Diablo", m:"Ataduras."},
 {n:"La Torre", m:"Ruptura."},
 {n:"La Estrella", m:"Esperanza."},
 {n:"La Luna", m:"Confusión."},
 {n:"El Sol", m:"Éxito."},
 {n:"El Juicio", m:"Despertar."},
-{n:"El Mundo", m:"Cierre de ciclo."
+{n:"El Mundo", m:"Cierre."
 }
 ];
 
@@ -314,15 +340,9 @@ function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
 
 document.getElementById("lecturaTarot").innerHTML=`
-<p>🔮 <b>Pasado:</b> ${a.n}<br>${a.m}</p>
-<p>🌙 <b>Presente:</b> ${b.n}<br>${b.m}</p>
-<p>🔮 <b>Futuro:</b> ${c.n}<br>${c.m}</p>
-
-<hr>
-
-<p style="color:#ccc;">
-Lectura simbólica energética basada en patrones de interpretación.
-</p>
+<p>🔮 Pasado: ${a.n} - ${a.m}</p>
+<p>🌙 Presente: ${b.n} - ${b.m}</p>
+<p>🔮 Futuro: ${c.n} - ${c.m}</p>
 `;
 }
 
