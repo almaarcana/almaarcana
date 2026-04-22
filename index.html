@@ -147,6 +147,20 @@ padding:10px;
 font-style:italic;
 color:#f5e6c8;
 }
+
+/* 👁 contador */
+#visitas{
+position:fixed;
+bottom:15px;
+left:15px;
+background:rgba(0,0,0,.85);
+border:1px solid gold;
+color:gold;
+padding:10px;
+border-radius:10px;
+font-size:12px;
+z-index:999;
+}
 </style>
 </head>
 
@@ -157,13 +171,11 @@ color:#f5e6c8;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<!-- HORÓSCOPO -->
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- TAROT -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -177,7 +189,6 @@ color:#f5e6c8;
 <div id="lecturaTarot" style="margin-top:20px;"></div>
 </section>
 
-<!-- SERVICIOS (NO TOCADO) -->
 <section id="servicios" class="card">
 <h2>💳 Servicios espirituales</h2>
 
@@ -194,111 +205,127 @@ color:#f5e6c8;
 
 </section>
 
-<!-- OPINIONES -->
 <section class="card">
 <h2>✨ Opiniones reales</h2>
 <div class="opiniones">
-<div class="opinion" id="opinionText">
-“Me sorprendió muchísimo la precisión de la lectura.” — Laura M.
-</div>
+<div class="opinion">“Me sorprendió muchísimo la precisión de la lectura.” — Laura M.</div>
 </div>
 </section>
+
+<!-- 👁 contador -->
+<div id="visitas"></div>
 
 <script>
 
 /* =========================
-   🌙 HORÓSCOPO ESTABLE
+   🌙 HORÓSCOPO
 ========================= */
 
-const signos = ["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
+const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
-const frases = [
+const frases=[
 "Energía de cambio.",
 "Confía en tu intuición.",
 "Algo se desbloquea.",
-"Cuidado con decisiones impulsivas.",
-"Una oportunidad aparece.",
-"Momento de claridad.",
 "Cierre necesario.",
-"Algo oculto se revela.",
-"Avance positivo.",
+"Oportunidad aparece.",
+"Claridad mental.",
+"Transformación interna.",
 "Energía estable.",
-"Reflexión importante.",
-"Movimiento interno."
+"Movimiento importante.",
+"Algo se revela.",
+"Buena dirección.",
+"Reflexión clave."
 ];
 
-function renderHoroscopo(){
-const grid = document.getElementById("horo-grid");
-if(!grid) return;
+function horoscopo(){
+const g=document.getElementById("horo-grid");
+const seed=new Date().getDate();
 
-const seed = new Date().getDate();
-
-grid.innerHTML = signos.map((s,i)=>{
-const msg = frases[(seed + i) % frases.length];
-return `<div><b>${s}</b><br>${msg}</div>`;
+g.innerHTML=signos.map((s,i)=>{
+return `<div><b>${s}</b><br>${frases[(seed+i)%frases.length]}</div>`;
 }).join("");
 }
 
+
 /* =========================
-   🃏 TAROT ESTABLE
+   🃏 TAROT MÁS REALISTA
 ========================= */
 
-const tarot = [
-["El Loco","Inicio inesperado"],
-["El Mago","Poder personal"],
-["La Sacerdotisa","Intuición"],
-["El Emperador","Control"],
-["La Luna","Confusión"],
-["El Sol","Claridad"],
-["La Rueda","Cambio"],
-["La Estrella","Esperanza"]
+const tarot=[
+["El Loco","Inicio sin control, confía en el proceso"],
+["El Mago","Tienes poder de creación ahora mismo"],
+["La Sacerdotisa","Tu intuición está hablándote"],
+["El Emperador","Necesidad de estructura"],
+["La Luna","No todo es claro aún"],
+["El Sol","Claridad y éxito cercano"],
+["La Rueda","Cambio inevitable"],
+["La Estrella","Esperanza activa"]
 ];
 
-let seleccion = [];
+let sel=[];
 
 function iniciarTirada(){
-seleccion = [];
 
-const mesa = document.getElementById("mesaTarot");
-const lectura = document.getElementById("lecturaTarot");
+sel=[];
 
-mesa.innerHTML = tarot.map((c,i)=>{
-return `<div class="carta" onclick="elegir(${i})">🜁</div>`;
-}).join("");
+const mesa=document.getElementById("mesaTarot");
+const lectura=document.getElementById("lecturaTarot");
 
-lectura.innerHTML = "<p style='color:gold'>Elige 3 cartas...</p>";
+mesa.innerHTML=tarot.map((c,i)=>`
+<div class="carta" onclick="elegir(${i})">🜁</div>
+`).join("");
+
+lectura.innerHTML="<p style='color:gold'>Siente la energía… elige 3 cartas</p>";
+
 }
 
 function elegir(i){
 
-if(seleccion.includes(i) || seleccion.length >= 3) return;
+if(sel.includes(i) || sel.length>=3) return;
 
-seleccion.push(i);
+sel.push(i);
 
 document.querySelectorAll(".carta")[i].classList.add("selected");
 
-if(seleccion.length === 3){
+if(sel.length===3){
 
-const [a,b,c] = seleccion.map(i=>tarot[i]);
+const [a,b,c]=sel.map(i=>tarot[i]);
 
-document.getElementById("lecturaTarot").innerHTML = `
-<h3 style="color:gold">🔮 Lectura</h3>
+document.getElementById("lecturaTarot").innerHTML=`
+<h3 style="color:gold">🔮 Lectura energética</h3>
 <p>🜂 ${a[0]} — ${a[1]}</p>
 <p>🌙 ${b[0]} — ${b[1]}</p>
 <p>🔮 ${c[0]} — ${c[1]}</p>
-<p style="color:gold;margin-top:10px">Confía en esta energía.</p>
+<p style="color:gold;margin-top:10px">Confía en lo que has sentido.</p>
 `;
+
 }
 
 }
+
 
 /* =========================
-   🚀 INICIO SEGURO
+   👁 CONTADOR FICTICIO
 ========================= */
 
-window.addEventListener("DOMContentLoaded", ()=>{
-renderHoroscopo();
+function visitas(){
+const v=document.getElementById("visitas");
+setInterval(()=>{
+const n=Math.floor(Math.random()*6)+3;
+v.textContent=`🔮 ${n} personas conectadas ahora`;
+},2500);
+}
+
+
+/* =========================
+   INIT
+========================= */
+
+window.addEventListener("DOMContentLoaded",()=>{
+horoscopo();
 iniciarTirada();
+visitas();
 });
 
 </script>
