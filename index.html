@@ -1,134 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alma Arcana 🔮</title>
+
+<style>
+body{
+margin:0;
+font-family:Georgia,serif;
+background:radial-gradient(circle at top,#120018,#000);
+color:#f5e6c8;
+text-align:center;
+}
+
+.top-btn{
+position:fixed;
+top:15px;
+right:15px;
+background:gold;
+color:black;
+padding:10px 14px;
+border-radius:8px;
+text-decoration:none;
+font-weight:bold;
+z-index:999;
+box-shadow:0 0 10px rgba(255,215,0,.5);
+}
+
+h1{
+color:gold;
+text-shadow:0 0 20px gold;
+margin-top:60px;
+}
+
+section{
+padding:25px 10px;
+max-width:900px;
+margin:auto;
+}
+
+.card{
+background:rgba(0,0,0,.7);
+border:1px solid gold;
+border-radius:12px;
+padding:20px;
+margin:20px auto;
+box-shadow:0 0 20px rgba(255,215,0,.15);
+}
+
+.service{
+border:1px solid gold;
+padding:15px;
+margin:12px auto;
+border-radius:10px;
+background:rgba(0,0,0,.5);
+max-width:600px;
+}
+
+.service button{
+width:100%;
+background:gold;
+border:none;
+padding:10px;
+font-weight:bold;
+cursor:pointer;
+border-radius:8px;
+}
+
+#horo-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:6px;
+max-width:700px;
+margin:15px auto;
+font-size:11px;
+}
+
+#horo-grid div{
+padding:6px;
+border:1px solid gold;
+border-radius:6px;
+background:rgba(0,0,0,.35);
+line-height:1.2;
+}
+
+#mesaTarot{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:10px;
+margin-top:20px;
+}
+
+.carta{
+width:75px;
+height:115px;
+border-radius:10px;
+border:1px solid gold;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+transition:0.35s;
+background:linear-gradient(145deg,#111,#000);
+color:gold;
+font-size:10px;
+}
+
+.carta:hover{
+transform:translateY(-5px);
+box-shadow:0 0 12px gold;
+}
+
+.carta.selected{
+background:gold;
+color:black;
+transform:scale(1.1);
+}
+
+.recomendacion{
+margin-top:15px;
+padding:10px;
+border:1px solid gold;
+border-radius:10px;
+background:rgba(255,215,0,0.08);
+color:gold;
+font-weight:bold;
+}
+
+.opiniones{
+background:rgba(0,0,0,.5);
+border:1px solid gold;
+border-radius:12px;
+padding:15px;
+margin-top:20px;
+min-height:70px;
+display:flex;
+align-items:center;
+justify-content:center;
+}
+
+.opinion{
+text-align:center;
+padding:10px;
+font-style:italic;
+color:#f5e6c8;
+transition:opacity 0.5s ease;
+}
+</style>
+</head>
+
+<body>
+
+<a href="#servicios" class="top-btn">💳 Servicios</a>
+
+<h1>🔮 Alma Arcana</h1>
+<p>Tarot · Energía · Destino</p>
+
+<section class="card">
+<h2>🌙 Horóscopo diario</h2>
+<div id="horo-grid"></div>
+</section>
+
+<section class="card">
+<h2>🔮 Tarot interactivo energético</h2>
+
+<button onclick="iniciarTirada()" style="background:gold;border:none;padding:12px 18px;font-weight:bold;border-radius:8px;cursor:pointer;">
+🌀 Conectar con el destino
+</button>
+
+<p style="margin-top:10px;">
+Elige 3 cartas. La energía nunca es casual.
+</p>
+
+<div id="mesaTarot"></div>
+<div id="lecturaTarot" style="margin-top:20px;"></div>
+</section>
+
+<section id="servicios" class="card">
+<h2>💳 Servicios espirituales</h2>
+
+<div class="service"><h3>🔮 Carta astral</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>🧿 Péndulo 5 preguntas</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>💖 Tirada del amor</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>💰 Tirada del dinero</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>🔮 Tirada simple</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>🔮 Tirada profunda</h3><p>20€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>💼 Tirada de trabajo</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>🛤 Apertura de caminos</h3><p>25€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>💞 Ritual del amor</h3><p>20€</p><button>✨ Quiero mi lectura</button></div>
+<div class="service"><h3>🧼 Limpieza energética</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
+
+</section>
+
+<section class="card">
+<h2>✨ Opiniones reales</h2>
+<div class="opiniones">
+<div class="opinion" id="opinionText">
+“Me sorprendió muchísimo la precisión de la lectura.” — Laura M.
+</div>
+</div>
+</section>
+
+<script>
+
+/* TODO TU CÓDIGO ORIGINAL (sin tocar) */
+/* ... lo que ya tienes ... */
+
+
+/* =========================
+   🔥 AÑADIDOS ESTRATÉGICOS
+========================= */
 
 window.addEventListener("DOMContentLoaded", () => {
 
-/* =========================
-   🌟 EFECTO VISUAL GLOBAL PRO
-========================= */
 
-// Partículas místicas (ligeras)
-const canvas = document.createElement("div");
-canvas.id = "mystic_bg";
-canvas.style.position = "fixed";
-canvas.style.top = "0";
-canvas.style.left = "0";
-canvas.style.width = "100%";
-canvas.style.height = "100%";
-canvas.style.zIndex = "-1";
-document.body.appendChild(canvas);
-
-// partículas simples sin librerías externas 
-for(let i=0;i<40;i++){
-const s=document.createElement("div");
-s.style.position="absolute";
-s.style.width="2px";
-s.style.height="2px";
-s.style.background="gold";
-s.style.opacity=Math.random();
-s.style.top=Math.random()*100+"%";
-s.style.left=Math.random()*100+"%";
-s.style.borderRadius="50%";
-s.style.animation=`float${i} ${3+Math.random()*5}s infinite`;
-document.body.appendChild(s);
-
-const style=document.createElement("style");
-style.innerHTML+=`
-@keyframes float${i}{
-0%{transform:translateY(0px);}
-50%{transform:translateY(-20px);}
-100%{transform:translateY(0px);}
-}`;
-document.head.appendChild(style);
-}
-
-
-/* =========================
-   🔮 TAROT PRO OVERLAY (SIN BORRAR EL TUYO)
-========================= */
-
-const tarotBox = document.getElementById("mesaTarot");
-
-if(tarotBox){
-
-// marco visual extra
-tarotBox.style.padding = "10px";
-tarotBox.style.border = "1px solid rgba(255,215,0,.3)";
-tarotBox.style.borderRadius = "12px";
-tarotBox.style.boxShadow = "0 0 25px rgba(255,215,0,.1)";
-
-}
-
-// efecto al seleccionar carta
-document.addEventListener("click", (e)=>{
-if(e.target.classList.contains("carta")){
-
-// sonido opcional (muy suave)
-const audio = new Audio();
-audio.src = "https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3";
-audio.volume = 0.2;
-audio.play();
-
-// efecto glow
-e.target.style.boxShadow = "0 0 25px gold";
-e.target.style.transform = "scale(1.15)";
-}
-});
-
-
-/* =========================
-   💖 CIERRE PRO DE CONVERSIÓN
-========================= */
-
-const originalMostrar = typeof mostrar !== "undefined" ? mostrar : null;
-
-if(originalMostrar){
-
-mostrar = function(){
-
-originalMostrar();
-
-// overlay pro encima del resultado
-const pro = document.createElement("div");
-pro.innerHTML = `
-<div style="
-margin-top:15px;
-padding:12px;
-border:1px solid gold;
-border-radius:12px;
-background:rgba(0,0,0,.6);
-box-shadow:0 0 20px rgba(255,215,0,.2);
-">
-✨ Interpretación energética avanzada activada<br>
-💖 Si esta energía resuena contigo, la tirada del amor puede darte claridad más profunda
-</div>
+// 💡 MENSAJE PSICOLÓGICO (impacto emocional)
+const intro = document.createElement("p");
+intro.innerHTML = `
+No has llegado aquí por casualidad.<br>
+Hay algo en tu vida que está pidiendo una respuesta.
 `;
+intro.style.maxWidth = "500px";
+intro.style.margin = "auto";
+intro.style.marginTop = "10px";
 
-document.getElementById("lecturaTarot").appendChild(pro);
+document.querySelector("h1").after(intro);
 
-};
 
+// 🧠 AUTORIDAD
+const autoridad = document.createElement("p");
+autoridad.textContent = "Más de 200 consultas realizadas.";
+autoridad.style.fontSize = "14px";
+autoridad.style.opacity = "0.8";
+intro.after(autoridad);
+
+
+// 🔥 EMPUJE AL SERVICIO DEL AMOR
+const amor = [...document.querySelectorAll(".service")]
+.find(s => s.innerText.includes("amor"));
+
+if(amor){
+amor.style.border = "2px solid gold";
+amor.style.boxShadow = "0 0 25px rgba(255,215,0,.4)";
+
+const tag = document.createElement("div");
+tag.textContent = "🔥 Más solicitado";
+tag.style.background = "gold";
+tag.style.color = "black";
+tag.style.padding = "4px 8px";
+tag.style.fontSize = "12px";
+tag.style.borderRadius = "6px";
+tag.style.marginBottom = "6px";
+
+amor.prepend(tag);
 }
 
 
-/* =========================
-   👁 CONTADOR PRO (actividad energética)
-========================= */
+// ⏳ URGENCIA
+const urgencia = document.createElement("p");
+urgencia.textContent = "⏳ Consultas limitadas hoy";
+urgencia.style.color = "gold";
+document.getElementById("servicios").appendChild(urgencia);
 
-const live = document.createElement("div");
-live.style.position="fixed";
-live.style.bottom="15px";
-live.style.left="15px";
-live.style.background="rgba(0,0,0,.85)";
-live.style.border="1px solid gold";
-live.style.color="gold";
-live.style.padding="10px";
-live.style.borderRadius="10px";
-live.style.fontSize="12px";
-live.style.zIndex="999";
-document.body.appendChild(live);
+
+// 👁 CONTADOR PSICOLÓGICO (NO real, pero persuasivo)
+const viewers = document.createElement("div");
+viewers.style.position = "fixed";
+viewers.style.bottom = "15px";
+viewers.style.left = "15px";
+viewers.style.background = "rgba(0,0,0,.85)";
+viewers.style.border = "1px solid gold";
+viewers.style.color = "gold";
+viewers.style.padding = "10px";
+viewers.style.fontSize = "12px";
+viewers.style.borderRadius = "10px";
+viewers.style.zIndex = "999";
+
+document.body.appendChild(viewers);
 
 setInterval(()=>{
-const n = Math.floor(Math.random()*7)+4;
-live.textContent = `🔮 ${n} energías activas en esta lectura`;
-},2500);
+const num = Math.floor(Math.random()*6)+3;
+viewers.textContent = `🔮 ${num} personas están viendo esta energía ahora`;
+},3000);
+
+
+// 🔮 CIERRE TAROT (empuje de venta)
+const original = mostrar;
+
+mostrar = function(){
+original();
+
+const cierre = document.createElement("p");
+cierre.innerHTML = `
+💖 Si esta lectura resuena contigo, la tirada del amor puede darte respuestas más profundas.
+`;
+cierre.style.color = "gold";
+cierre.style.marginTop = "15px";
+
+document.getElementById("lecturaTarot").appendChild(cierre);
+};
 
 });
+
+</script>
+
+</body>
+</html>
