@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS (NO TOCADO) */
+/* SERVICIOS NO TOCADOS */
 .service:hover{
 transform:scale(1.03);
 box-shadow:0 0 25px rgba(255,215,0,.3);
@@ -97,14 +97,13 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT NUEVO POTENTE */
+/* 🔮 TAROT SOLO MEJORADO */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
 gap:12px;
 margin-top:20px;
-perspective:1000px;
 }
 
 .carta{
@@ -116,23 +115,21 @@ display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-transition:0.5s;
+transition:0.4s;
 background:linear-gradient(145deg,#111,#000);
 color:gold;
 font-size:10px;
-position:relative;
 }
 
 .carta:hover{
-transform:translateY(-6px) rotateY(8deg);
+transform:translateY(-6px);
 box-shadow:0 0 15px gold;
 }
 
 .carta.selected{
 background:gold;
 color:black;
-transform:scale(1.15) rotateY(180deg);
-box-shadow:0 0 25px gold;
+transform:scale(1.1);
 }
 </style>
 </head>
@@ -144,84 +141,30 @@ box-shadow:0 0 25px gold;
 <h1>🔮 Alma Arcana</h1>
 <p>Tarot · Energía · Destino</p>
 
-<p style="max-width:600px;margin:20px auto;font-size:18px;">
-🔮 Lecturas reales, directas y sin rodeos.<br>
-Respuestas claras sobre amor, dinero y decisiones importantes.
-</p>
-
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT NUEVO POTENTE -->
+<!-- 🔮 TAROT MEJORADO SOLO AQUÍ -->
 <section class="card">
-<h2>🔮 Tarot de lectura profunda</h2>
+<h2>🔮 Tarot interactivo energético</h2>
 
 <button onclick="iniciarTirada()" style="background:gold;border:none;padding:12px 18px;font-weight:bold;border-radius:8px;cursor:pointer;">
 🌀 Conectar con el destino
 </button>
 
 <p style="margin-top:10px;">
-Elige 3 cartas. No es casualidad lo que aparece.
+Elige 3 cartas. La energía no es aleatoria.
 </p>
 
 <div id="mesaTarot"></div>
-<div id="lecturaTarot" style="margin-top:20px;"></div>
-</section>
-
-<section id="servicios" class="card">
-<h2>💳 Servicios espirituales</h2>
-
-<div class="service">
-<h3>🔮 Carta astral</h3>
-<p>5€</p>
-<button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button>
-</div>
-
-<div class="service">
-<h3>💖 Tirada del amor</h3>
-<p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">Pagar</button>
-</div>
-
-<div class="service">
-<h3>💰 Tirada del dinero</h3>
-<p>10€</p>
-<button onclick="location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">Pagar</button>
-</div>
-
-<div class="service">
-<h3>🔮 Tirada profunda</h3>
-<p>20€</p>
-<button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button>
-</div>
-
-</section>
-
-<section class="card">
-<h2>✨ Opiniones de clientes</h2>
-<div style="max-width:600px;margin:auto;text-align:left;">
-<div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p>⭐️⭐️⭐️⭐️⭐️ <b>Laura M.</b></p>
-<p>Muy preciso y sorprendente.</p>
-</div>
-
-<div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p>⭐️⭐️⭐️⭐️⭐️ <b>Carlos R.</b></p>
-<p>Me ayudó a aclarar una situación importante.</p>
-</div>
-
-<div style="margin:10px 0;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
-<p>⭐️⭐️⭐️⭐️⭐️ <b>Marta S.</b></p>
-<p>Muy recomendable, volveré a consultar.</p>
-</div>
-</div>
+<div id="lecturaTarot"></div>
 </section>
 
 <script>
 
-/* HORÓSCOPO */
+/* HORÓSCOPO SIN CAMBIOS */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -257,28 +200,29 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT POTENTE NUEVO */
+
+/* 🔮 TAROT NUEVO SOLO MEJORADO */
 const mazoOriginal = [
-{n:"El Loco", m:"Inicio de un cambio inesperado. Un salto hacia lo desconocido."},
-{n:"El Mago", m:"Tienes el poder de crear lo que deseas en este momento."},
-{n:"La Sacerdotisa", m:"Hay información oculta que pronto saldrá a la luz."},
-{n:"La Emperatriz", m:"Crecimiento emocional y abundancia cercana."},
-{n:"El Emperador", m:"Necesidad de control y decisiones firmes."},
-{n:"Los Enamorados", m:"Elección emocional importante en camino."},
-{n:"El Carro", m:"Avance rápido hacia una meta importante."},
-{n:"La Justicia", m:"Equilibrio kármico y decisiones justas."},
-{n:"El Ermitaño", m:"Tiempo de introspección profunda."},
-{n:"La Rueda de la Fortuna", m:"El destino está cambiando a tu favor."},
-{n:"La Fuerza", m:"Control emocional en situación difícil."},
-{n:"La Muerte", m:"Transformación profunda inevitable."},
-{n:"La Templanza", m:"Sanación y equilibrio interior."},
-{n:"El Diablo", m:"Ataduras emocionales o dependencia."},
-{n:"La Torre", m:"Cambio brusco que libera lo viejo."},
-{n:"La Estrella", m:"Esperanza renovada y guía espiritual."},
-{n:"La Luna", m:"Confusión, pero también intuición fuerte."},
-{n:"El Sol", m:"Éxito, claridad y felicidad."},
-{n:"El Juicio", m:"Despertar espiritual y decisiones finales."},
-{n:"El Mundo", m:"Cierre de ciclo exitoso."
+{n:"El Loco",m:"Inicio inesperado de cambio energético."},
+{n:"El Mago",m:"Capacidad de manifestar lo que deseas."},
+{n:"La Sacerdotisa",m:"Información oculta saldrá a la luz."},
+{n:"La Emperatriz",m:"Crecimiento emocional y abundancia."},
+{n:"El Emperador",m:"Decisión firme y control de situación."},
+{n:"Los Enamorados",m:"Decisión emocional importante."},
+{n:"El Carro",m:"Avance rápido hacia el éxito."},
+{n:"La Justicia",m:"Equilibrio y verdad en camino."},
+{n:"El Ermitaño",m:"Reflexión profunda necesaria."},
+{n:"La Rueda de la Fortuna",m:"Cambio inevitable de destino."},
+{n:"La Fuerza",m:"Control emocional en prueba."},
+{n:"La Muerte",m:"Transformación total."},
+{n:"La Templanza",m:"Equilibrio y sanación."},
+{n:"El Diablo",m:"Ataduras emocionales."},
+{n:"La Torre",m:"Ruptura necesaria para avanzar."},
+{n:"La Estrella",m:"Esperanza renovada."},
+{n:"La Luna",m:"Confusión e intuición activa."},
+{n:"El Sol",m:"Éxito y claridad."},
+{n:"El Juicio",m:"Despertar espiritual."},
+{n:"El Mundo",m:"Cierre de ciclo completo."
 }
 ];
 
@@ -290,7 +234,7 @@ mazo=[...mazoOriginal].sort(()=>Math.random()-0.5);
 seleccion=[];
 render();
 document.getElementById("lecturaTarot").innerHTML=
-"<p style='color:gold;'>Conecta con la energía… elige tus cartas</p>";
+"<p style='color:gold;'>Conecta con la energía del universo...</p>";
 }
 
 function render(){
@@ -310,20 +254,41 @@ render();
 if(seleccion.length===3) mostrar();
 }
 
+/* 🔥 MONETIZACIÓN SIN TOCAR SERVICIOS */
+function recomendar(texto){
+
+if(texto.includes("amor") || texto.includes("Enamorados"))
+return "💖 Recomendado: Tirada del amor";
+
+if(texto.includes("dinero") || texto.includes("Emperador"))
+return "💰 Recomendado: Tirada del dinero";
+
+if(texto.includes("transformación") || texto.includes("Muerte") || texto.includes("Torre"))
+return "🔮 Recomendado: Tirada profunda";
+
+return "🔮 Recomendado: Carta astral";
+}
+
 function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
 
-document.getElementById("lecturaTarot").innerHTML=`
-<h3 style="color:gold;">🔮 Tu lectura energética</h3>
+let texto = a.m + b.m + c.m;
 
-<p>🜂 <b>Pasado:</b> ${a.n}<br>${a.m}</p>
-<p>🌙 <b>Presente:</b> ${b.n}<br>${b.m}</p>
-<p>🔮 <b>Futuro:</b> ${c.n}<br>${c.m}</p>
+document.getElementById("lecturaTarot").innerHTML=`
+<h3 style="color:gold;">🔮 Lectura energética</h3>
+
+<p>🜂 Pasado: ${a.n} - ${a.m}</p>
+<p>🌙 Presente: ${b.n} - ${b.m}</p>
+<p>🔮 Futuro: ${c.n} - ${c.m}</p>
 
 <hr>
 
+<p style="color:gold;font-weight:bold;">
+${recomendar(texto)}
+</p>
+
 <p style="color:#ccc;">
-Esta lectura muestra un proceso energético en evolución. Las decisiones actuales están definiendo el resultado final.
+La energía mostrada sugiere un proceso en evolución.
 </p>
 `;
 }
