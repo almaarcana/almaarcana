@@ -55,9 +55,7 @@ border-radius:8px;
 transition:0.2s;
 }
 
-button:hover{
-transform:scale(1.03);
-}
+button:hover{transform:scale(1.03);}
 
 #horo-grid{
 display:grid;
@@ -73,14 +71,6 @@ padding:6px;
 border:1px solid gold;
 border-radius:6px;
 background:rgba(0,0,0,.35);
-}
-
-#mesaTarot{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
-margin-top:20px;
 }
 
 .carta{
@@ -101,9 +91,7 @@ font-size:10px;
 .carta:hover{transform:translateY(-5px);}
 .carta.selected{background:gold;color:black;transform:scale(1.1);}
 
-.opinion{
-font-style:italic;
-}
+.opinion{font-style:italic;}
 </style>
 </head>
 
@@ -120,11 +108,25 @@ font-style:italic;
 
 <!-- COMO FUNCIONA -->
 <section class="card">
-<h2>🧿 Cómo funciona</h2>
-<p>1. Eliges tu servicio</p>
-<p>2. Realizas el pago seguro (Stripe)</p>
-<p>3. Recibes tu lectura personalizada en 24–48h</p>
-<p style="color:gold;">Todo es manual y personalizado</p>
+<h2>🧭 ¿Qué necesitas ahora?</h2>
+
+<div class="service">
+<p>😔 Si estás bloqueado → Limpieza o Péndulo</p>
+</div>
+
+<div class="service">
+<p>💔 Problemas de amor → Tirada del amor o profunda</p>
+</div>
+
+<div class="service">
+<p>💰 Problemas económicos → Dinero o trabajo</p>
+</div>
+
+<div class="service">
+<p>🔮 Visión completa → Carta astral o tirada profunda</p>
+</div>
+
+<p style="color:gold;">Te guío según tu situación energética</p>
 </section>
 
 <!-- TAROT -->
@@ -141,23 +143,23 @@ font-style:italic;
 <!-- SERVICIOS -->
 <section class="card">
 <h2>💳 Servicios espirituales</h2>
-<p style="color:gold;">Elige según lo que necesitas ahora mismo</p>
+<p style="color:gold;">Elige lo que necesitas en este momento</p>
 
 <div class="service">
 <h3>🌌 Carta astral</h3>
-<p>Mapa energético completo de nacimiento</p>
+<p>Tu mapa energético completo</p>
 <p><b>5€</b></p>
 <a href="https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208" target="_blank">
-<button>✨ Ver mi carta astral</button>
+<button>✨ Ver carta astral</button>
 </a>
 </div>
 
 <div class="service">
 <h3>🔮 Tirada simple</h3>
-<p>Respuesta rápida a una duda concreta</p>
+<p>Respuesta rápida a tu situación</p>
 <p><b>5€</b></p>
 <a href="https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209" target="_blank">
-<button>⚡ Respuesta rápida</button>
+<button>⚡ Obtener respuesta</button>
 </a>
 </div>
 
@@ -172,7 +174,7 @@ font-style:italic;
 
 <div class="service">
 <h3>🧼 Limpieza energética</h3>
-<p>Elimina bloqueos y cargas emocionales</p>
+<p>Elimina bloqueos y cargas</p>
 <p><b>10€</b></p>
 <a href="https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202" target="_blank">
 <button>🧼 Liberar energía</button>
@@ -184,25 +186,25 @@ font-style:italic;
 <p>Bloqueos económicos y oportunidades</p>
 <p><b>10€</b></p>
 <a href="https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206" target="_blank">
-<button>💰 Mejorar mi dinero</button>
+<button>💰 Mejorar dinero</button>
 </a>
 </div>
 
 <div class="service">
 <h3>💼 Tirada de trabajo</h3>
-<p>Situación laboral y decisiones profesionales</p>
+<p>Situación laboral y decisiones</p>
 <p><b>10€</b></p>
 <a href="https://buy.stripe.com/9B628rfz1gqa95a8oy2B205" target="_blank">
-<button>💼 Ver mi trabajo</button>
+<button>💼 Ver trabajo</button>
 </a>
 </div>
 
 <div class="service">
 <h3>💖 Tirada del amor</h3>
-<p>Bloqueos emocionales y relaciones</p>
+<p>Relaciones y bloqueos emocionales</p>
 <p><b>10€</b></p>
 <a href="https://buy.stripe.com/bJe7sLfz15LwepudIS2B207" target="_blank">
-<button>💖 Entender mi amor</button>
+<button>💖 Entender amor</button>
 </a>
 </div>
 
@@ -217,10 +219,10 @@ font-style:italic;
 
 <div class="service">
 <h3>🛤 Apertura de caminos</h3>
-<p>Desbloqueo profundo y cambios vitales</p>
+<p>Desbloqueo profundo de vida</p>
 <p><b>25€</b></p>
 <a href="https://buy.stripe.com/14A14n0E7a1M2GM0W62B200" target="_blank">
-<button>🛤 Cambiar mi vida</button>
+<button>🛤 Cambiar vida</button>
 </a>
 </div>
 
