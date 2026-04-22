@@ -97,37 +97,54 @@ color:gold;
 font-size:12px;
 }
 
-/* TAROT PRO */
+/* 🔮 TAROT PREMIUM */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:10px;
-margin-top:15px;
+gap:12px;
+margin-top:20px;
+perspective:1000px;
 }
 
 .carta{
-width:70px;
-height:110px;
-border-radius:8px;
+width:75px;
+height:115px;
+border-radius:10px;
 border:1px solid gold;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-transition:0.3s;
+transition:all 0.5s ease;
 background:linear-gradient(145deg,#111,#000);
 color:gold;
 font-size:10px;
+transform-style:preserve-3d;
+position:relative;
 }
 
 .carta:hover{
-transform:translateY(-4px);
+transform:translateY(-6px) rotateY(10deg);
+box-shadow:0 0 20px gold;
 }
 
 .carta.selected{
 background:gold;
 color:black;
+transform:scale(1.1) rotateY(180deg);
+box-shadow:0 0 25px gold;
+}
+
+.carta::after{
+content:"🜁";
+position:absolute;
+font-size:18px;
+color:gold;
+}
+
+.carta.selected::after{
+content:"";
 }
 </style>
 </head>
@@ -150,14 +167,15 @@ Más de 100 consultas realizadas.
 <div id="horo-grid"></div>
 </section>
 
+<!-- 🔮 TAROT PREMIUM -->
 <section class="card">
-<h2>🔮 Tarot interactivo</h2>
+<h2>🔮 Tarot interactivo premium</h2>
 
 <button onclick="iniciarTirada()" style="background:gold;border:none;padding:12px 18px;font-weight:bold;border-radius:8px;cursor:pointer;">
 🌀 Barajar energías
 </button>
 
-<p style="margin-top:10px;">Elige 3 cartas</p>
+<p style="margin-top:10px;">Elige 3 cartas y descubre tu destino</p>
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
@@ -247,7 +265,7 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT PRO */
+/* 🔮 TAROT PREMIUM */
 const mazoOriginal=[
 "El Loco","El Mago","La Sacerdotisa","La Emperatriz",
 "El Emperador","Los Enamorados","El Carro","La Justicia",
@@ -264,6 +282,11 @@ mazo=[...mazoOriginal].sort(()=>Math.random()-0.5);
 seleccion=[];
 render();
 document.getElementById("lecturaTarot").innerHTML="";
+
+setTimeout(()=>{
+document.getElementById("lecturaTarot").innerHTML=
+"<p style='color:gold;'>✨ Las energías se están alineando… elige tus cartas</p>";
+},600);
 }
 
 function render(){
@@ -294,7 +317,7 @@ document.getElementById("lecturaTarot").innerHTML=`
 <hr>
 
 <p style="color:#ccc;max-width:600px;margin:auto;">
-Tu energía muestra un proceso de cambio interno importante. Las decisiones actuales están moldeando un nuevo ciclo. Confía en tu intuición, pero actúa con claridad: el resultado depende de tu estabilidad emocional ahora mismo.
+Tu energía muestra una transición importante. Hay un cierre de ciclo y una apertura hacia decisiones más conscientes. El destino no está cerrado: depende de cómo actúes en el presente.
 </p>
 `;
 }
