@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Gracias por tu compra 🔮</title>
+
+<style>
+body{
+background:black;
+color:gold;
+font-family:Georgia, serif;
+text-align:center;
+padding:30px;
+margin:0;
+}
+
+h1{
+color:gold;
+text-shadow:0 0 15px gold;
+}
+
+p{
+max-width:600px;
+margin:10px auto;
+}
+
+form{
+max-width:500px;
+margin:20px auto;
+}
+
+input, textarea{
+width:90%;
+padding:12px;
+margin:10px 0;
+border-radius:8px;
+border:none;
+font-family:Georgia;
+}
+
+button{
+background:gold;
+color:black;
+padding:12px;
+border:none;
+font-weight:bold;
+cursor:pointer;
+border-radius:8px;
+width:90%;
+}
+
+.info{
+color:#ccc;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🔮 Pago recibido</h1>
+
+<p class="info">
+Consulta privada · Respuesta personalizada · Entrega en menos de 24h
+</p>
+
+<p>
+Para realizar tu lectura necesito estos datos:
+</p>
+
+<!-- FORMULARIO POR EMAIL -->
+<form action="mailto:almaaracana_@hotmail.com" method="post" enctype="text/plain">
+
+<input type="text" name="nombre" placeholder="Tu nombre" required>
+
+<input type="text" name="pregunta" placeholder="Tu pregunta principal" required>
+
+<textarea name="detalle" placeholder="Explica tu situación (opcional)"></textarea>
+
+<button type="submit">Enviar consulta</button>
+
+</form>
+
+<p>
+⏳ Al enviarlo se abrirá tu correo automáticamente
+</p>
+
+</body>
+</html>
