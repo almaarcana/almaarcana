@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS NO TOCADOS */
+/* SERVICIOS (INTACTOS) */
 .service:hover{
 transform:scale(1.03);
 box-shadow:0 0 25px rgba(255,215,0,.3);
@@ -97,12 +97,12 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT SOLO MEJORADO */
+/* 🔮 TAROT NUEVO */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:12px;
+gap:10px;
 margin-top:20px;
 }
 
@@ -122,8 +122,8 @@ font-size:10px;
 }
 
 .carta:hover{
-transform:translateY(-6px);
-box-shadow:0 0 15px gold;
+transform:translateY(-5px);
+box-shadow:0 0 12px gold;
 }
 
 .carta.selected{
@@ -146,7 +146,7 @@ transform:scale(1.1);
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT MEJORADO SOLO AQUÍ -->
+<!-- 🔮 TAROT SOLO ACTUALIZADO -->
 <section class="card">
 <h2>🔮 Tarot interactivo energético</h2>
 
@@ -155,16 +155,82 @@ transform:scale(1.1);
 </button>
 
 <p style="margin-top:10px;">
-Elige 3 cartas. La energía no es aleatoria.
+Elige 3 cartas. La energía nunca es casual.
 </p>
 
 <div id="mesaTarot"></div>
-<div id="lecturaTarot"></div>
+<div id="lecturaTarot" style="margin-top:20px;"></div>
+</section>
+
+<!-- 💳 SERVICIOS (NO TOCADOS) -->
+<section id="servicios" class="card">
+<h2>💳 Servicios espirituales</h2>
+
+<div class="service">
+<h3>🔮 Carta astral</h3>
+<p>5€</p>
+<button onclick="location.href='https://buy.stripe.com/bJe9AT5YrgqaftydIS2B208'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🧿 Péndulo 5 preguntas</h3>
+<p>5€</p>
+<button onclick="location.href='https://buy.stripe.com/dRm4gzgD5b5Qa9e0W62B204'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>💖 Tirada del amor</h3>
+<p>10€</p>
+<button onclick="location.href='https://buy.stripe.com/bJe7sLfz15LwepudIS2B207'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>💰 Tirada del dinero</h3>
+<p>10€</p>
+<button onclick="location.href='https://buy.stripe.com/14A8wP86z0rc4OU5cm2B206'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🔮 Tirada simple</h3>
+<p>5€</p>
+<button onclick="location.href='https://buy.stripe.com/aFafZh5Yr7TEa9e34e2B209'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🔮 Tirada profunda</h3>
+<p>20€</p>
+<button onclick="location.href='https://buy.stripe.com/bJefZheuX2zk6X220a2B203'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>💼 Tirada de trabajo</h3>
+<p>10€</p>
+<button onclick="location.href='https://buy.stripe.com/9B628rfz1gqa95a8oy2B205'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🛤 Apertura de caminos</h3>
+<p>25€</p>
+<button onclick="location.href='https://buy.stripe.com/14A14n0E7a1M2GM0W62B200'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>💞 Ritual del amor</h3>
+<p>20€</p>
+<button onclick="location.href='https://buy.stripe.com/dRm4gzcmPgqa95a34e2B201'">Pagar</button>
+</div>
+
+<div class="service">
+<h3>🧼 Limpieza energética</h3>
+<p>10€</p>
+<button onclick="location.href='https://buy.stripe.com/28E8wPdqTfm64OUbAK2B202'">Pagar</button>
+</div>
+
 </section>
 
 <script>
 
-/* HORÓSCOPO SIN CAMBIOS */
+/* HORÓSCOPO (INTACTO) */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -200,29 +266,28 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-
-/* 🔮 TAROT NUEVO SOLO MEJORADO */
+/* 🔮 TAROT NUEVO FUNCIONAL */
 const mazoOriginal = [
-{n:"El Loco",m:"Inicio inesperado de cambio energético."},
-{n:"El Mago",m:"Capacidad de manifestar lo que deseas."},
-{n:"La Sacerdotisa",m:"Información oculta saldrá a la luz."},
-{n:"La Emperatriz",m:"Crecimiento emocional y abundancia."},
-{n:"El Emperador",m:"Decisión firme y control de situación."},
-{n:"Los Enamorados",m:"Decisión emocional importante."},
-{n:"El Carro",m:"Avance rápido hacia el éxito."},
-{n:"La Justicia",m:"Equilibrio y verdad en camino."},
-{n:"El Ermitaño",m:"Reflexión profunda necesaria."},
-{n:"La Rueda de la Fortuna",m:"Cambio inevitable de destino."},
-{n:"La Fuerza",m:"Control emocional en prueba."},
-{n:"La Muerte",m:"Transformación total."},
-{n:"La Templanza",m:"Equilibrio y sanación."},
+{n:"El Loco",m:"Inicio de cambio inesperado."},
+{n:"El Mago",m:"Poder de manifestación."},
+{n:"La Sacerdotisa",m:"Algo oculto saldrá a la luz."},
+{n:"La Emperatriz",m:"Crecimiento y abundancia."},
+{n:"El Emperador",m:"Decisiones firmes."},
+{n:"Los Enamorados",m:"Elección emocional importante."},
+{n:"El Carro",m:"Avance y éxito."},
+{n:"La Justicia",m:"Equilibrio y verdad."},
+{n:"El Ermitaño",m:"Reflexión interna."},
+{n:"La Rueda de la Fortuna",m:"Cambio de destino."},
+{n:"La Fuerza",m:"Control emocional."},
+{n:"La Muerte",m:"Transformación profunda."},
+{n:"La Templanza",m:"Equilibrio."},
 {n:"El Diablo",m:"Ataduras emocionales."},
-{n:"La Torre",m:"Ruptura necesaria para avanzar."},
-{n:"La Estrella",m:"Esperanza renovada."},
-{n:"La Luna",m:"Confusión e intuición activa."},
+{n:"La Torre",m:"Ruptura necesaria."},
+{n:"La Estrella",m:"Esperanza."},
+{n:"La Luna",m:"Confusión e intuición."},
 {n:"El Sol",m:"Éxito y claridad."},
-{n:"El Juicio",m:"Despertar espiritual."},
-{n:"El Mundo",m:"Cierre de ciclo completo."
+{n:"El Juicio",m:"Despertar."},
+{n:"El Mundo",m:"Cierre de ciclo."
 }
 ];
 
@@ -233,8 +298,7 @@ function iniciarTirada(){
 mazo=[...mazoOriginal].sort(()=>Math.random()-0.5);
 seleccion=[];
 render();
-document.getElementById("lecturaTarot").innerHTML=
-"<p style='color:gold;'>Conecta con la energía del universo...</p>";
+document.getElementById("lecturaTarot").innerHTML="<p style='color:gold;'>Conecta con la energía del universo...</p>";
 }
 
 function render(){
@@ -254,41 +318,20 @@ render();
 if(seleccion.length===3) mostrar();
 }
 
-/* 🔥 MONETIZACIÓN SIN TOCAR SERVICIOS */
-function recomendar(texto){
-
-if(texto.includes("amor") || texto.includes("Enamorados"))
-return "💖 Recomendado: Tirada del amor";
-
-if(texto.includes("dinero") || texto.includes("Emperador"))
-return "💰 Recomendado: Tirada del dinero";
-
-if(texto.includes("transformación") || texto.includes("Muerte") || texto.includes("Torre"))
-return "🔮 Recomendado: Tirada profunda";
-
-return "🔮 Recomendado: Carta astral";
-}
-
 function mostrar(){
 let [a,b,c]=seleccion.map(i=>mazo[i]);
-
-let texto = a.m + b.m + c.m;
 
 document.getElementById("lecturaTarot").innerHTML=`
 <h3 style="color:gold;">🔮 Lectura energética</h3>
 
-<p>🜂 Pasado: ${a.n} - ${a.m}</p>
-<p>🌙 Presente: ${b.n} - ${b.m}</p>
-<p>🔮 Futuro: ${c.n} - ${c.m}</p>
+<p>🜂 Pasado: ${a.n} — ${a.m}</p>
+<p>🌙 Presente: ${b.n} — ${b.m}</p>
+<p>🔮 Futuro: ${c.n} — ${c.m}</p>
 
 <hr>
 
-<p style="color:gold;font-weight:bold;">
-${recomendar(texto)}
-</p>
-
 <p style="color:#ccc;">
-La energía mostrada sugiere un proceso en evolución.
+Interpretación simbólica del flujo energético actual.
 </p>
 `;
 }
