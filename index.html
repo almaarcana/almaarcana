@@ -1,310 +1,152 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alma Arcana 🔮</title>
-
-<style>
-body{
-margin:0;
-font-family:Georgia,serif;
-background:radial-gradient(circle at top,#120018,#000);
-color:#f5e6c8;
-text-align:center;
-}
-
-.top-btn{
-position:fixed;
-top:15px;
-right:15px;
-background:gold;
-color:black;
-padding:10px 14px;
-border-radius:8px;
-text-decoration:none;
-font-weight:bold;
-z-index:999;
-box-shadow:0 0 10px rgba(255,215,0,.5);
-}
-
-h1{
-color:gold;
-text-shadow:0 0 20px gold;
-margin-top:60px;
-}
-
-section{
-padding:25px 10px;
-max-width:900px;
-margin:auto;
-}
-
-.card{
-background:rgba(0,0,0,.7);
-border:1px solid gold;
-border-radius:12px;
-padding:20px;
-margin:20px auto;
-box-shadow:0 0 20px rgba(255,215,0,.15);
-}
-
-.service{
-border:1px solid gold;
-padding:15px;
-margin:12px auto;
-border-radius:10px;
-background:rgba(0,0,0,.5);
-max-width:600px;
-}
-
-.service button{
-width:100%;
-background:gold;
-border:none;
-padding:10px;
-font-weight:bold;
-cursor:pointer;
-border-radius:8px;
-}
-
-#horo-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
-gap:6px;
-max-width:700px;
-margin:15px auto;
-font-size:11px;
-}
-
-#horo-grid div{
-padding:6px;
-border:1px solid gold;
-border-radius:6px;
-background:rgba(0,0,0,.35);
-line-height:1.2;
-}
-
-#mesaTarot{
-display:flex;
-flex-wrap:wrap;
-justify-content:center;
-gap:10px;
-margin-top:20px;
-}
-
-.carta{
-width:75px;
-height:115px;
-border-radius:10px;
-border:1px solid gold;
-display:flex;
-align-items:center;
-justify-content:center;
-cursor:pointer;
-transition:0.35s;
-background:linear-gradient(145deg,#111,#000);
-color:gold;
-font-size:10px;
-}
-
-.carta:hover{
-transform:translateY(-5px);
-box-shadow:0 0 12px gold;
-}
-
-.carta.selected{
-background:gold;
-color:black;
-transform:scale(1.1);
-}
-
-.recomendacion{
-margin-top:15px;
-padding:10px;
-border:1px solid gold;
-border-radius:10px;
-background:rgba(255,215,0,0.08);
-color:gold;
-font-weight:bold;
-}
-
-.opiniones{
-background:rgba(0,0,0,.5);
-border:1px solid gold;
-border-radius:12px;
-padding:15px;
-margin-top:20px;
-min-height:70px;
-display:flex;
-align-items:center;
-justify-content:center;
-}
-
-.opinion{
-text-align:center;
-padding:10px;
-font-style:italic;
-color:#f5e6c8;
-transition:opacity 0.5s ease;
-}
-</style>
-</head>
-
-<body>
-
-<a href="#servicios" class="top-btn">💳 Servicios</a>
-
-<h1>🔮 Alma Arcana</h1>
-<p>Tarot · Energía · Destino</p>
-
-<section class="card">
-<h2>🌙 Horóscopo diario</h2>
-<div id="horo-grid"></div>
-</section>
-
-<section class="card">
-<h2>🔮 Tarot interactivo energético</h2>
-
-<button onclick="iniciarTirada()" style="background:gold;border:none;padding:12px 18px;font-weight:bold;border-radius:8px;cursor:pointer;">
-🌀 Conectar con el destino
-</button>
-
-<p style="margin-top:10px;">
-Elige 3 cartas. La energía nunca es casual.
-</p>
-
-<div id="mesaTarot"></div>
-<div id="lecturaTarot" style="margin-top:20px;"></div>
-</section>
-
-<section id="servicios" class="card">
-<h2>💳 Servicios espirituales</h2>
-
-<div class="service"><h3>🔮 Carta astral</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🧿 Péndulo 5 preguntas</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💖 Tirada del amor</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💰 Tirada del dinero</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🔮 Tirada simple</h3><p>5€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🔮 Tirada profunda</h3><p>20€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💼 Tirada de trabajo</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🛤 Apertura de caminos</h3><p>25€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>💞 Ritual del amor</h3><p>20€</p><button>✨ Quiero mi lectura</button></div>
-<div class="service"><h3>🧼 Limpieza energética</h3><p>10€</p><button>✨ Quiero mi lectura</button></div>
-
-</section>
-
-<section class="card">
-<h2>✨ Opiniones reales</h2>
-<div class="opiniones">
-<div class="opinion" id="opinionText">
-“Me sorprendió muchísimo la precisión de la lectura.” — Laura M.
-</div>
-</div>
-</section>
+<!-- SOLO CAMBIOS EN TAROT + HORÓSCOPO -->
 
 <script>
 
-/* TODO TU CÓDIGO ORIGINAL (sin tocar) */
-/* ... lo que ya tienes ... */
-
-
 /* =========================
-   🔥 AÑADIDOS ESTRATÉGICOS
+   🌙 HORÓSCOPO NUEVO (MEJORADO)
 ========================= */
 
-window.addEventListener("DOMContentLoaded", () => {
+const signos = [
+"Aries","Tauro","Géminis","Cáncer","Leo","Virgo",
+"Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"
+];
 
+const energias = [
+"Un cambio importante se acerca a tu vida.",
+"Hoy tu intuición será más fuerte que la razón.",
+"Se desbloquea una situación emocional.",
+"Evita decisiones impulsivas.",
+"Alguien piensa en ti más de lo que crees.",
+"Momento de crecimiento personal.",
+"Una conversación será clave.",
+"Cierra ciclos sin miedo.",
+"Nueva oportunidad emocional aparece.",
+"Tu energía está atrayendo cambios.",
+"Confía en lo que sientes.",
+"Algo oculto se revela pronto."
+];
 
-// 💡 MENSAJE PSICOLÓGICO (impacto emocional)
-const intro = document.createElement("p");
-intro.innerHTML = `
-No has llegado aquí por casualidad.<br>
-Hay algo en tu vida que está pidiendo una respuesta.
+function generarHoroscopo(){
+const hoy = new Date();
+const seed = hoy.getDate() + hoy.getMonth()*10;
+
+const grid = document.getElementById("horo-grid");
+if(!grid) return;
+
+grid.innerHTML = signos.map((s,i)=>{
+const idx = (seed + i*3) % energias.length;
+
+return `
+<div>
+<b>${s}</b><br>
+${energias[idx]}
+</div>
 `;
-intro.style.maxWidth = "500px";
-intro.style.margin = "auto";
-intro.style.marginTop = "10px";
-
-document.querySelector("h1").after(intro);
-
-
-// 🧠 AUTORIDAD
-const autoridad = document.createElement("p");
-autoridad.textContent = "Más de 200 consultas realizadas.";
-autoridad.style.fontSize = "14px";
-autoridad.style.opacity = "0.8";
-intro.after(autoridad);
-
-
-// 🔥 EMPUJE AL SERVICIO DEL AMOR
-const amor = [...document.querySelectorAll(".service")]
-.find(s => s.innerText.includes("amor"));
-
-if(amor){
-amor.style.border = "2px solid gold";
-amor.style.boxShadow = "0 0 25px rgba(255,215,0,.4)";
-
-const tag = document.createElement("div");
-tag.textContent = "🔥 Más solicitado";
-tag.style.background = "gold";
-tag.style.color = "black";
-tag.style.padding = "4px 8px";
-tag.style.fontSize = "12px";
-tag.style.borderRadius = "6px";
-tag.style.marginBottom = "6px";
-
-amor.prepend(tag);
+}).join("");
 }
 
 
-// ⏳ URGENCIA
-const urgencia = document.createElement("p");
-urgencia.textContent = "⏳ Consultas limitadas hoy";
-urgencia.style.color = "gold";
-document.getElementById("servicios").appendChild(urgencia);
+/* =========================
+   🃏 TAROT NUEVO (MEJORADO)
+========================= */
 
+const tarotMejorado = [
+{
+nombre:"El Loco",
+mensaje:"Estás iniciando un camino sin mapa, confía."
+},
+{
+nombre:"El Mago",
+mensaje:"Tienes más poder del que estás usando."
+},
+{
+nombre:"La Sacerdotisa",
+mensaje:"Tu intuición está despertando."
+},
+{
+nombre:"La Emperatriz",
+mensaje:"Crecimiento emocional y abundancia."
+},
+{
+nombre:"El Emperador",
+mensaje:"Necesitas estructura y control."
+},
+{
+nombre:"La Rueda",
+mensaje:"El destino está girando a tu favor."
+},
+{
+nombre:"La Luna",
+mensaje:"No todo es lo que parece."
+},
+{
+nombre:"El Sol",
+mensaje:"Claridad y éxito en camino."
+}
+];
 
-// 👁 CONTADOR PSICOLÓGICO (NO real, pero persuasivo)
-const viewers = document.createElement("div");
-viewers.style.position = "fixed";
-viewers.style.bottom = "15px";
-viewers.style.left = "15px";
-viewers.style.background = "rgba(0,0,0,.85)";
-viewers.style.border = "1px solid gold";
-viewers.style.color = "gold";
-viewers.style.padding = "10px";
-viewers.style.fontSize = "12px";
-viewers.style.borderRadius = "10px";
-viewers.style.zIndex = "999";
+let seleccionadas = [];
 
-document.body.appendChild(viewers);
+function iniciarTirada(){
 
-setInterval(()=>{
-const num = Math.floor(Math.random()*6)+3;
-viewers.textContent = `🔮 ${num} personas están viendo esta energía ahora`;
-},3000);
+const mesa = document.getElementById("mesaTarot");
+const lectura = document.getElementById("lecturaTarot");
 
+if(!mesa || !lectura) return;
 
-// 🔮 CIERRE TAROT (empuje de venta)
-const original = mostrar;
+seleccionadas = [];
 
-mostrar = function(){
-original();
+mesa.innerHTML = tarotMejorado.map((c,i)=>`
+<div class="carta" onclick="seleccionarCarta(${i})">
+🜁
+</div>
+`).join("");
 
-const cierre = document.createElement("p");
-cierre.innerHTML = `
-💖 Si esta lectura resuena contigo, la tirada del amor puede darte respuestas más profundas.
+lectura.innerHTML = "<p style='color:gold'>Elige 3 cartas...</p>";
+}
+
+function seleccionarCarta(i){
+
+if(seleccionadas.length >= 3) return;
+if(seleccionadas.includes(i)) return;
+
+seleccionadas.push(i);
+
+const cartas = document.querySelectorAll(".carta");
+if(cartas[i]){
+cartas[i].classList.add("selected");
+}
+
+if(seleccionadas.length === 3) mostrarLectura();
+}
+
+function mostrarLectura(){
+
+const lectura = document.getElementById("lecturaTarot");
+if(!lectura) return;
+
+const [a,b,c] = seleccionadas.map(i=>tarotMejorado[i]);
+
+lectura.innerHTML = `
+<h3 style="color:gold">🔮 Lectura del destino</h3>
+
+<p>🜂 Pasado: ${a.nombre} — ${a.mensaje}</p>
+<p>🌙 Presente: ${b.nombre} — ${b.mensaje}</p>
+<p>🔮 Futuro: ${c.nombre} — ${c.mensaje}</p>
+
+<div style="margin-top:15px;color:gold">
+💖 Esta energía no es casual. Escúchala.
+</div>
 `;
-cierre.style.color = "gold";
-cierre.style.marginTop = "15px";
+}
 
-document.getElementById("lecturaTarot").appendChild(cierre);
-};
 
+/* =========================
+   🚀 INICIALIZACIÓN
+========================= */
+
+window.addEventListener("DOMContentLoaded", () => {
+generarHoroscopo();
 });
 
 </script>
-
-</body>
-</html>
