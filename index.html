@@ -208,7 +208,7 @@ z-index:999;
 <script>
 
 /* =========================
-   🌙 HORÓSCOPO
+   🌙 HORÓSCOPO (ESTABLE)
 ========================= */
 
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
@@ -239,18 +239,18 @@ return `<div><b>${s}</b><br>${frases[(seed+i)%frases.length]}</div>`;
 
 
 /* =========================
-   🃏 TAROT
+   🔮 TAROT MEJORADO (MÁS REAL)
 ========================= */
 
 const tarot=[
-["El Loco","Inicio sin control"],
-["El Mago","Poder personal"],
-["La Sacerdotisa","Intuición"],
-["El Emperador","Estructura"],
-["La Luna","Confusión"],
-["El Sol","Claridad"],
-["La Rueda","Cambio"],
-["La Estrella","Esperanza"]
+["El Loco","Estás entrando en un cambio sin mapa claro, confía en el proceso."],
+["El Mago","Tienes más control del que crees sobre lo que viene."],
+["La Sacerdotisa","Hay información oculta que pronto entenderás."],
+["El Emperador","Necesitas estructura y decisión firme."],
+["La Luna","Tus emociones están influyendo más de lo que ves."],
+["El Sol","Se abre un ciclo de claridad y éxito."],
+["La Rueda","El destino está moviéndose a tu favor."],
+["La Estrella","Recuperas esperanza en algo importante."]
 ];
 
 let sel=[];
@@ -264,7 +264,7 @@ mesa.innerHTML=tarot.map((c,i)=>`
 <div class="carta" onclick="elegir(${i})">🜁</div>
 `).join("");
 
-lectura.innerHTML="<p style='color:gold'>Elige 3 cartas...</p>";
+lectura.innerHTML="<p style='color:gold'>Conecta con la energía y elige 3 cartas...</p>";
 }
 
 function elegir(i){
@@ -277,27 +277,28 @@ if(sel.length===3){
 const [a,b,c]=sel.map(i=>tarot[i]);
 
 document.getElementById("lecturaTarot").innerHTML=`
-<h3 style="color:gold">🔮 Lectura</h3>
+<h3 style="color:gold">🔮 Lectura energética</h3>
 <p>🜂 ${a[0]} — ${a[1]}</p>
 <p>🌙 ${b[0]} — ${b[1]}</p>
 <p>🔮 ${c[0]} — ${c[1]}</p>
-<p style="color:gold;margin-top:10px">Confía en esta energía.</p>
+<p style="color:gold;margin-top:10px">Confía en lo que has sentido.</p>
 `;
 }
 }
 
 
 /* =========================
-   👁 CONTADOR
+   👁 CONTADOR MÁS ESTABLE
 ========================= */
 
 function visitas(){
 const v=document.getElementById("visitas");
 
 setInterval(()=>{
-const n=Math.floor(Math.random()*6)+3;
+const base=4;
+const n=base + Math.floor(Math.random()*4);
 v.textContent=`🔮 ${n} personas conectadas ahora`;
-},3000);
+},3500);
 }
 
 
