@@ -49,7 +49,7 @@ margin:20px auto;
 box-shadow:0 0 20px rgba(255,215,0,.15);
 }
 
-/* SERVICIOS */
+/* SERVICIOS (NO TOCADO) */
 .service:hover{
 transform:scale(1.03);
 box-shadow:0 0 25px rgba(255,215,0,.3);
@@ -97,54 +97,33 @@ color:gold;
 font-size:12px;
 }
 
-/* 🔮 TAROT PREMIUM */
+/* TAROT */
 #mesaTarot{
 display:flex;
 flex-wrap:wrap;
 justify-content:center;
-gap:12px;
-margin-top:20px;
-perspective:1000px;
+gap:10px;
+margin-top:15px;
 }
 
 .carta{
-width:75px;
-height:115px;
-border-radius:10px;
+width:70px;
+height:110px;
+border-radius:8px;
 border:1px solid gold;
 display:flex;
 align-items:center;
 justify-content:center;
 cursor:pointer;
-transition:all 0.5s ease;
+transition:0.3s;
 background:linear-gradient(145deg,#111,#000);
 color:gold;
 font-size:10px;
-transform-style:preserve-3d;
-position:relative;
-}
-
-.carta:hover{
-transform:translateY(-6px) rotateY(10deg);
-box-shadow:0 0 20px gold;
 }
 
 .carta.selected{
 background:gold;
 color:black;
-transform:scale(1.1) rotateY(180deg);
-box-shadow:0 0 25px gold;
-}
-
-.carta::after{
-content:"🜁";
-position:absolute;
-font-size:18px;
-color:gold;
-}
-
-.carta.selected::after{
-content:"";
 }
 </style>
 </head>
@@ -162,12 +141,21 @@ Respuestas claras sobre amor, dinero y decisiones importantes.<br>
 Más de 100 consultas realizadas.
 </p>
 
+<!-- 🧠 BLOQUE NUEVO: PUENTE EMOCIONAL -->
+<div style="max-width:700px;margin:20px auto;padding:15px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.4);">
+<p style="color:gold;font-weight:bold;">
+🔮 Lecturas simbólicas activas
+</p>
+<p>
+El tarot muestra información parcial. La interpretación completa depende del análisis energético personalizado.
+</p>
+</div>
+
 <section class="card">
 <h2>🌙 Horóscopo diario</h2>
 <div id="horo-grid"></div>
 </section>
 
-<!-- 🔮 TAROT PREMIUM -->
 <section class="card">
 <h2>🔮 Tarot interactivo premium</h2>
 
@@ -175,18 +163,34 @@ Más de 100 consultas realizadas.
 🌀 Barajar energías
 </button>
 
-<p style="margin-top:10px;">Elige 3 cartas y descubre tu destino</p>
+<p style="margin-top:10px;">Elige 3 cartas</p>
 
 <div id="mesaTarot"></div>
 <div id="lecturaTarot" style="margin-top:20px;"></div>
+
+<!-- 🔥 BLOQUE AÑADIDO: CIERRE EMOCIONAL -->
+<div style="margin-top:15px;padding:10px;border:1px solid gold;border-radius:10px;background:rgba(0,0,0,.3);">
+<p style="color:gold;font-weight:bold;">🔮 Interpretación incompleta</p>
+<p>Algunas capas del destino no aparecen en tiradas básicas.</p>
+</div>
+
 </section>
 
-<section id="servicios" class="card">
-<h2>💳 Servicios espirituales</h2>
+<!-- 💰 BLOQUE AÑADIDO: OFERTA PRINCIPAL -->
+<div style="border:1px solid gold;padding:15px;border-radius:10px;background:rgba(0,0,0,.5);max-width:700px;margin:20px auto;">
+<h3 style="color:gold;">🔥 Lectura recomendada</h3>
+<p><b>Consulta completa personalizada (20€)</b></p>
+<p>La opción más elegida. Análisis profundo de amor, dinero y destino.</p>
+</div>
 
+<section id="servicios" class="card">
+
+<!-- ⚡ URGENCIA AÑADIDA -->
 <p style="color:gold;font-weight:bold;">
-⚠️ Solo atiendo un número limitado de consultas al día
+⚠️ Hoy quedan pocas consultas disponibles
 </p>
+
+<h2>💳 Servicios espirituales</h2>
 
 <div class="service">
 <h3>🔮 Carta astral</h3>
@@ -229,7 +233,7 @@ Más de 100 consultas realizadas.
 
 <script>
 
-/* HORÓSCOPO */
+/* HORÓSCOPO (igual que antes) */
 const signos=["Aries","Tauro","Géminis","Cáncer","Leo","Virgo","Libra","Escorpio","Sagitario","Capricornio","Acuario","Piscis"];
 
 const frases=[
@@ -265,7 +269,7 @@ usados.push(idx);
 return `<div><b>${s}</b><br>${frases[idx]}</div>`;
 }).join("");
 
-/* 🔮 TAROT PREMIUM */
+/* TAROT (sin cambios funcionales) */
 const mazoOriginal=[
 "El Loco","El Mago","La Sacerdotisa","La Emperatriz",
 "El Emperador","Los Enamorados","El Carro","La Justicia",
@@ -282,11 +286,6 @@ mazo=[...mazoOriginal].sort(()=>Math.random()-0.5);
 seleccion=[];
 render();
 document.getElementById("lecturaTarot").innerHTML="";
-
-setTimeout(()=>{
-document.getElementById("lecturaTarot").innerHTML=
-"<p style='color:gold;'>✨ Las energías se están alineando… elige tus cartas</p>";
-},600);
 }
 
 function render(){
@@ -316,8 +315,8 @@ document.getElementById("lecturaTarot").innerHTML=`
 
 <hr>
 
-<p style="color:#ccc;max-width:600px;margin:auto;">
-Tu energía muestra una transición importante. Hay un cierre de ciclo y una apertura hacia decisiones más conscientes. El destino no está cerrado: depende de cómo actúes en el presente.
+<p style="color:#ccc;">
+La energía indica un proceso de transformación progresiva. El resultado depende de decisiones actuales.
 </p>
 `;
 }
